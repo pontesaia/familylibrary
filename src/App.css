@@ -38,5 +38,89 @@
 }
 
 #navItems a {
-  color:black;
+  color: black;
+}
+
+/* Extra small devices */
+
+@media (min-width: 100px) {
+  #loginBtn {
+    margin-left: auto;
+    margin-right: auto;
+    padding: "15px 0 15x 0",
+  }
+  #registerBtn {
+    margin-left: auto;
+    margin-right: auto;
+    padding: "15px 0 15px 0",
+  }
+  #logoImage {
+    width: 90vw;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+  #loginBtn {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 0 15px 0;
+  }
+  #registerBtn {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 0 15px 0;
+  }
+  #logoImage {
+    width: 70vw;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+  #loginBtn {
+    margin-left: auto;
+    margin-right: 0;
+    padding: 30px 0 30px 0;
+  }
+  #registerBtn {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 30px 0 30px 0;
+  }
+  #logoImage {
+    width: clamp(100px, 50vw, 500px);
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+  #loginBtn {
+    margin-left: auto;
+    margin-right: 0;
+    padding: 30px 0 30px 0;
+  }
+  #registerBtn {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 30px 0 30px 0;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+  #loginBtn {
+    margin-left: auto;
+    margin-right: 0;
+    padding: 30px 0 30px 0;
+  }
+  #registerBtn {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 30px 0 30px 0;
+  }
 }

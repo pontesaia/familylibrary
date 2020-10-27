@@ -1,49 +1,84 @@
-import React, { Component } from 'react';
-import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+import React, { Component } from "react";
+import {
+	Container,
+	Row,
+	Col,
+	Navbar,
+	Nav,
+	NavbarBrand,
+	NavItem,
+	NavLink,
+	NavbarToggler,
+	Collapse,
+} from "reactstrap";
 
 class MainNav extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-    render() { 
-        return (
+	constructor(props) {
+		super(props);
+		this.state = { collapsed: false};
+		//   const [collapsed, setCollapsed] = useState(true);
+	}
+    toggleNavbar = () => { this.setState({ collapsed: !this.state.collapsed }) };
+
+	render() {
+		return (
 			<React.Fragment>
 				<Container id="navItems">
 					<Row>
 						<Col>
-							<Nav className="justify-content-center">
-								<NavItem>
-									<NavLink style={styles.navLinks} href="#">
-										About
-									</NavLink>
-								</NavItem>
-								<NavItem>
-									<NavLink style={styles.navLinks} href="#">
-										Contact
-									</NavLink>
-								</NavItem>
-								<NavItem>
-									<NavLink style={styles.navLinks} href="#">
-										Features
-									</NavLink>
-								</NavItem>
-							</Nav>
+							<Navbar color="faded" light expand="md">
+								<NavbarBrand href="/" className="mr-auto" />
+								<NavbarToggler
+									onClick={this.toggleNavbar}
+									className="mr-2"
+								/>
+								<Collapse isOpen={this.state.collapsed} navbar>
+									<Nav
+										navbar
+										className="justify-content-center mx-auto"
+									>
+										<NavItem>
+											<NavLink
+												style={styles.navLinks}
+												href="#"
+											>
+												About
+											</NavLink>
+										</NavItem>
+										<NavItem>
+											<NavLink
+												style={styles.navLinks}
+												href="#"
+											>
+												Contact
+											</NavLink>
+										</NavItem>
+										<NavItem>
+											<NavLink
+												style={styles.navLinks}
+												href="#"
+											>
+												Features
+											</NavLink>
+										</NavItem>
+									</Nav>
+								</Collapse>
+							</Navbar>
 						</Col>
 					</Row>
 				</Container>
 			</React.Fragment>
 		);
-    }
+	}
 }
 
 const styles = {
 	navLinks: {
-        fontFamily: 'Comfortaa',
-        fontSize: '1.8rem',
-        paddingLeft: '52px',
-        paddingRight: '52px',
+		fontFamily: "Comfortaa",
+		fontSize: "1.8rem",
+		paddingLeft: "52px",
+		paddingRight: "52px",
 	},
 };
- 
+
 export default MainNav;

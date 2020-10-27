@@ -8,32 +8,34 @@ class Home extends Component {
 		return (
 			<React.Fragment>
 				<Container>
-					<Row className="mt-5">
+					<Row className="mt-2">
 						<Col className="text-center">
 							<MainNav />
 						</Col>
 					</Row>
-					<Row className="mt-5">
+					<Row className="mt-1">
 						<Col className="text-center">
-							<img src="/images/logoImage.png" />
+							<img src="/images/logoImage.png" id="logoImage" />
 							<h1 className="mt-3" style={styles.logoType}>
 								family library
 							</h1>
 						</Col>
 					</Row>
-					<Row className="text-center mt-5">
+					<Row className="text-center mt-4">
 						<Col xs="12" md="6">
 							<Button
-								className="btn-block ml-auto"
-								style={styles.buttonLogin}
+								className="btn-block mb-2"
+                                style={styles.buttonLogin}
+                                id="loginBtn"
 							>
 								LOG IN
 							</Button>
 						</Col>
 						<Col xs="12" md="6">
 							<Button
-								className="btn-block"
-								style={styles.buttonRegister}
+								className="btn-block mb-2"
+                                style={styles.buttonRegister}
+                                id="registerBtn"
 							>
 								REGISTER
 							</Button>
@@ -52,10 +54,6 @@ const styles = {
 		border: "solid black 3px",
 		color: "black",
 		fontSize: "2rem",
-		padding: "30px 0 30px 0",
-		// margin: "0 50px 0 50px",
-		// marginLeft: "50px",
-		// marginRight: "50px"
 		width: "80%",
 	},
 	buttonRegister: {
@@ -63,8 +61,6 @@ const styles = {
 		backgroundColor: "black",
 		border: "solid black 3px",
 		fontSize: "2rem",
-		padding: "30px 0 30px 0",
-		// margin: "0 50px 0 50px",
 		width: "80%",
 	},
 	logoType: {
