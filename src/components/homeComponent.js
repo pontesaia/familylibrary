@@ -1,16 +1,73 @@
 import React, { Component } from "react";
+import { Container, Row, Col, Button, Collapse } from "reactstrap";
+
 import MainNav from "./mainNavComponent";
-import { Container, Row, Col, Button } from "reactstrap";
+import About from "./aboutComponent";
+import Contact from "./contactComponent";
+import Features from "./featuresComponent";
 
 class Home extends Component {
-	state = {};
+	constructor(props) {
+		super(props);
+		this.state = {
+			aboutCollapsed: false,
+			contactCollapsed: false,
+			featuresCollapsed: false,
+		};
+	}
+	toggleAbout = () => {
+		this.setState({
+			aboutCollapsed: !this.state.aboutCollapsed,
+			contactCollapsed: false,
+			featuresCollapsed: false,
+		});
+	};
+	toggleContact = () => {
+		this.setState({
+			aboutCollapsed: false,
+			contactCollapsed: !this.state.contactCollapsed,
+			featuresCollapsed: false,
+		});
+	};
+	toggleFeatures = () => {
+		this.setState({
+			aboutCollapsed: false,
+			contactCollapsed: false,
+			featuresCollapsed: !this.state.featuresCollapsed,
+		});
+	};
 	render() {
 		return (
 			<React.Fragment>
 				<Container>
+					<Collapse isOpen={this.state.aboutCollapsed}>
+						<Row>
+							<Col className="text-center">
+								<About />
+							</Col>
+						</Row>
+					</Collapse>
+					<Collapse isOpen={this.state.contactCollapsed}>
+						<Row>
+							<Col className="text-center">
+								<Contact />
+							</Col>
+						</Row>
+					</Collapse>
+					<Collapse isOpen={this.state.featuresCollapsed}>
+						<Row>
+							<Col className="text-center">
+								<Features />
+							</Col>
+						</Row>
+					</Collapse>
 					<Row className="mt-2">
 						<Col className="text-center">
-							<MainNav />
+							<MainNav
+								toggleAbout={this.toggleAbout}
+								toggleContact={this.toggleContact}
+								toggleFeatures={this.toggleFeatures}
+							/>
 						</Col>
 					</Row>
 					<Row className="mt-1">
@@ -25,8 +82,8 @@ class Home extends Component {
 						<Col xs="12" md="6">
 							<Button
 								className="btn-block mb-2"
-                                style={styles.buttonLogin}
-                                id="loginBtn"
+								style={styles.buttonLogin}
+								id="loginBtn"
 							>
 								LOG IN
 							</Button>
@@ -34,8 +91,8 @@ class Home extends Component {
 						<Col xs="12" md="6">
 							<Button
 								className="btn-block mb-2"
-                                style={styles.buttonRegister}
-                                id="registerBtn"
+								style={styles.buttonRegister}
+								id="registerBtn"
 							>
 								REGISTER
 							</Button>

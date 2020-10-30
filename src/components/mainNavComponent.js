@@ -12,6 +12,8 @@ import {
 	Collapse,
 } from "reactstrap";
 
+// import { NavLink } from "react-router-dom";
+
 class MainNav extends Component {
 	constructor(props) {
 		super(props);
@@ -39,24 +41,37 @@ class MainNav extends Component {
 									>
 										<NavItem>
 											<NavLink
+												// className="nav-link"
 												style={styles.navLinks}
+												// to="/about"
 												href="#"
+												onClick={this.props.toggleAbout}
 											>
 												About
 											</NavLink>
 										</NavItem>
 										<NavItem>
 											<NavLink
+												// className="nav-link"
 												style={styles.navLinks}
+												// to="/contact"
 												href="#"
+												onClick={
+													this.props.toggleContact
+												}
 											>
 												Contact
 											</NavLink>
 										</NavItem>
 										<NavItem>
 											<NavLink
+												// className="nav-link"
 												style={styles.navLinks}
+												// to="/features"
 												href="#"
+												onClick={
+													this.props.toggleFeatures
+												}
 											>
 												Features
 											</NavLink>
