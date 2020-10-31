@@ -10,54 +10,84 @@ class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			aboutCollapsed: false,
-			contactCollapsed: false,
-			featuresCollapsed: false,
+			aboutOpen: false,
+			contactOpen: false,
+			featuresOpen: false,
+			open: false,
+			mainNavRender: null,
 		};
 	}
 	toggleAbout = () => {
-		this.setState({
-			aboutCollapsed: !this.state.aboutCollapsed,
-			contactCollapsed: false,
-			featuresCollapsed: false,
-		});
+		if (!this.state.open) {
+			this.setState({
+				open: true,
+				aboutOpen: true,
+				contactOpen: false,
+				featuresOpen: false,
+				mainNavRender: <About />,
+			});
+		} else if (this.state.open && !this.state.aboutOpen) {
+			this.setState({
+				open: true,
+				aboutOpen: true,
+				contactOpen: false,
+				featuresOpen: false,
+				mainNavRender: <About />,
+			});
+		} else if (this.state.open && this.state.aboutOpen) {
+			this.setState({ open: !this.state.open });
+		}
 	};
 	toggleContact = () => {
-		this.setState({
-			aboutCollapsed: false,
-			contactCollapsed: !this.state.contactCollapsed,
-			featuresCollapsed: false,
-		});
+		if (!this.state.open) {
+			this.setState({
+				open: true,
+				aboutOpen: false,
+				contactOpen: true,
+				featuresOpen: false,
+				mainNavRender: <Contact />,
+			});
+		} else if (this.state.open && !this.state.contactOpen) {
+			this.setState({
+				open: true,
+				aboutOpen: false,
+				contactOpen: true,
+				featuresOpen: false,
+				mainNavRender: <Contact />,
+			});
+		} else if (this.state.open && this.state.contactOpen) {
+			this.setState({ open: !this.state.open });
+		}
 	};
 	toggleFeatures = () => {
-		this.setState({
-			aboutCollapsed: false,
-			contactCollapsed: false,
-			featuresCollapsed: !this.state.featuresCollapsed,
-		});
+		if (!this.state.open) {
+			this.setState({
+				open: true,
+				aboutOpen: false,
+				contactOpen: false,
+				featuresOpen: true,
+				mainNavRender: <Features />,
+			});
+		} else if (this.state.open && !this.state.featuresOpen) {
+			this.setState({
+				open: true,
+				aboutOpen: false,
+				contactOpen: false,
+				featuresOpen: true,
+				mainNavRender: <Features />,
+			});
+		} else if (this.state.open && this.state.featuresOpen) {
+			this.setState({ open: !this.state.open });
+		}
 	};
 	render() {
 		return (
 			<React.Fragment>
 				<Container>
-					<Collapse isOpen={this.state.aboutCollapsed}>
+					<Collapse isOpen={this.state.open}>
 						<Row>
-							<Col className="text-center">
-								<About />
-							</Col>
-						</Row>
-					</Collapse>
-					<Collapse isOpen={this.state.contactCollapsed}>
-						<Row>
-							<Col className="text-center">
-								<Contact />
-							</Col>
-						</Row>
-					</Collapse>
-					<Collapse isOpen={this.state.featuresCollapsed}>
-						<Row>
-							<Col className="text-center">
-								<Features />
+							<Col className="text-center mainNavRender">
+								{this.state.mainNavRender}
 							</Col>
 						</Row>
 					</Collapse>
