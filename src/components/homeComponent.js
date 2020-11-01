@@ -7,54 +7,6 @@ import Contact from "./contactComponent";
 import Features from "./featuresComponent";
 
 class Home extends Component {
-<<<<<<< HEAD
-  state = {};
-  render() {
-    return (
-      <React.Fragment>
-        <Container>
-          <Row className="mt-2">
-            <Col className="text-center">
-              <MainNav />
-            </Col>
-          </Row>
-          <Row className="mt-1">
-            <Col className="text-center">
-              <img
-                alt="Family library"
-                src="/images/logoImage.png"
-                id="logoImage"
-              />
-              <h1 className="mt-3" style={styles.logoType}>
-                family library
-              </h1>
-            </Col>
-          </Row>
-          <Row className="text-center mt-4">
-            <Col xs="12" md="6">
-              <Button
-                className="btn-block mb-2"
-                style={styles.buttonLogin}
-                id="loginBtn"
-              >
-                LOG IN
-              </Button>
-            </Col>
-            <Col xs="12" md="6">
-              <Button
-                className="btn-block mb-2"
-                style={styles.buttonRegister}
-                id="registerBtn"
-              >
-                REGISTER
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </React.Fragment>
-    );
-  }
-=======
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -150,7 +102,6 @@ class Home extends Component {
 			</React.Fragment>
 		);
 	}
->>>>>>> 1b63e0e4e32d405ced00d656f73d8b2d6258fe9d
 }
 
 const styles = {
