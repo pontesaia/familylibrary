@@ -41,17 +41,6 @@
   color: black;
 }
 
-.mainNavRender {
-  /* max-height: 0; */
-  transition: max-height 0.15s ease-out;
-  overflow: hidden;
-}
-
-.mainNavRender:hover {
-  max-height: 500px;
-  transition: max-height 0.25s ease-in;
-}
-
 /* Extra small devices */
 
 @media (min-width: 100px) {
