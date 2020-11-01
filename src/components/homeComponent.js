@@ -10,84 +10,54 @@ class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			aboutOpen: false,
-			contactOpen: false,
-			featuresOpen: false,
-			open: false,
-			mainNavRender: null,
+			aboutCollapsed: false,
+			contactCollapsed: false,
+			featuresCollapsed: false,
 		};
 	}
 	toggleAbout = () => {
-		if (!this.state.open) {
-			this.setState({
-				open: true,
-				aboutOpen: true,
-				contactOpen: false,
-				featuresOpen: false,
-				mainNavRender: <About />,
-			});
-		} else if (this.state.open && !this.state.aboutOpen) {
-			this.setState({
-				open: true,
-				aboutOpen: true,
-				contactOpen: false,
-				featuresOpen: false,
-				mainNavRender: <About />,
-			});
-		} else if (this.state.open && this.state.aboutOpen) {
-			this.setState({ open: !this.state.open });
-		}
+		this.setState({
+			aboutCollapsed: !this.state.aboutCollapsed,
+			contactCollapsed: false,
+			featuresCollapsed: false,
+		});
 	};
 	toggleContact = () => {
-		if (!this.state.open) {
-			this.setState({
-				open: true,
-				aboutOpen: false,
-				contactOpen: true,
-				featuresOpen: false,
-				mainNavRender: <Contact />,
-			});
-		} else if (this.state.open && !this.state.contactOpen) {
-			this.setState({
-				open: true,
-				aboutOpen: false,
-				contactOpen: true,
-				featuresOpen: false,
-				mainNavRender: <Contact />,
-			});
-		} else if (this.state.open && this.state.contactOpen) {
-			this.setState({ open: !this.state.open });
-		}
+		this.setState({
+			aboutCollapsed: false,
+			contactCollapsed: !this.state.contactCollapsed,
+			featuresCollapsed: false,
+		});
 	};
 	toggleFeatures = () => {
-		if (!this.state.open) {
-			this.setState({
-				open: true,
-				aboutOpen: false,
-				contactOpen: false,
-				featuresOpen: true,
-				mainNavRender: <Features />,
-			});
-		} else if (this.state.open && !this.state.featuresOpen) {
-			this.setState({
-				open: true,
-				aboutOpen: false,
-				contactOpen: false,
-				featuresOpen: true,
-				mainNavRender: <Features />,
-			});
-		} else if (this.state.open && this.state.featuresOpen) {
-			this.setState({ open: !this.state.open });
-		}
+		this.setState({
+			aboutCollapsed: false,
+			contactCollapsed: false,
+			featuresCollapsed: !this.state.featuresCollapsed,
+		});
 	};
 	render() {
 		return (
 			<React.Fragment>
 				<Container>
-					<Collapse isOpen={this.state.open}>
+					<Collapse isOpen={this.state.aboutCollapsed}>
 						<Row>
-							<Col className="text-center mainNavRender">
-								{this.state.mainNavRender}
+							<Col className="text-center">
+								<About />
+							</Col>
+						</Row>
+					</Collapse>
+					<Collapse isOpen={this.state.contactCollapsed}>
+						<Row>
+							<Col className="text-center">
+								<Contact />
+							</Col>
+						</Row>
+					</Collapse>
+					<Collapse isOpen={this.state.featuresCollapsed}>
+						<Row>
+							<Col className="text-center">
+								<Features />
 							</Col>
 						</Row>
 					</Collapse>
@@ -135,25 +105,25 @@ class Home extends Component {
 }
 
 const styles = {
-	buttonLogin: {
-		borderRadius: "8px",
-		backgroundColor: "white",
-		border: "solid black 3px",
-		color: "black",
-		fontSize: "2rem",
-		width: "80%",
-	},
-	buttonRegister: {
-		borderRadius: "8px",
-		backgroundColor: "black",
-		border: "solid black 3px",
-		fontSize: "2rem",
-		width: "80%",
-	},
-	logoType: {
-		fontFamily: "Comfortaa",
-		fontSize: "clamp(40px, 8vw, 100px)",
-	},
+  buttonLogin: {
+    borderRadius: "8px",
+    backgroundColor: "white",
+    border: "solid black 3px",
+    color: "black",
+    fontSize: "2rem",
+    width: "80%",
+  },
+  buttonRegister: {
+    borderRadius: "8px",
+    backgroundColor: "black",
+    border: "solid black 3px",
+    fontSize: "2rem",
+    width: "80%",
+  },
+  logoType: {
+    fontFamily: "Comfortaa",
+    fontSize: "clamp(40px, 8vw, 100px)",
+  },
 };
 
 export default Home;
