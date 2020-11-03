@@ -124,3 +124,18 @@
     padding: 30px 0 30px 0;
   }
 }
+
+.componentContainer {
+  background-color: #9EFDF5;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+}
+
+.backgroundCircle {
+  display: inline-block;
+  margin-right: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgb(233, 231, 231);
+}
