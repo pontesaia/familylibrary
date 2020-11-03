@@ -47,12 +47,12 @@
   #loginBtn {
     margin-left: auto;
     margin-right: auto;
-    padding: "15px 0 15x 0",
+    padding: "15px 0 15x 0";
   }
   #registerBtn {
     margin-left: auto;
     margin-right: auto;
-    padding: "15px 0 15px 0",
+    padding: "15px 0 15px 0";
   }
   #logoImage {
     width: 90vw;
@@ -126,9 +126,11 @@
 }
 
 .componentContainer {
-  background-color: #9EFDF5;
-  margin-bottom: 50px;
-  padding-bottom: 50px;
+  /* background-color: #9efdf5; */
+  margin-top: 50px;
+  /* margin-bottom: 80px; */
+  /* padding-bottom: 30px; */
+  padding-top: 20px;
 }
 
 .backgroundCircle {
@@ -138,4 +140,9 @@
   height: 30px;
   border-radius: 50%;
   background-color: rgb(233, 231, 231);
+}
+
+p {
+  font-size: 1rem;
+  line-height: "30px";
 }
