@@ -38,57 +38,61 @@ class Home extends Component {
   };
   render() {
     return (
-      <React.Fragment>
-        <Container>
-          <Collapse isOpen={this.state.aboutCollapsed}>
-            <About />
-          </Collapse>
-          <Collapse isOpen={this.state.contactCollapsed}>
-            <Contact />
-          </Collapse>
-          <Collapse isOpen={this.state.featuresCollapsed}>
-            <Features />
-          </Collapse>
-          <Row className="mt-5">
-            <Col className="text-center">
-              <MainNav
-                toggleAbout={this.toggleAbout}
-                toggleContact={this.toggleContact}
-                toggleFeatures={this.toggleFeatures}
-              />
-            </Col>
-          </Row>
-          <Row className="mt-1">
-            <Col className="text-center">
-              <img src="/images/logoImage.png" id="logoImage" alt="" />
-              <h1 className="mt-3" style={styles.logoType}>
-                family library
-              </h1>
-            </Col>
-          </Row>
-          <Row className="text-center mt-4">
-            <Col xs="12" md="6">
-              <Button
-                className="btn-block mb-2"
-                style={styles.buttonLogin}
-                id="loginBtn"
-              >
-                LOG IN
-              </Button>
-            </Col>
-            <Col xs="12" md="6">
-              <Button
-                className="btn-block mb-2"
-                style={styles.buttonRegister}
-                id="registerBtn"
-              >
-                REGISTER
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </React.Fragment>
-    );
+		<React.Fragment>
+			<Collapse isOpen={this.state.aboutCollapsed}>
+				<About />
+			</Collapse>
+			<Collapse isOpen={this.state.contactCollapsed}>
+				<Contact />
+			</Collapse>
+			<Collapse isOpen={this.state.featuresCollapsed}>
+				<Features />
+			</Collapse>
+			<Container>
+				<Row className="mt-5">
+					<Col className="text-center">
+						<MainNav
+							toggleAbout={this.toggleAbout}
+							toggleContact={this.toggleContact}
+							toggleFeatures={this.toggleFeatures}
+						/>
+					</Col>
+				</Row>
+				<Row className="mt-1">
+					<Col className="text-center">
+						<img
+							src="/images/logoImage.png"
+							id="logoImage"
+							alt=""
+						/>
+						<h1 className="mt-3" style={styles.logoType}>
+							family library
+						</h1>
+					</Col>
+				</Row>
+				<Row className="text-center mt-4">
+					<Col xs="12" md="6">
+						<Button
+							className="btn-block mb-2"
+							style={styles.buttonLogin}
+							id="loginBtn"
+						>
+							LOG IN
+						</Button>
+					</Col>
+					<Col xs="12" md="6">
+						<Button
+							className="btn-block mb-2"
+							style={styles.buttonRegister}
+							id="registerBtn"
+						>
+							REGISTER
+						</Button>
+					</Col>
+				</Row>
+			</Container>
+		</React.Fragment>
+	);
   }
 }
 
