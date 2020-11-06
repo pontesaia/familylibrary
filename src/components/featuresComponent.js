@@ -19,7 +19,7 @@ class Features extends Component {
 					<Row className="text-left mt-4">
 						<Col xs="12" sm="6" md="3">
 							<p style={styles.imageBullets}>
-								<span class="backgroundCircle">
+								<span className="backgroundCircle">
 									<img
 										style={styles.icons}
 										src="/images/account-circle.svg"
@@ -34,7 +34,7 @@ class Features extends Component {
 						</Col>
 						<Col xs="12" sm="6" md="3">
 							<p style={styles.imageBullets}>
-								<span class="backgroundCircle">
+								<span className="backgroundCircle">
 									<img
 										style={styles.icons}
 										src="/images/highway.svg"
@@ -48,7 +48,7 @@ class Features extends Component {
 						</Col>
 						<Col xs="12" sm="6" md="3">
 							<p style={styles.imageBullets}>
-								<span class="backgroundCircle">
+								<span className="backgroundCircle">
 									<img
 										style={styles.icons}
 										src="/images/baby-carriage.svg"
@@ -63,7 +63,7 @@ class Features extends Component {
 						</Col>
 						<Col xs="12" sm="6" md="3">
 							<p style={styles.imageBullets}>
-								<span class="backgroundCircle">
+								<span className="backgroundCircle">
 									<img
 										style={styles.icons}
 										src="/images/human-female-boy.svg"
@@ -79,7 +79,7 @@ class Features extends Component {
 					<Row>
 						<Col xs="12" sm="6" md="3">
 							<p style={styles.imageBullets}>
-								<span class="backgroundCircle">
+								<span className="backgroundCircle">
 									<img
 										style={styles.icons}
 										src="/images/badge-account-horizontal.svg"
@@ -93,7 +93,7 @@ class Features extends Component {
 						</Col>
 						<Col xs="12" sm="6" md="3">
 							<p style={styles.imageBullets}>
-								<span class="backgroundCircle">
+								<span className="backgroundCircle">
 									<img
 										style={styles.icons}
 										src="/images/human-queue.svg"
@@ -107,7 +107,7 @@ class Features extends Component {
 						</Col>
 						<Col xs="12" sm="6" md="3">
 							<p style={styles.imageBullets}>
-								<span class="backgroundCircle">
+								<span className="backgroundCircle">
 									<img
 										style={styles.icons}
 										src="/images/human-male-girl.svg"
@@ -122,7 +122,7 @@ class Features extends Component {
 						</Col>
 						<Col xs="12" sm="6" md="3" className="mb-5">
 							<p style={styles.imageBullets}>
-								<span class="backgroundCircle">
+								<span className="backgroundCircle">
 									<img
 										style={styles.icons}
 										src="/images/human-male-child.svg"

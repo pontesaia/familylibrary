@@ -3,14 +3,15 @@ import {
 	Container,
 	Row,
 	Col,
-	Label,
+	Button,
+	Collapse,
+	Form,
 	FormGroup,
 	Input,
-	Form,
-	Button,
+	Label,
 } from "reactstrap";
 
-class Contact extends Component {
+class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -24,7 +25,22 @@ class Contact extends Component {
 							<Col xs="12" sm="12" md="7" className="mx-auto">
 								<Row>
 									<Col className="text-left mt-4">
-										<h1 style={styles.header}>Contact</h1>
+										<h1 style={styles.header}>
+											<a
+												href="#"
+												onClick={
+													this.props.toggleLogin
+												}
+												style={styles.backLink}
+											>
+												↩
+											</a>{" "}
+										</h1>
+									</Col>
+								</Row>
+								<Row>
+									<Col className="text-left mt-4">
+										<h1 style={styles.header}>Login</h1>
 									</Col>
 								</Row>
 								<Form style={styles.form1}>
@@ -83,7 +99,12 @@ const styles = {
 		width: "100%",
 		marginBottom: "80px",
 		backgroundColor: "black",
-		fontSize: "1.5rem"
+		fontSize: "1.5rem",
+	},
+	backLink: {
+		textDecoration: "none",
+		color: "black",
 	},
 };
-export default Contact;
+
+export default Login;
