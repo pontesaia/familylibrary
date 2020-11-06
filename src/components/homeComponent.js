@@ -33,59 +33,18 @@ class Home extends Component {
 		}
 	};
 
-	toggleAbout = () => {
-		this.toggleLogoWidth(this.state.aboutCollapsed);
-
-		this.setState({
-			aboutCollapsed: !this.state.aboutCollapsed,
-			contactCollapsed: false,
-			featuresCollapsed: false,
-			loginCollapsed: false,
-			registerCollapsed: false,
-		});
-	};
-	toggleContact = () => {
-		this.toggleLogoWidth(this.state.contactCollapsed);
-
-		this.setState({
-			aboutCollapsed: false,
-			contactCollapsed: !this.state.contactCollapsed,
-			featuresCollapsed: false,
-			loginCollapsed: false,
-			registerCollapsed: false,
-		});
-	};
-	toggleFeatures = () => {
-		this.toggleLogoWidth(this.state.featuresCollapsed);
-
-		this.setState({
-			aboutCollapsed: false,
-			contactCollapsed: false,
-			featuresCollapsed: !this.state.featuresCollapsed,
-			loginCollapsed: false,
-			registerCollapsed: false,
-		});
-	};
-	toggleLogin = () => {
-		this.toggleLogoWidth(this.state.loginCollapsed);
-
-		this.setState({
-			aboutCollapsed: false,
-			contactCollapsed: false,
-			featuresCollapsed: false,
-			loginCollapsed: !this.state.loginCollapsed,
-			registerCollapsed: false,
-		});
-	};
-	toggleRegister = () => {
-		this.toggleLogoWidth(this.state.registerCollapsed);
-
+	toggleComponent = (event) => {
+		const {
+			target: { name},
+		} = event;
+		this.toggleLogoWidth(this.state[name]);
 		this.setState({
 			aboutCollapsed: false,
 			contactCollapsed: false,
 			featuresCollapsed: false,
 			loginCollapsed: false,
-			registerCollapsed: !this.state.registerCollapsed,
+			registerCollapsed: false,
+			[name]: !this.state[name],
 		});
 	};
 
@@ -111,9 +70,7 @@ class Home extends Component {
 					<Row className="mt-5">
 						<Col className="text-center">
 							<MainNav
-								toggleAbout={this.toggleAbout}
-								toggleContact={this.toggleContact}
-								toggleFeatures={this.toggleFeatures}
+								toggleComponent={this.toggleComponent}
 							/>
 						</Col>
 					</Row>
@@ -123,7 +80,6 @@ class Home extends Component {
 								src="/images/logoImage.png"
 								id="logoImage"
 								alt=""
-								// width={this.state.logoWidth}
 								style={{ width: this.state.logoWidth }}
 							/>
 							<h1 className="mt-3" style={styles.logoType}>
@@ -137,7 +93,8 @@ class Home extends Component {
 								className="btn-block mb-2"
 								style={styles.buttonLogin}
 								id="loginBtn"
-								onClick={this.toggleLogin}
+								name="loginCollapsed"
+								onClick={this.toggleComponent}
 							>
 								LOG IN
 							</Button>
@@ -147,7 +104,8 @@ class Home extends Component {
 								className="btn-block mb-2"
 								style={styles.buttonRegister}
 								id="registerBtn"
-								onClick={this.toggleRegister}
+								name="registerCollapsed"
+								onClick={this.toggleComponent}
 							>
 								REGISTER
 							</Button>

@@ -37,7 +37,7 @@ class About extends Component {
 							<Row>
 								<Col>
 									<p style={styles.imageBullets}>
-										<span class="backgroundCircle">
+										<span className="backgroundCircle">
 											<img
 												style={styles.icons}
 												src="/images/earth.svg"
@@ -51,7 +51,7 @@ class About extends Component {
 									</p>
 
 									<p style={styles.imageBullets}>
-										<span class="backgroundCircle">
+										<span className="backgroundCircle">
 											<img
 												style={styles.icons}
 												src="/images/hand-heart.svg"
@@ -70,7 +70,7 @@ class About extends Component {
 							<Row>
 								<Col>
 									<p style={styles.imageBullets}>
-										<span class="backgroundCircle">
+										<span className="backgroundCircle">
 											<img
 												style={styles.icons}
 												src="/images/book-edit-outline.svg"
@@ -84,7 +84,7 @@ class About extends Component {
 									</p>
 
 									<p style={styles.imageBullets}>
-										<span class="backgroundCircle">
+										<span className="backgroundCircle">
 											<img
 												style={styles.icons}
 												src="/images/human-queue.svg"

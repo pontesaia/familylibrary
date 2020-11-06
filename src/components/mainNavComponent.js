@@ -26,56 +26,65 @@ class MainNav extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Container id="navItems" className="mb-4">
-          <Row>
-            <Col>
-              <Navbar color="faded" light expand="md">
-                <NavbarBrand href="/" className="mr-auto" />
-                <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                <Collapse isOpen={this.state.collapsed} navbar>
-                  <Nav navbar className="justify-content-center mx-auto">
-                    <NavItem>
-                      <NavLink
-                        // className="nav-link"
-                        style={styles.navLinks}
-                        // to="/about"
-                        href="#"
-                        onClick={this.props.toggleAbout}
-                      >
-                        About
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        // className="nav-link"
-                        style={styles.navLinks}
-                        // to="/contact"
-                        href="#"
-                        onClick={this.props.toggleContact}
-                      >
-                        Contact
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink
-                        // className="nav-link"
-                        style={styles.navLinks}
-                        // to="/features"
-                        href="#"
-                        onClick={this.props.toggleFeatures}
-                      >
-                        Features
-                      </NavLink>
-                    </NavItem>
-                  </Nav>
-                </Collapse>
-              </Navbar>
-            </Col>
-          </Row>
-        </Container>
-      </React.Fragment>
-    );
+		<React.Fragment>
+			<Container id="navItems" className="mb-4">
+				<Row>
+					<Col>
+						<Navbar color="faded" light expand="md">
+							<NavbarBrand href="/" className="mr-auto" />
+							<NavbarToggler
+								onClick={this.toggleNavbar}
+								className="mr-2"
+							/>
+							<Collapse isOpen={this.state.collapsed} navbar>
+								<Nav
+									navbar
+									className="justify-content-center mx-auto"
+								>
+									<NavItem>
+										<NavLink
+											// className="nav-link"
+											style={styles.navLinks}
+											// to="/about"
+											href="#"
+											name="aboutCollapsed"
+											onClick={this.props.toggleComponent}
+										>
+											About
+										</NavLink>
+									</NavItem>
+									<NavItem>
+										<NavLink
+											// className="nav-link"
+											style={styles.navLinks}
+											// to="/contact"
+											href="#"
+											name="contactCollapsed"
+											onClick={this.props.toggleComponent}
+										>
+											Contact
+										</NavLink>
+									</NavItem>
+									<NavItem>
+										<NavLink
+											// className="nav-link"
+											style={styles.navLinks}
+											// to="/features"
+											href="#"
+											name="featuresCollapsed"
+											onClick={this.props.toggleComponent}
+										>
+											Features
+										</NavLink>
+									</NavItem>
+								</Nav>
+							</Collapse>
+						</Navbar>
+					</Col>
+				</Row>
+			</Container>
+		</React.Fragment>
+	);
   }
 }
 
