@@ -37,6 +37,7 @@ class Home extends Component {
 		const {
 			target: { name},
 		} = event;
+		console.log("CLICKED! " + name)
 		this.toggleLogoWidth(this.state[name]);
 		this.setState({
 			aboutCollapsed: false,
@@ -61,10 +62,10 @@ class Home extends Component {
 					<Features />
 				</Collapse>
 				<Collapse isOpen={this.state.loginCollapsed}>
-					<Login toggleLogin={this.toggleLogin} />
+					<Login toggleComponent={this.toggleComponent} />
 				</Collapse>
 				<Collapse isOpen={this.state.registerCollapsed}>
-					<Register toggleRegister={this.toggleRegister} />
+					<Register toggleComponent={this.toggleComponent} />
 				</Collapse>
 				<Container>
 					<Row className="mt-5">

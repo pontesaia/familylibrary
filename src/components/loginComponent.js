@@ -28,9 +28,8 @@ class Login extends Component {
 										<h1 style={styles.header}>
 											<a
 												href="#"
-												onClick={
-													this.props.toggleLogin
-												}
+												name="loginCollapsed"
+												onClick={this.props.toggleComponent}
 												style={styles.backLink}
 											>
 												↩

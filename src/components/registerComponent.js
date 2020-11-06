@@ -28,9 +28,8 @@ class Register extends Component {
 										<h1 style={styles.header}>
 											<a
 												href="#"
-												onClick={
-													this.props.toggleRegister
-												}
+												name="registerCollapsed"
+												onClick={this.props.toggleComponent}
 												style={styles.backLink}
 											>
 												↩
@@ -43,12 +42,8 @@ class Register extends Component {
 										<h1 style={styles.header}>
 											<a
 												href="#"
-												onClick={
-													this.props.toggleRegister
-												}
 												style={styles.backLink}
-											>
-											</a>{" "}
+											></a>{" "}
 											Register
 										</h1>
 									</Col>
