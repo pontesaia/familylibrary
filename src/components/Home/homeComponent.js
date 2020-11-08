@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Collapse } from "reactstrap";
+import $ from "jquery";
 
 import MainNav from "./mainNavComponent";
 import About from "./aboutComponent";
@@ -22,23 +23,18 @@ class Home extends Component {
 	}
 
 	toggleLogoWidth = (state) => {
+		const animateSpeed = 300;
 		if (state) {
-			this.setState({
-				logoWidth: "550px",
-			});
+			$("#logoImage").stop().animate({ width: 550 }, animateSpeed);
 		} else {
-			this.setState({
-				logoWidth: "300px",
-			});
+			$("#logoImage").stop().animate({ width: 300 }, animateSpeed);
 		}
 	};
 
 	toggleComponent = (event) => {
 		const {
-			target: { name},
+			target: { name },
 		} = event;
-		console.log("CLICKED! " + name)
-		this.toggleLogoWidth(this.state[name]);
 		this.setState({
 			aboutCollapsed: false,
 			contactCollapsed: false,
@@ -47,6 +43,7 @@ class Home extends Component {
 			registerCollapsed: false,
 			[name]: !this.state[name],
 		});
+		this.toggleLogoWidth(this.state[name]);
 	};
 
 	render() {
@@ -70,9 +67,7 @@ class Home extends Component {
 				<Container>
 					<Row className="mt-5">
 						<Col className="text-center">
-							<MainNav
-								toggleComponent={this.toggleComponent}
-							/>
+							<MainNav toggleComponent={this.toggleComponent} />
 						</Col>
 					</Row>
 					<Row className="mt-1">
