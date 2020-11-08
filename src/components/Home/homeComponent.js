@@ -26,8 +26,11 @@ class Home extends Component {
 		const animateSpeed = 300;
 		if (state) {
 			$("#logoImage").stop().animate({ width: 550 }, animateSpeed);
+			$("#logoTitle").stop().animate({ fontSize: 100 }, animateSpeed);
 		} else {
 			$("#logoImage").stop().animate({ width: 300 }, animateSpeed);
+			$("#logoTitle").stop().animate({ fontSize: 40 }, animateSpeed);
+
 		}
 	};
 
@@ -78,7 +81,7 @@ class Home extends Component {
 								alt=""
 								style={{ width: this.state.logoWidth }}
 							/>
-							<h1 className="mt-3" style={styles.logoType}>
+							<h1 className="mt-3" id="logoTitle" style={styles.logoType}>
 								family library
 							</h1>
 						</Col>
