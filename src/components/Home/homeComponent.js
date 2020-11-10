@@ -18,7 +18,6 @@ class Home extends Component {
 			featuresCollapsed: false,
 			loginCollapsed: false,
 			registerCollapsed: false,
-			logoWidth: "600px",
 		};
 	}
 
@@ -30,7 +29,6 @@ class Home extends Component {
 		} else {
 			$("#logoImage").stop().animate({ width: 300 }, animateSpeed);
 			$("#logoTitle").stop().animate({ fontSize: 40 }, animateSpeed);
-
 		}
 	};
 
@@ -81,7 +79,7 @@ class Home extends Component {
 								alt=""
 								style={{ width: this.state.logoWidth }}
 							/>
-							<h1 className="mt-3" id="logoTitle" style={styles.logoType}>
+							<h1 className="mt-3" style={styles.logoType}>
 								family library
 							</h1>
 						</Col>

@@ -13,7 +13,76 @@ import {
 class Contact extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			input: {},
+			errors: {},
+		};
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleChange(event) {
+		let input = this.state.input;
+		input[event.target.name] = event.target.value;
+
+		this.setState({
+			input,
+		});
+	}
+
+	handleSubmit(event) {
+		event.preventDefault();
+
+		if (this.validate()) {
+			console.log(this.state);
+
+			let input = {};
+
+			input["email"] = "";
+			input["title"] = "";
+			input["message"] = "";
+			this.setState({ input: input });
+
+			alert("Contact Form is submitted");
+		}
+	}
+
+	validate() {
+		let input = this.state.input;
+		let errors = {};
+		let isValid = true;
+
+		if (!input["email"]) {
+			isValid = false;
+			errors["email"] = "Please enter your email Address.";
+		}
+
+		if (typeof input["email"] !== "undefined") {
+			var pattern = new RegExp(
+				/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+			);
+			if (!pattern.test(input["email"])) {
+				isValid = false;
+				errors["email"] = "Please enter valid email address.";
+			}
+		}
+
+		if (!input["title"]) {
+			isValid = false;
+			errors["title"] = "Please enter your subject title.";
+		}
+
+		if (!input["message"]) {
+			isValid = false;
+			errors["message"] = "Please enter your message.";
+		}
+
+		this.setState({
+			errors: errors,
+		});
+
+		return isValid;
 	}
 	render() {
 		return (
@@ -23,41 +92,61 @@ class Contact extends Component {
 						<Row className="text-left mt-4">
 							<Col xs="12" sm="12" md="7" className="mx-auto">
 								<Row>
-									<Col className="text-left mt-4">
+									<Col className="text-left mt-2 mb-4">
 										<h1 style={styles.header}>Contact</h1>
 									</Col>
 								</Row>
 								<Form style={styles.form1}>
 									<FormGroup>
-										<Label for="exampleEmail">
-											Let us help you!
-										</Label>
-									</FormGroup>
-									<FormGroup>
 										<Input
-											type="email"
+											type="text"
 											name="email"
-											id="exampleEmail"
-											placeholder="Please enter email here"
+											value={this.state.input.email}
+											onChange={this.handleChange}
+											class="form-control"
+											placeholder="Enter your email"
+											id="email"
 										/>
+										<div className="text-danger">
+											{this.state.errors.email}
+										</div>
+									</FormGroup>
+									<FormGroup>
+										<Input
+											type="text"
+											name="title"
+											value={this.state.input.title}
+											onChange={this.handleChange}
+											class="form-control"
+											placeholder="Enter your subject title"
+											id="title"
+										/>
+										<div className="text-danger">
+											{this.state.errors.title}
+										</div>
 									</FormGroup>
 									<FormGroup>
 										<Input
 											type="textarea"
-											name="text"
-											id="exampleText"
-											placeholder="Enter your Subject here."
+											name="message"
+											value={this.state.input.message}
+											onChange={this.handleChange}
+											class="form-control"
+											placeholder="Enter your message"
+											id="message"
 										/>
+										<div className="text-danger">
+											{this.state.errors.message}
+										</div>
 									</FormGroup>
-									<FormGroup>
-										<Input
-											type="textarea"
-											name="text"
-											id="exampleText"
-											placeholder="Enter your message here."
-										/>
-									</FormGroup>
-									<Button style={styles.sendBtn}>SEND</Button>
+
+									<Button
+										type="submit"
+										value="Submit"
+										style={styles.sendBtn}
+									>
+										SEND
+									</Button>
 								</Form>
 							</Col>
 						</Row>

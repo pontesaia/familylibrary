@@ -1,3 +1,7 @@
+html, body {
+  overflow-x: hidden;
+}
+
 .App {
   text-align: center;
 }
@@ -147,4 +151,39 @@
 p {
   font-size: 1rem;
   line-height: "30px";
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #9efdf5;
+  /* color: white; */
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.sidebar {
+  /* border-right: 2px solid #9efdf5; */
+  /* height: calc(100vh - 230px); */
+  /* height: 1vh; */
+}
+
+
+#brandLogo {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+#brandLogoTitle {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 165px;
+  font-size: 1.8rem;
+  word-wrap: none;
 }

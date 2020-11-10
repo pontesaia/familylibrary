@@ -6,7 +6,7 @@ class PageViewBody extends Component {
         this.state = {  }
     }
     render() { 
-        return ( <React.Fragment><h1>This is the page view body</h1></React.Fragment> );
+        return ( <React.Fragment><h1 className="text-center">This is the page view body</h1></React.Fragment> );
     }
 }
  
