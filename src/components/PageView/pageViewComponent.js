@@ -14,26 +14,32 @@ class PageView extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				{/* <Container> */}
-				<Row>
-					<Col className="text-center">
-						<TopNav />
-					</Col>
-				</Row>
-				<Row>
-					<Col className="text-center" xs="3">
-						<Sidebar />
-					</Col>
-					<Col xs="9">
-						<PageViewBody />
-					</Col>
-				</Row>
-				<Row>
-					<Col className="text-center">
-						<BottomNav />
-					</Col>
-				</Row>
-				{/* </Container> */}
+				{/* <div fluid> */}
+					<Container fluid>
+					<Row>
+						<Col className="text-center px-0">
+							<TopNav />
+						</Col>
+					</Row>
+					<Row>
+						<Col
+							className="text-center"
+							id="sidebar-wrapper"
+							xs="3"
+						>
+							<Sidebar />
+						</Col>
+						<Col id="page-content-wrapper" xs="9">
+							<PageViewBody />
+						</Col>
+					</Row>
+					<Row>
+						<Col className="text-center">
+							<BottomNav />
+						</Col>
+					</Row>
+					</Container>
+				{/* </div> */}
 			</React.Fragment>
 		);
 	}
