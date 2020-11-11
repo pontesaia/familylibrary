@@ -77,9 +77,8 @@ class Home extends Component {
 								src="/images/logoImage.png"
 								id="logoImage"
 								alt=""
-								style={{ width: this.state.logoWidth }}
 							/>
-							<h1 className="mt-3" style={styles.logoType}>
+							<h1 className="mt-3" id="logoTitle" style={styles.logoType}>
 								family library
 							</h1>
 						</Col>
