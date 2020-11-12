@@ -24,14 +24,15 @@ class BottomNav extends Component {
 					expand="md"
 					className="nav-fill w-100 footer py-4"
 					id="navItems"
+					style={styles.footer}
 				>
-					<NavbarBrand href="/" className="mr-auto" />
+					{/* <NavbarBrand href="/" className="mr-auto" /> */}
 					<NavbarToggler
 						onClick={this.toggleNavbar}
 						className="mr-2"
 					/>
-					<Collapse isOpen={this.state.collapsed} navbar>
-						<Nav navbar className="nav-fill w-100">
+					{/* <Collapse isOpen={this.state.collapsed} navbar> */}
+						<Nav navbar className="w-75 ml-5">
 							<NavItem>
 								<NavLink
 									// className="nav-link"
@@ -81,7 +82,7 @@ class BottomNav extends Component {
 								</NavLink>
 							</NavItem>
 						</Nav>
-					</Collapse>
+					{/* </Collapse> */}
 				</Navbar>
 			</React.Fragment>
 		);
@@ -92,8 +93,14 @@ const styles = {
 	navLinks: {
 		fontFamily: "Comfortaa",
 		fontSize: "1.8rem",
-		paddingLeft: "52px",
-		paddingRight: "52px",
+		// marginLeft: "auto"
+		// marginLeft: "100px"
+	},
+	footer: {
+		position: "fixed",
+		height: "100px",
+		bottom: "0",
+		width: "100%",
 	},
 };
 
