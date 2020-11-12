@@ -69,7 +69,7 @@ class TopNav extends Component {
 								Write
 								<span className="d-none d-lg-inline">
 									<Button
-										className="rounded-pill bg-gradient-primary"
+										className="rounded-pill writeButton"
 										style={styles.writeButton}
 									>
 										<span style={styles.plusSign}>+</span>

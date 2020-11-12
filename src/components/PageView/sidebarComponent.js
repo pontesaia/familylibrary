@@ -28,8 +28,17 @@ class Sidebar extends Component {
 								src="/images/Ellipse.png"
 								style={styles.avatar}
 							/>
-							<h1>Maria</h1>
+							<h1 className="mt-4" style={styles.text}>
+								Maria
+							</h1>
 							<h6>BOSTON, MA</h6>
+							<Button
+								className="mt-3 text-center"
+								style={styles.button}
+							>
+								<p className="mb-0">The </p>
+								<p className="mb-0">McCarthy's</p>
+							</Button>
 						</div>
 					</Col>
 				</Row>
@@ -41,6 +50,25 @@ class Sidebar extends Component {
 const styles = {
 	avatar: {
 		width: "150px",
+		marginTop: "100px",
+	},
+	text: {
+		fontFamily: "Comfortaa",
+		// fontSize: "clamp(40px, 8vw, 100px)",
+	},
+	button: {
+		backgroundColor: "black",
+		height: "57px",
+		width: "158px",
+		borderRadius: "2.76px",
+		border: "1px solid #000000",
+		fontFamily: "Roboto",
+		fontSize: "18px",
+		fontWeight: "bold",
+		lineHeight: "19.11px",
+		letterSpacing: "0.09em",
+		wordWrap: "break-all",
+		textWidth: "1em",
 	},
 };
 

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import { Container, Row, Col, Collapse } from "reactstrap";
+
 import TopNav from "./topNavComponent";
 import Sidebar from "./sidebarComponent";
 import BottomNav from "./bottomNavComponent";
 import PageViewBody from "./pageViewBodyComponent";
-
-import { Container, Row, Col } from "reactstrap";
 
 class PageView extends Component {
 	constructor(props) {
@@ -25,7 +25,7 @@ class PageView extends Component {
 					</Row>
 					<Row className="flex-grow-1 overflow-hidden">
 						<Col xs="2" className="mh-100 overflow-auto">
-							<Sidebar />
+								<Sidebar />
 						</Col>
 						<Col className="mh-100 overflow-auto">
 							<Row className="flex-grow-1 m-2">
