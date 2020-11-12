@@ -54,7 +54,7 @@ class PageView extends Component {
 								</Col>
 							</Row>
 
-							<Row className="flex-shrink-0">
+							<Row className="flex-shrink-0 mt-5 pt-5">
 								<Col
 									xs="12"
 									className="px-0"
