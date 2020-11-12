@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import {
-	Container,
-	Row,
-	Col,
 	Navbar,
 	Nav,
 	NavbarBrand,
 	NavItem,
 	NavLink,
-	NavbarToggler,
-	Collapse,
 	Button,
 } from "reactstrap";
 
@@ -21,68 +16,64 @@ class TopNav extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div id="navItems" className="componentContainer">
-					{/* <Container id="navItems" className="pb-4"> */}
-					<Row>
-						<Col xs="3">
+				<Navbar
+					expand="md"
+					className="px-0 py-4 flex-shrink-0 footer"
+					id="navItems"
+				>
+					<NavbarBrand href="/" className="d-none d-lg-block">
+						<div>
 							<img
 								src="/images/logoImage.png"
 								style={{ width: "150px" }}
 								id="brandLogo"
 							/>
-							<h1 id="brandLogoTitle" style={styles.brandLogoTitle}>family library</h1>
-						</Col>
-						<Col xs="9">
-							<Navbar color="faded" light expand="md">
-								<NavbarBrand href="/" className="" />
-								<Nav navbar className="nav-fill w-100">
-									<NavItem>
-										<NavLink
-											style={styles.navLinks}
-											href="#"
-										>
-											Read
-										</NavLink>
-									</NavItem>
-									<NavItem>
-										<NavLink
-											style={styles.navLinks}
-											href="#"
-										>
-											Write
-											<Button
-												className="rounded-pill bg-gradient-primary"
-												style={styles.writeButton}
-											>
-												<span style={styles.plusSign}>+</span>
-											</Button>
-										</NavLink>
-									</NavItem>
-									<NavItem>
-										<NavLink
-											style={styles.navLinks}
-											href="#"
-										>
-											Logout
-										</NavLink>
-									</NavItem>
-								</Nav>
-							</Navbar>
-						</Col>
-					</Row>
-					{/* </Container> */}
-				</div>
+							<h1
+								id="brandLogoTitle"
+								style={styles.brandLogoTitle}
+							>
+								family library
+							</h1>
+						</div>
+					</NavbarBrand>
+					<Nav navbar className="nav-fill w-100" style={styles.nav}>
+						<NavItem>
+							<NavLink href="#" style={styles.navLinks}>
+								Read
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink href="#" style={styles.navLinks}>
+								Write
+								<span className="d-none d-lg-inline">
+									<Button
+										className="rounded-pill"
+										style={styles.writeButton}
+									>
+										<span style={styles.plusSign}>+</span>
+									</Button>
+								</span>
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink href="#" style={styles.navLinks}>
+								Log Out
+							</NavLink>
+						</NavItem>
+					</Nav>
+				</Navbar>
 			</React.Fragment>
 		);
 	}
 }
 
 const styles = {
+	nav: {
+		paddingLeft: "200px",
+	},
 	navLinks: {
 		fontFamily: "Comfortaa",
 		fontSize: "1.8rem",
-		// paddingLeft: "52px",
-		// paddingRight: "52px",
 	},
 	writeButton: {
 		marginLeft: "8px",
@@ -91,7 +82,8 @@ const styles = {
 		border: "none",
 		backgroundColor: "hotpink",
 		fontSize: "3.5rem",
-		// backgroundColor: "linearGradient(to right, #FF00D6, #FF4D00)",
+		backgroundImage: "linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
+
 	},
 	plusSign: {
 		position: "relative",
@@ -100,9 +92,9 @@ const styles = {
 	brandLogoTitle: {
 		fontFamily: "Comfortaa",
 		fontSize: "2.7rem",
-		marginTop: "10px",
+		marginTop: "20px",
 		letterSpacing: "-1.1px",
-		lineHeight: "2.5rem"
+		lineHeight: "2.5rem",
 	},
 };
 

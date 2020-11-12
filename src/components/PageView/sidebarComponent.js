@@ -21,38 +21,25 @@ class Sidebar extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				{/* <Row className="row align-items-center">
-					<Col
-						className="col my-auto align-self-center"
-						style={{ borderRight: "solid 2px #9efdf5" }}
-					>
-						<div style={styles.content}>
-							<img src="/images/Ellipse.png" />
-							<h1 className="sidebar">Maria</h1>
-							<h6 className="sidebar">BOSTON, MA</h6>
-						</div>
-					</Col>
-				</Row> */}
-				<Row className="col-md-12 d-none d-md-block bg-light sidebar">
-					{/* <div className="sidebar-sticky"></div> */}
-					<Col className="aligner">
+				<Row className="flex-column sidebar h-100 d-none d-lg-block">
+					<Col className="text-center">
 						<div>
-							<img src="/images/Ellipse.png" />
-							<h1>Maria</h1>
+							<img
+								src="/images/Ellipse.png"
+								style={styles.avatar}
+							/>
+							<h1 className="mt-4" style={styles.text}>
+								Maria
+							</h1>
 							<h6>BOSTON, MA</h6>
+							<Button
+								className="mt-3 text-center"
+								style={styles.button}
+							>
+								<p className="mb-0">The </p>
+								<p className="mb-0">McCarthy's</p>
+							</Button>
 						</div>
-						{/* <NavItem>
-							<NavLink>Active</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink>Link</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink>Link</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink>Disabled</NavLink>
-						</NavItem> */}
 					</Col>
 				</Row>
 			</React.Fragment>
@@ -61,13 +48,27 @@ class Sidebar extends Component {
 }
 
 const styles = {
-	content: {
-		// margin: "0",
-		// position: "absolute",
-		// top: "50%",
-		// transform: "translateY(-50%)",
-		paddingTop: "400px",
-		maxWidth: "400px",
+	avatar: {
+		width: "150px",
+		marginTop: "100px",
+	},
+	text: {
+		fontFamily: "Comfortaa",
+		// fontSize: "clamp(40px, 8vw, 100px)",
+	},
+	button: {
+		backgroundColor: "black",
+		height: "57px",
+		width: "158px",
+		borderRadius: "2.76px",
+		border: "1px solid #000000",
+		fontFamily: "Roboto",
+		fontSize: "18px",
+		fontWeight: "bold",
+		lineHeight: "19.11px",
+		letterSpacing: "0.09em",
+		wordWrap: "break-all",
+		textWidth: "1em",
 	},
 };
 
