@@ -1,6 +1,11 @@
 html, body {
   overflow-x: hidden;
+  /* overflow-y: hidden; */
 }
+
+/* body {
+  overflow-y: hidden;
+} */
 
 .App {
   text-align: center;
@@ -154,76 +159,28 @@ p {
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
   background-color: #9efdf5;
-  /* color: white; */
-  text-align: center;
-  margin-bottom: 0;
-}
-
-.sidebar {
-  /* border-right: 2px solid #9efdf5; */
-  /* height: calc(100vh - 230px); */
-  /* height: 1vh; */
 }
 
 #brandLogo {
   position: absolute;
-  left: 50%;
+  left: 8.1%;
+  top: 20%;
   transform: translate(-50%, 0%);
   z-index: 999;
 }
 
 #brandLogoTitle {
   position: absolute;
-  left: 50%;
+  left: 8.1%;
   transform: translate(-50%, 0);
-  top: 165px;
+  top: 165%;
   font-size: 1.8rem;
   word-wrap: none;
   z-index: 999;
 }
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  min-height: 100vh !important;
-  z-index: -100;
-  padding: 48px 0 0;
-  box-shadow: inset -2px 0 0 #9efdf5;
-}
-
-#sidebar-wrapper {
-  min-height: 100vh !important;
-  width: 100vw;
-  /* margin-left: -1rem; */
-  -webkit-transition: margin .25s ease-out;
-  -moz-transition: margin .25s ease-out;
-  -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out;
-}
-
-#sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-}
-
-#page-content-wrapper {
-  min-width: 0;
-  width: 100%;
-}
-
-.aligner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 50vw;
+  padding-top: 200px;
+  box-shadow: inset -4px 0 0 #9efdf5;
 }

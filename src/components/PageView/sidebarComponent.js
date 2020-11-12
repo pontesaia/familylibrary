@@ -21,38 +21,16 @@ class Sidebar extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				{/* <Row className="row align-items-center">
-					<Col
-						className="col my-auto align-self-center"
-						style={{ borderRight: "solid 2px #9efdf5" }}
-					>
-						<div style={styles.content}>
-							<img src="/images/Ellipse.png" />
-							<h1 className="sidebar">Maria</h1>
-							<h6 className="sidebar">BOSTON, MA</h6>
-						</div>
-					</Col>
-				</Row> */}
-				<Row className="col-md-12 d-none d-md-block bg-light sidebar">
-					{/* <div className="sidebar-sticky"></div> */}
-					<Col className="aligner">
+				<Row className="flex-column sidebar h-100 d-none d-lg-block">
+					<Col className="text-center">
 						<div>
-							<img src="/images/Ellipse.png" />
+							<img
+								src="/images/Ellipse.png"
+								style={styles.avatar}
+							/>
 							<h1>Maria</h1>
 							<h6>BOSTON, MA</h6>
 						</div>
-						{/* <NavItem>
-							<NavLink>Active</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink>Link</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink>Link</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink>Disabled</NavLink>
-						</NavItem> */}
 					</Col>
 				</Row>
 			</React.Fragment>
@@ -61,13 +39,8 @@ class Sidebar extends Component {
 }
 
 const styles = {
-	content: {
-		// margin: "0",
-		// position: "absolute",
-		// top: "50%",
-		// transform: "translateY(-50%)",
-		paddingTop: "400px",
-		maxWidth: "400px",
+	avatar: {
+		width: "150px",
 	},
 };
 

@@ -4,7 +4,7 @@ import Sidebar from "./sidebarComponent";
 import BottomNav from "./bottomNavComponent";
 import PageViewBody from "./pageViewBodyComponent";
 
-import { Container, Row, Col} from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 class PageView extends Component {
 	constructor(props) {
@@ -14,32 +14,34 @@ class PageView extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				{/* <div fluid> */}
-					<Container fluid>
+				<Container
+					fluid
+					className="d-flex flex-column vh-100 overflow-hidden"
+				>
 					<Row>
-						<Col className="text-center px-0">
+						<Col className="px-0">
 							<TopNav />
 						</Col>
 					</Row>
-					<Row>
-						<Col
-							className="text-center"
-							id="sidebar-wrapper"
-							xs="3"
-						>
+					<Row className="flex-grow-1 overflow-hidden">
+						<Col xs="2" className="mh-100 overflow-auto">
 							<Sidebar />
 						</Col>
-						<Col id="page-content-wrapper" xs="9">
-							<PageViewBody />
+						<Col className="mh-100 overflow-auto">
+							<Row className="flex-grow-1 m-2">
+								<Col className=" mh-100 overflow-auto py-5 mr-5">
+									<PageViewBody />
+								</Col>
+							</Row>
 						</Col>
 					</Row>
-					<Row>
-						<Col className="text-center">
+
+					<Row className="flex-shrink-0">
+						<Col xs="12" className="px-0">
 							<BottomNav />
 						</Col>
 					</Row>
-					</Container>
-				{/* </div> */}
+				</Container>
 			</React.Fragment>
 		);
 	}
