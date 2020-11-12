@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import {
-	Container,
-	Row,
-	Col,
 	Navbar,
 	Nav,
 	NavbarBrand,
 	NavItem,
 	NavLink,
-	NavbarToggler,
-	Collapse,
 	Button,
 } from "reactstrap";
 
@@ -21,23 +16,6 @@ class TopNav extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				{/* <Row>
-					<Col xs="3">
-						<div>
-							<img
-								src="/images/logoImage.png"
-								style={{ width: "150px" }}
-								id="brandLogo"
-							/>
-							<h1
-								id="brandLogoTitle"
-								style={styles.brandLogoTitle}
-							>
-								family library
-							</h1>
-						</div>
-					</Col>
-					<Col xs="9"> */}
 				<Navbar
 					expand="md"
 					className="px-0 py-4 flex-shrink-0 footer"
@@ -69,7 +47,7 @@ class TopNav extends Component {
 								Write
 								<span className="d-none d-lg-inline">
 									<Button
-										className="rounded-pill writeButton"
+										className="rounded-pill"
 										style={styles.writeButton}
 									>
 										<span style={styles.plusSign}>+</span>
@@ -84,58 +62,6 @@ class TopNav extends Component {
 						</NavItem>
 					</Nav>
 				</Navbar>
-				{/* </Col> */}
-				{/* </Row> */}
-
-				{/* <div id="navItems" className="componentContainer">
-					<Row>
-						<Col xs="3">
-							<img
-								src="/images/logoImage.png"
-								style={{ width: "150px" }}
-								id="brandLogo"
-							/>
-							<h1 id="brandLogoTitle" style={styles.brandLogoTitle}>family library</h1>
-						</Col>
-						<Col xs="9">
-							<Navbar color="faded" light expand="md">
-								<NavbarBrand href="/" className="" />
-								<Nav navbar className="nav-fill w-100">
-									<NavItem>
-										<NavLink
-											style={styles.navLinks}
-											href="#"
-										>
-											Read
-										</NavLink>
-									</NavItem>
-									<NavItem>
-										<NavLink
-											style={styles.navLinks}
-											href="#"
-										>
-											Write
-											<Button
-												className="rounded-pill bg-gradient-primary"
-												style={styles.writeButton}
-											>
-												<span style={styles.plusSign}>+</span>
-											</Button>
-										</NavLink>
-									</NavItem>
-									<NavItem>
-										<NavLink
-											style={styles.navLinks}
-											href="#"
-										>
-											Logout
-										</NavLink>
-									</NavItem>
-								</Nav>
-							</Navbar>
-						</Col>
-					</Row>
-				</div> */}
 			</React.Fragment>
 		);
 	}
@@ -144,13 +70,10 @@ class TopNav extends Component {
 const styles = {
 	nav: {
 		paddingLeft: "200px",
-		// paddingRight: "10px",
 	},
 	navLinks: {
 		fontFamily: "Comfortaa",
 		fontSize: "1.8rem",
-		// paddingLeft: "52px",
-		// paddingRight: "52px",
 	},
 	writeButton: {
 		marginLeft: "8px",
@@ -159,7 +82,8 @@ const styles = {
 		border: "none",
 		backgroundColor: "hotpink",
 		fontSize: "3.5rem",
-		// backgroundColor: "linearGradient(to right, #FF00D6, #FF4D00)",
+		backgroundImage: "linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
+
 	},
 	plusSign: {
 		position: "relative",
