@@ -53,16 +53,11 @@ class PageView extends Component {
 									</Row>
 								</Col>
 							</Row>
-
-							<Row className="flex-shrink-0 mt-5 pt-5">
-								<Col
-									xs="12"
-									className="px-0"
-									styles={styles.footer}
-								>
-									<BottomNav />
-								</Col>
-							</Row>
+						</Col>
+					</Row>
+					<Row className="flex-shrink-0 mt-5 pt-5">
+						<Col xs="12" className="px-0" styles={styles.footer}>
+							<BottomNav />
 						</Col>
 					</Row>
 				</Container>
