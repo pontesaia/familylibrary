@@ -17,7 +17,7 @@ class PageViewBody extends Component {
 					className="horizRule mb-5 mt-4 px-0 mx-0"
 					style={styles.horizRule}
 				/>
-				<Row className="m-2">
+				<Row className="ml-2">
 					<Col xs="12" lg="1" className="px-0 text-lg-center">
 						<img
 							src="/images/Ellipse2.png"
