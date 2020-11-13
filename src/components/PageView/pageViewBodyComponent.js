@@ -12,22 +12,28 @@ class PageViewBody extends Component {
 			data.push({ id: i });
 		}
 		const renderData = data.map((d) => (
-			<div key={d.id}>
+			<span key={d.id}>
 				<hr
-					className="mb-5 mt-4"
-					style={{ borderTop: "1px solid rgba(0,0,0,.3)" }}
+					className="horizRule mb-5 mt-4 px-0 mx-0"
+					style={styles.horizRule}
 				/>
-				<Row>
-					<Col xs="1">
-						<div>
-							<img src="/images/Ellipse.png" />
-						</div>
+				<Row className="m-2">
+					<Col xs="12" lg="1" className="px-0 text-lg-center">
+						<img
+							src="/images/Ellipse2.png"
+							style={styles.avatar}
+							className="mb-2"
+						/>
 					</Col>
-					<Col xs="11" className="pl-5">
+					<Col className="px-0">
 						<h4>My Father Patrick McCarthy's Garden</h4>
 						<h6>Posted By: Maria McCarthy</h6>
 						<h6>Date posted: June 10, 2020</h6>
 						<h6 className="mb-4">Memories | Folklore | Father</h6>
+					</Col>
+				</Row>
+				<Row className="ml-2 mr-5">
+					<Col xs="12" lg="11" className="px-0 offset-lg-1">
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipiscing
 							elit. Vivamus velit ligula, vehicula eu egestas at,
@@ -69,7 +75,7 @@ class PageViewBody extends Component {
 						</p>
 					</Col>
 				</Row>
-			</div>
+			</span>
 		));
 		return <React.Fragment>{renderData}</React.Fragment>;
 	}
@@ -82,6 +88,25 @@ const styles = {
 	horizRule: {
 		borderBottom: "2px solid black",
 		marginBottom: "50px",
+	},
+	avatar: {
+		// width: "105px",
+		width: "clamp(10px, 100%, 105px)",
+		// float: "none",
+		// marginLeft: "auto",
+		// marginRight: "auto"
+		// textAlign: "center",
+		// display: "block",
+		// marginRight: "auto",
+		// paddingLeft: "10px"
+	},
+	horizRule: {
+		position: "relative",
+		left: "-15px",
+		// right: "15px",
+		width: "calc(100% + 30px)",
+		borderTop: "1px solid rgba(0,0,0,.3)",
+		zIndex: "9999",
 	},
 };
 

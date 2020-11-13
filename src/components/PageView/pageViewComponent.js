@@ -29,14 +29,11 @@ class PageView extends Component {
 							<Sidebar />
 						</Col>
 
-						<Col className="mh-100 overflow-auto">
-							{/* <div style={styles.fullWidth}>
-								<div style={styles.wrap}></div>
-							</div> */}
-							<Row className="flex-grow-1 m-2">
-								<Col className=" mh-100 overflow-auto pt-5 mr-5">
-									<Row>
-										<Col className="offset-1 pl-5">
+						<Col className="mh-100 overflow-auto px-0">
+							<Row className="flex-grow-1">
+								<Col className=" mh-100 overflow-auto pt-5">
+									<Row className="m-2">
+										<Col className="offset-lg-1 p-0">
 											<Search />
 										</Col>
 									</Row>
@@ -58,16 +55,6 @@ class PageView extends Component {
 
 const styles = {
 	footer: { position: "fixed", left: "0", bottom: "0", width: "100%" },
-	fullWidth: {
-		width: "100%",
-		background: "black",
-	},
-	wrap: {
-		width: "80%",
-		height: "1px",
-		margin: "0 auto",
-		backgroundColor: "black",
-	},
 };
 
 export default PageView;
