@@ -31,7 +31,7 @@ class PageView extends Component {
 
 						<Col className="mh-100 px-0" style={styles.mainBody}>
 							<Row className="flex-grow-1">
-								<Col className="mh-100 overflow-auto pt-5">
+								<Col className="mh-100 pt-5">
 									<Row className="m-2">
 										<Col className="offset-lg-1 p-0">
 											<Search />
@@ -43,7 +43,7 @@ class PageView extends Component {
 						</Col>
 					</Row>
 					<Row className="flex-shrink-0 mt-5 pt-5">
-						<Col xs="12" className="px-0" styles={styles.footer}>
+						<Col xs="12" className="px-0 pt-1" styles={styles.footer}>
 							<BottomNav />
 						</Col>
 					</Row>
@@ -54,7 +54,7 @@ class PageView extends Component {
 }
 
 const styles = {
-	footer: { position: "fixed", left: "0", bottom: "0", width: "100%" },
+	footer: { position: "fixed", left: "0", bottom: "0", width: "100%", },
 	mainBody: { overflowY: "auto", overflowX: "hidden" },
 };
 

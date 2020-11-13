@@ -77,7 +77,11 @@ class PageViewBody extends Component {
 				</Row>
 			</span>
 		));
-		return <React.Fragment>{renderData}</React.Fragment>;
+		return (
+			<React.Fragment>
+				<div className="pb-4">{renderData}</div>
+			</React.Fragment>
+		);
 	}
 }
 
@@ -101,12 +105,8 @@ const styles = {
 		// paddingLeft: "10px"
 	},
 	horizRule: {
-		position: "relative",
-		left: "-15px",
-		// right: "15px",
 		width: "calc(100% + 30px)",
-		borderTop: "1px solid rgba(0,0,0,.3)",
-		zIndex: "9999",
+		borderTop: "2px solid rgba(0,0,0,.15)",
 	},
 };
 
