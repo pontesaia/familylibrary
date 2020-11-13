@@ -34,23 +34,13 @@ class PageView extends Component {
 								<div style={styles.wrap}></div>
 							</div> */}
 							<Row className="flex-grow-1 m-2">
-								<Col className=" mh-100 overflow-auto py-5 mr-5">
+								<Col className=" mh-100 overflow-auto pt-5 mr-5">
 									<Row>
 										<Col className="offset-1 pl-5">
 											<Search />
 										</Col>
 									</Row>
-									<hr />
-									<Row>
-										<Col xs="1">
-											<div>
-												<img src="/images/Ellipse.png" />
-											</div>
-										</Col>
-										<Col xs="11" className="pl-5">
-											<PageViewBody />
-										</Col>
-									</Row>
+									<PageViewBody />
 								</Col>
 							</Row>
 						</Col>
