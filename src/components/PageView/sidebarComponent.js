@@ -25,7 +25,7 @@ class Sidebar extends Component {
 					<Col className="text-center">
 						<div>
 							<img
-								src="/images/Ellipse.png"
+								src="/images/Ellipse2.png"
 								style={styles.avatar}
 							/>
 							<h1 className="mt-4" style={styles.text}>

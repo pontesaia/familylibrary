@@ -134,6 +134,31 @@ html, body {
   }
 }
 
+/* width */
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: #dddbdb;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #acabab;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .componentContainer {
   background-color: #9efdf5;
   /* margin-top: 50px; */
@@ -183,4 +208,5 @@ p {
 .sidebar {
   padding-top: 200px;
   box-shadow: inset -4px 0 0 #9efdf5;
+  /* border-right: solid #9efdf5 4px; */
 }

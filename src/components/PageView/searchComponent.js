@@ -9,7 +9,9 @@ class Search extends Component {
         return (
 			<React.Fragment>
 				<div style={styles.search}>
-					<h1>Search 🔍</h1>
+					<div style={styles.searchText}>Search 🔍</div>
+					<span style={styles.title}>Family Stories Feed: </span>
+					<span style={styles.subject}>Patrick McCarthy</span>
 				</div>
 			</React.Fragment>
 		);
@@ -18,10 +20,23 @@ class Search extends Component {
 
 const styles = {
 	search: {
-		paddingBottom: "100px",
-
+		// paddingBottom: "5px",
 	},
-
+	searchText: {
+		fontSize: "2rem",
+		fontFamily: "Comfortaa",
+		paddingBottom: "100px",
+	},
+	title: {
+		fontWeight: "bold",
+		fontSize: "1.7rem",
+		fontFamily: "Roboto",
+	},
+	subject: {
+		// fontWeight: "bold",
+		fontSize: "1.5rem",
+		fontFamily: "Roboto",
+	},
 };
  
 export default Search;

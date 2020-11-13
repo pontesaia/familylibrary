@@ -32,56 +32,56 @@ class BottomNav extends Component {
 						className="mr-2"
 					/>
 					{/* <Collapse isOpen={this.state.collapsed} navbar> */}
-						<Nav navbar className="w-75 ml-5">
-							<NavItem>
-								<NavLink
-									// className="nav-link"
-									style={styles.navLinks}
-									// to="/about"
-									href="#"
-									name="aboutCollapsed"
-									onClick={this.props.toggleComponent}
-								>
-									About
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink
-									// className="nav-link"
-									style={styles.navLinks}
-									// to="/about"
-									href="#"
-									name="inviteCollapsed"
-									onClick={this.props.toggleComponent}
-								>
-									Invite
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink
-									// className="nav-link"
-									style={styles.navLinks}
-									// to="/contact"
-									href="#"
-									name="contactCollapsed"
-									onClick={this.props.toggleComponent}
-								>
-									Contact
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink
-									// className="nav-link"
-									style={styles.navLinks}
-									// to="/features"
-									href="#"
-									name="featuresCollapsed"
-									onClick={this.props.toggleComponent}
-								>
-									Features
-								</NavLink>
-							</NavItem>
-						</Nav>
+					<Nav navbar className="w-100">
+						<NavItem>
+							<NavLink
+								// className="nav-link"
+								style={styles.navLinks}
+								// to="/about"
+								href="#"
+								name="aboutCollapsed"
+								onClick={this.props.toggleComponent}
+							>
+								About
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								// className="nav-link"
+								style={styles.navLinks}
+								// to="/about"
+								href="#"
+								name="inviteCollapsed"
+								onClick={this.props.toggleComponent}
+							>
+								Invite
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								// className="nav-link"
+								style={styles.navLinks}
+								// to="/contact"
+								href="#"
+								name="contactCollapsed"
+								onClick={this.props.toggleComponent}
+							>
+								Contact
+							</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink
+								// className="nav-link"
+								style={styles.navLinks}
+								// to="/features"
+								href="#"
+								name="featuresCollapsed"
+								onClick={this.props.toggleComponent}
+							>
+								Features
+							</NavLink>
+						</NavItem>
+					</Nav>
 					{/* </Collapse> */}
 				</Navbar>
 			</React.Fragment>

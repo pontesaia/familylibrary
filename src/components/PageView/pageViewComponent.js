@@ -25,44 +25,26 @@ class PageView extends Component {
 						</Col>
 					</Row>
 					<Row className="flex-grow-1 overflow-hidden">
-						<Col xs="2" className="mh-100 overflow-auto">
+						<Col xs="0" md="2" className="mh-100 overflow-auto">
 							<Sidebar />
 						</Col>
 
-						<Col className="mh-100 overflow-auto">
-							{/* <div style={styles.fullWidth}>
-								<div style={styles.wrap}></div>
-							</div> */}
-							<Row className="flex-grow-1 m-2">
-								<Col className=" mh-100 overflow-auto py-5 mr-5">
-									<Row>
-										<Col className="offset-1 pl-5">
+						<Col xs="12" md="10" className="mh-100 px-0" style={styles.mainBody}>
+							<Row className="flex-grow-1">
+								<Col className="mh-100 pt-5">
+									<Row className="m-2">
+										<Col className="offset-lg-1 p-0">
 											<Search />
 										</Col>
 									</Row>
-									<hr />
-									<Row>
-										<Col xs="1">
-											<div>
-												<img src="/images/Ellipse.png" />
-											</div>
-										</Col>
-										<Col xs="11" className="pl-5">
-											<PageViewBody />
-										</Col>
-									</Row>
+									<PageViewBody />
 								</Col>
 							</Row>
-
-							<Row className="flex-shrink-0 mt-5 pt-5">
-								<Col
-									xs="12"
-									className="px-0"
-									styles={styles.footer}
-								>
-									<BottomNav />
-								</Col>
-							</Row>
+						</Col>
+					</Row>
+					<Row className="flex-shrink-0 mt-5 pt-5">
+						<Col xs="12" className="px-0 pt-1" styles={styles.footer}>
+							<BottomNav />
 						</Col>
 					</Row>
 				</Container>
@@ -72,17 +54,8 @@ class PageView extends Component {
 }
 
 const styles = {
-	footer: { position: "fixed", left: "0", bottom: "0", width: "100%" },
-	fullWidth: {
-		width: "100%",
-		background: "black",
-	},
-	wrap: {
-		width: "80%",
-		height: "1px",
-		margin: "0 auto",
-		backgroundColor: "black",
-	},
+	footer: { position: "fixed", left: "0", bottom: "0", width: "100%", },
+	mainBody: { overflowY: "auto", overflowX: "hidden" },
 };
 
 export default PageView;
