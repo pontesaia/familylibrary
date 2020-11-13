@@ -29,9 +29,9 @@ class PageView extends Component {
 							<Sidebar />
 						</Col>
 
-						<Col className="mh-100 overflow-auto px-0">
+						<Col className="mh-100 px-0" style={styles.mainBody}>
 							<Row className="flex-grow-1">
-								<Col className=" mh-100 overflow-auto pt-5">
+								<Col className="mh-100 overflow-auto pt-5">
 									<Row className="m-2">
 										<Col className="offset-lg-1 p-0">
 											<Search />
@@ -55,6 +55,7 @@ class PageView extends Component {
 
 const styles = {
 	footer: { position: "fixed", left: "0", bottom: "0", width: "100%" },
+	mainBody: { overflowY: "auto", overflowX: "hidden" },
 };
 
 export default PageView;
