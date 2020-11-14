@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 
 class PageViewBody extends Component {
 	constructor(props) {
@@ -73,6 +73,12 @@ class PageViewBody extends Component {
 							odio sit amet quam rutrum, sed imperdiet leo rutrum.
 							Integer eu mattis urna.
 						</p>
+						<Button
+							className="rounded-pill m-0"
+							style={styles.readMoreButton}
+						>
+							<span>read more...</span>
+						</Button>
 					</Col>
 				</Row>
 			</span>
@@ -107,6 +113,16 @@ const styles = {
 	horizRule: {
 		width: "calc(100% + 30px)",
 		borderTop: "2px solid rgba(0,0,0,.15)",
+	},
+	readMoreButton: {
+		fontFamily: "Comfortaa",
+		fontWeight: "400",
+		fontSize:"20px",
+		marginLeft: "8px",
+		width: "152px",
+		border: "none",
+		backgroundImage:
+			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 };
 
