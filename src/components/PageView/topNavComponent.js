@@ -82,8 +82,8 @@ const styles = {
 		border: "none",
 		backgroundColor: "hotpink",
 		fontSize: "3.5rem",
-		backgroundImage: "linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
-
+		backgroundImage:
+			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 	plusSign: {
 		position: "relative",
@@ -91,10 +91,11 @@ const styles = {
 	},
 	brandLogoTitle: {
 		fontFamily: "Comfortaa",
-		fontSize: "2.7rem",
+		fontSize: "clamp(1.5rem, 2vw, 2rem)",
 		marginTop: "20px",
 		letterSpacing: "-1.1px",
 		lineHeight: "2.5rem",
+		textAlign: "center",
 	},
 };
 

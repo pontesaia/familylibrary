@@ -25,11 +25,11 @@ class PageView extends Component {
 						</Col>
 					</Row>
 					<Row className="flex-grow-1 overflow-hidden">
-						<Col xs="0" md="2" className="mh-100 overflow-auto">
+						<Col xs="0" lg="2" className="mh-100 overflow-auto">
 							<Sidebar />
 						</Col>
 
-						<Col xs="12" md="10" className="mh-100 px-0" style={styles.mainBody}>
+						<Col xs="12" lg="10" className="mh-100 px-0" style={styles.mainBody}>
 							<Row className="flex-grow-1">
 								<Col className="mh-100 pt-5">
 									<Row className="m-2">
