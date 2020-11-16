@@ -50,6 +50,7 @@ class Home extends Component {
 	render() {
 		return (
 			<React.Fragment>
+				<h1>{this.props.response.body}</h1>
 				<Collapse isOpen={this.state.aboutCollapsed}>
 					<About />
 				</Collapse>
@@ -78,7 +79,11 @@ class Home extends Component {
 								id="logoImage"
 								alt=""
 							/>
-							<h1 className="mt-3" id="logoTitle" style={styles.logoType}>
+							<h1
+								className="mt-3"
+								id="logoTitle"
+								style={styles.logoType}
+							>
 								family library
 							</h1>
 						</Col>

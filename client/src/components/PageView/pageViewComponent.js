@@ -21,6 +21,7 @@ class PageView extends Component {
 				>
 					<Row>
 						<Col className="px-0">
+							<h1>{this.props.response.body}</h1>
 							<TopNav />
 						</Col>
 					</Row>
@@ -29,7 +30,12 @@ class PageView extends Component {
 							<Sidebar />
 						</Col>
 
-						<Col xs="12" lg="10" className="mh-100 px-0" style={styles.mainBody}>
+						<Col
+							xs="12"
+							lg="10"
+							className="mh-100 px-0"
+							style={styles.mainBody}
+						>
 							<Row className="flex-grow-1">
 								<Col className="mh-100 pt-5">
 									<Row className="m-2">
@@ -43,7 +49,11 @@ class PageView extends Component {
 						</Col>
 					</Row>
 					<Row className="flex-shrink-0 mt-5 pt-5">
-						<Col xs="12" className="px-0 pt-1" styles={styles.footer}>
+						<Col
+							xs="12"
+							className="px-0 pt-1"
+							styles={styles.footer}
+						>
 							<BottomNav />
 						</Col>
 					</Row>
