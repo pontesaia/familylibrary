@@ -103,7 +103,7 @@ class Contact extends Component {
 											name="email"
 											value={this.state.input.email}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter your email"
 											id="email"
 										/>
@@ -117,7 +117,7 @@ class Contact extends Component {
 											name="title"
 											value={this.state.input.title}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter your subject title"
 											id="title"
 										/>
@@ -131,7 +131,7 @@ class Contact extends Component {
 											name="message"
 											value={this.state.input.message}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter your message"
 											id="message"
 										/>
