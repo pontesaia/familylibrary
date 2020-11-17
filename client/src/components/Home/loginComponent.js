@@ -115,13 +115,13 @@ class Login extends Component {
 									</Col>
 								</Row>
 								<form onSubmit={this.handleSubmit}>
-									<div class="form-group">
+									<div className="form-group">
 										<input
 											type="text"
 											name="email"
 											value={this.state.input.email}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter your email"
 											id="email"
 										/>
@@ -131,13 +131,13 @@ class Login extends Component {
 										</div>
 									</div>
 
-									<div class="form-group">
+									<div className="form-group">
 										<input
 											type="password"
 											name="password"
 											value={this.state.input.password}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter your password"
 											id="password"
 										/>

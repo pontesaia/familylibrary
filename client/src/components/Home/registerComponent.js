@@ -149,7 +149,7 @@ class Register extends Component {
 											name="username"
 											value={this.state.input.username}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter your username"
 											id="username"
 										/>
@@ -164,7 +164,7 @@ class Register extends Component {
 											name="email"
 											value={this.state.input.email}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter your email"
 											id="email"
 										/>
@@ -179,7 +179,7 @@ class Register extends Component {
 											name="password"
 											value={this.state.input.password}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter your password"
 											id="password"
 										/>
@@ -197,7 +197,7 @@ class Register extends Component {
 													.confirm_password
 											}
 											onChange={this.handleChange}
-											class="form-control"
+											className="form-control"
 											placeholder="Enter confirm password"
 											id="confirm_password"
 										/>
