@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 
 class Search extends Component {
     constructor(props) {
@@ -8,11 +9,21 @@ class Search extends Component {
     render() { 
         return (
 			<React.Fragment>
-				<div style={styles.search}>
-					<div style={styles.searchText}>Search 🔍</div>
-					<span style={styles.title}>Family Stories Feed: </span>
-					<span style={styles.subject}>Patrick McCarthy</span>
-				</div>
+				<Container>
+					<Row className="ml-2">
+						<Col className="ml-2">
+							<div className="ml-3" style={styles.search}>
+								<div style={styles.searchText}>Search 🔍</div>
+								<span style={styles.title}>
+									Family Stories Feed:{" "}
+								</span>
+								<span style={styles.subject}>
+									Patrick McCarthy
+								</span>
+							</div>
+						</Col>
+					</Row>
+				</Container>
 			</React.Fragment>
 		);
     }

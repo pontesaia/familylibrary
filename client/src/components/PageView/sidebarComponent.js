@@ -22,7 +22,7 @@ class Sidebar extends Component {
 		return (
 			<React.Fragment>
 				<Row className="flex-column sidebar h-100 d-none d-lg-block">
-					<Col className="text-center">
+					<Col className="text-center px-0">
 						<div>
 							<img
 								src="/images/Ellipse2.png"
@@ -59,7 +59,7 @@ const styles = {
 	button: {
 		backgroundColor: "black",
 		height: "57px",
-		width: "158px",
+		width: "140px",
 		borderRadius: "2.76px",
 		border: "1px solid #000000",
 		fontFamily: "Roboto",

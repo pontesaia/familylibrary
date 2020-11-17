@@ -207,6 +207,7 @@ p {
 
 .sidebar {
   padding-top: 200px;
-  box-shadow: inset -4px 0 0 #9efdf5;
-  /* border-right: solid #9efdf5 4px; */
+  /* box-shadow: inset -4px 0 0 #9efdf5; */
+  overflow-x: hidden;
+  border-right: solid #9efdf5 4px;
 }
