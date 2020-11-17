@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Collapse } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 import TopNav from "./topNavComponent";
 import Sidebar from "./sidebarComponent";

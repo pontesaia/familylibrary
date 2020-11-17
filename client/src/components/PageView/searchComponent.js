@@ -10,10 +10,12 @@ class Search extends Component {
         return (
 			<React.Fragment>
 				<Container>
-					<Row className="ml-2">
-						<Col className="ml-2">
-							<div className="ml-3" style={styles.search}>
-								<div style={styles.searchText}>Search 🔍</div>
+					<Row className="ml-1">
+						<Col>
+							<div style={styles.search}>
+								<div style={styles.searchText}>
+									Search <span role="img" aria-label="magnifying glass">🔍</span>
+								</div>
 								<span style={styles.title}>
 									Family Stories Feed:{" "}
 								</span>

@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import {
-	Container,
-	Row,
-	Col,
 	Navbar,
 	Nav,
-	NavbarBrand,
 	NavItem,
 	NavLink,
 	NavbarToggler,
-	Collapse,
 } from "reactstrap";
 
 class BottomNav extends Component {

@@ -46,6 +46,7 @@ class PageViewBody extends Component {
 									src="/images/Ellipse2.png"
 									style={styles.avatar}
 									className="mb-2"
+									alt="avatar"
 								/>
 							</Col>
 							<Col className="px-0">
@@ -132,10 +133,6 @@ class PageViewBody extends Component {
 const styles = {
 	search: {
 		paddingBottom: "100px",
-	},
-	horizRule: {
-		borderBottom: "2px solid black",
-		marginBottom: "50px",
 	},
 	avatar: {
 		// width: "105px",

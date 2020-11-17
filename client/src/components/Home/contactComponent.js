@@ -3,7 +3,6 @@ import {
 	Container,
 	Row,
 	Col,
-	Label,
 	FormGroup,
 	Input,
 	Form,

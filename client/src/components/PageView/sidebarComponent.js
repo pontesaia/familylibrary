@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import {
-	Container,
 	Row,
 	Col,
-	Navbar,
-	Nav,
-	NavbarBrand,
-	NavItem,
-	NavLink,
-	NavbarToggler,
-	Collapse,
 	Button,
 } from "reactstrap";
 
@@ -27,6 +19,7 @@ class Sidebar extends Component {
 							<img
 								src="/images/Ellipse2.png"
 								style={styles.avatar}
+								alt="avatar"
 							/>
 							<h1 className="mt-4" style={styles.text}>
 								Maria
