@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
+import axios from "axios";
+
+import DB from "./../../db.json"
 
 class PageViewBody extends Component {
 	constructor(props) {
@@ -14,12 +17,75 @@ class PageViewBody extends Component {
 		this.setState({
 			writeFlag: false,
 			readFlag: !this.state.readFlag,
+			title: "",
+			author: "",
+			story: "",
+			titles: [],
+			authors: [],
+			stories: [],
 		});
 	};
 
 	toggleWrite = () => {
 		this.setState({ readFlag: false, writeFlag: !this.state.writeFlag });
 	};
+
+	onChangeTitle = (e) => {
+		this.setState({
+			title: e.target.value,
+		});
+	};
+	onChangeAuthor = (e) => {
+		this.setState({
+			author: e.target.value,
+		});
+	};
+	onChangeStory = (e) => {
+		this.setState({
+			story: e.target.value,
+		});
+	};
+
+	onSubmit = (e) => {
+		e.preventDefault();
+		const userStory = {
+			title: this.state.title,
+			author: this.state.author,
+			story: this.state.story,
+		};
+		console.log(userStory);
+		// window.location = "/";
+		axios
+			.post("http://localhost:5000/userStories/add", userStory)
+			.then((res) => console.log(res.data));
+	};
+
+	componentDidMount() {
+		console.log(DB.userstories[0].title);
+		axios
+			.get("http://localhost:5000/userStories")
+			.then((response) => {
+				if (response.data.length > 0) {
+					this.setState({
+						titles: response.data.map(
+							(userStory) => userStory.title
+						),
+						authors: response.data.map(
+							(userStory) => userStory.author
+						),
+						stories: response.data.map(
+							(userStory) => userStory.story
+						),
+					});
+					console.log(this.state.titles);
+					console.log(this.state.authors);
+					console.log(this.state.stories);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
 
 	render() {
 		let renderData;
@@ -29,7 +95,7 @@ class PageViewBody extends Component {
 		}
 
 		if (this.state.readFlag) {
-			renderData = data.map((d) => (
+			renderData = DB.userstories.map((d) => (
 				<span key={d.id}>
 					<hr
 						className="horizRule mb-5 mt-4 px-0 mx-0"
@@ -50,61 +116,15 @@ class PageViewBody extends Component {
 								/>
 							</Col>
 							<Col className="px-0">
-								<h4>My Father Patrick McCarthy's Garden</h4>
-								<h6>Posted By: Maria McCarthy</h6>
-								<h6>Date posted: June 10, 2020</h6>
-								<h6 className="mb-4">
-									Memories | Folklore | Father
-								</h6>
+								<h4>{d.title}</h4>
+								<h6>Posted By: {d.author}</h6>
+								<h6>Date posted: {d.date}</h6>
+								<h6 className="mb-4">{d.tags}</h6>
 							</Col>
 						</Row>
 						<Row className="ml-2 mr-5">
 							<Col xs="12" lg="11" className="px-0 offset-lg-1">
-								<p>
-									Lorem ipsum dolor sit amet, consectetur
-									adipiscing elit. Vivamus velit ligula,
-									vehicula eu egestas at, bibendum eget
-									ligula. Mauris vehicula mattis ultrices.
-									Nulla auctor risus nulla, quis dictum nulla
-									semper nec. Curabitur nec orci ex. Integer
-									viverra augue odio, nec consequat nisl
-									tincidunt sit amet. Pellentesque ac lacus
-									pulvinar, condimentum orci sed, varius nibh.
-									Phasellus ac ligula a massa ultrices
-									dapibus. Pellentesque condimentum a purus
-									nec vehicula. Ut ac massa pulvinar,
-									ullamcorper libero id, suscipit risus.
-									Maecenas volutpat consectetur sapien, sed
-									convallis sem hendrerit porta. Morbi
-									pharetra elit et nibh luctus eleifend.
-									Suspendisse et pellentesque enim.
-								</p>
-								<p>
-									Sed lectus leo, interdum in vestibulum sit
-									amet, elementum sed ipsum. Praesent volutpat
-									turpis nec enim malesuada, at volutpat lorem
-									sagittis. Integer sit amet enim dolor. Class
-									aptent taciti sociosqu ad litora torquent
-									per conubia nostra, per inceptos himenaeos.
-									Curabitur faucibus nibh ac dolor pulvinar,
-									non ullamcorper ex vulputate. Suspendisse
-									aliquam eu sapien id laoreet. Maecenas vitae
-									arcu justo.
-								</p>
-								<p>
-									Praesent nisl est, sagittis quis tempor non,
-									pellentesque at urna. Proin pharetra gravida
-									rhoncus. Curabitur fermentum sem eget tortor
-									porttitor, non aliquam erat elementum.
-									Pellentesque habitant morbi tristique
-									senectus et netus et malesuada fames ac
-									turpis egestas. Quisque dignissim convallis
-									urna ac hendrerit. Donec viverra tincidunt
-									nisi, in dapibus dui scelerisque nec. Proin
-									gravida odio sit amet quam rutrum, sed
-									imperdiet leo rutrum. Integer eu mattis
-									urna.
-								</p>
+								<div dangerouslySetInnerHTML={{__html: '<p>' + d.story.replace(/\n/g, "</p><p>")}}></div>
 								<Button
 									className="rounded-pill m-0"
 									style={styles.readMoreButton}
@@ -116,8 +136,47 @@ class PageViewBody extends Component {
 					</Container>
 				</span>
 			));
+			console.log(renderData)
+			// renderData = renderData.replace(/\n/g, "<br />");
 		} else if (this.state.writeFlag) {
-			renderData = <h1>This is the Write Screen!</h1>;
+			renderData = (
+				<form onSubmit={this.onSubmit}>
+					<div className="form-group">
+						<label>Author</label>
+						<input
+							required
+							className="form-control"
+							value={this.state.author || ""}
+							onChange={this.onChangeAuthor}
+						></input>
+					</div>
+					<div className="form-group">
+						<label>Title of Story</label>
+						<input
+							required
+							className="form-control"
+							value={this.state.title || ""}
+							onChange={this.onChangeTitle}
+						></input>
+					</div>
+					<div className="form-group">
+						<label>Story</label>
+						<textarea
+							rows="10"
+							cols="40"
+							required
+							className="form-control"
+							value={this.state.story || ""}
+							onChange={this.onChangeStory}
+						></textarea>
+					</div>
+
+					<div className="form-group">
+						{/* <input type="submit" className="btn btn-primary" /> */}
+						<Button onClick={this.onSubmit} type="button" className="btn btn-primary" >Submit</Button>
+					</div>
+				</form>
+			);
 		}
 
 		return (

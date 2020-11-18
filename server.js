@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const api = require("./routes/routes");
+const userStoriesRouter = require("./routes/userStories");
 
 
 // Create a new express application named 'app'
@@ -30,8 +31,10 @@ app.use(
 // Configure the CORs middleware
 app.use(cors());
 
-// Configure app to use route
+// Configure app to use routes
 app.use("/api/v1/", api);
+app.use("/userStories", userStoriesRouter);
+
 
 // This middleware informs the express application to serve our compiled React files
 if (
