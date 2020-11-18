@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 
-import DB from "./../../db.json"
+import DB from "./../../db.json";
 
 class PageViewBody extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			readFlag: false,
+			readFlag: true,
 			writeFlag: false,
 		};
 	}
@@ -17,6 +17,7 @@ class PageViewBody extends Component {
 		this.setState({
 			writeFlag: false,
 			readFlag: !this.state.readFlag,
+			profiles: [],
 			title: "",
 			author: "",
 			story: "",
@@ -53,15 +54,35 @@ class PageViewBody extends Component {
 			author: this.state.author,
 			story: this.state.story,
 		};
-		console.log(userStory);
+		// console.log(userStory);
 		// window.location = "/";
 		axios
 			.post("http://localhost:5000/userStories/add", userStory)
 			.then((res) => console.log(res.data));
 	};
 
+	buildFakeUserInfo() {
+		//get random user info
+		axios
+			.get("https://randomuser.me/api/?results=10")
+			.then((response) => {
+				if (response.data) {
+					// const img = response.data.results[0].picture.large;
+					this.setState({
+						profiles: response.data.results,
+					});
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
 	componentDidMount() {
-		console.log(DB.userstories[0].title);
+		//builder fake users
+		this.buildFakeUserInfo();
+
+		//get userStories
 		axios
 			.get("http://localhost:5000/userStories")
 			.then((response) => {
@@ -77,9 +98,9 @@ class PageViewBody extends Component {
 							(userStory) => userStory.story
 						),
 					});
-					console.log(this.state.titles);
-					console.log(this.state.authors);
-					console.log(this.state.stories);
+					// console.log(this.state.titles);
+					// console.log(this.state.authors);
+					// console.log(this.state.stories);
 				}
 			})
 			.catch((error) => {
@@ -94,8 +115,8 @@ class PageViewBody extends Component {
 			data.push({ id: i });
 		}
 
-		if (this.state.readFlag) {
-			renderData = DB.userstories.map((d) => (
+		if (this.state.readFlag && this.state.profiles) {
+			renderData = DB.userstories.map((d, i) => (
 				<span key={d.id}>
 					<hr
 						className="horizRule mb-5 mt-4 px-0 mx-0"
@@ -109,7 +130,8 @@ class PageViewBody extends Component {
 								className="pr-2 px-0 text-lg-center"
 							>
 								<img
-									src="/images/Ellipse2.png"
+									// src="/images/Ellipse2.png"
+									src={this.state.profiles[i].picture.large}
 									style={styles.avatar}
 									className="mb-2"
 									alt="avatar"
@@ -117,14 +139,25 @@ class PageViewBody extends Component {
 							</Col>
 							<Col className="px-0">
 								<h4>{d.title}</h4>
-								<h6>Posted By: {d.author}</h6>
+								{/* <h6>Posted By: {d.author}</h6> */}
+								<h6>
+									Posted By:{" "}
+									{this.state.profiles[i].name.first}{" "}
+									{this.state.profiles[i].name.last}
+								</h6>
 								<h6>Date posted: {d.date}</h6>
 								<h6 className="mb-4">{d.tags}</h6>
 							</Col>
 						</Row>
 						<Row className="ml-2 mr-5">
 							<Col xs="12" lg="11" className="px-0 offset-lg-1">
-								<div dangerouslySetInnerHTML={{__html: '<p>' + d.story.replace(/\n/g, "</p><p>")}}></div>
+								<div
+									dangerouslySetInnerHTML={{
+										__html:
+											"<p>" +
+											d.story.replace(/\n/g, "</p><p>"),
+									}}
+								></div>
 								<Button
 									className="rounded-pill m-0"
 									style={styles.readMoreButton}
@@ -136,7 +169,7 @@ class PageViewBody extends Component {
 					</Container>
 				</span>
 			));
-			console.log(renderData)
+			// console.log(renderData)
 			// renderData = renderData.replace(/\n/g, "<br />");
 		} else if (this.state.writeFlag) {
 			renderData = (
@@ -173,7 +206,13 @@ class PageViewBody extends Component {
 
 					<div className="form-group">
 						{/* <input type="submit" className="btn btn-primary" /> */}
-						<Button onClick={this.onSubmit} type="button" className="btn btn-primary" >Submit</Button>
+						<Button
+							onClick={this.onSubmit}
+							type="button"
+							className="btn btn-primary"
+						>
+							Submit
+						</Button>
 					</div>
 				</form>
 			);
@@ -196,6 +235,7 @@ const styles = {
 	avatar: {
 		// width: "105px",
 		width: "clamp(10px, 100%, 105px)",
+		borderRadius: "50%",
 		// float: "none",
 		// marginLeft: "auto",
 		// marginRight: "auto"
