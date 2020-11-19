@@ -50,7 +50,7 @@ class Home extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<h1>{this.props.response.body}</h1>
+				{/* <h1>{this.props.response.body}</h1> */}
 				<Collapse isOpen={this.state.aboutCollapsed}>
 					<About />
 				</Collapse>

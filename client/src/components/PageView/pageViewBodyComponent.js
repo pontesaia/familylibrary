@@ -12,6 +12,7 @@ class PageViewBody extends Component {
 			readFlag: false,
 			writeFlag: false,
 			preview: true,
+			stories: [],
 		};
 	}
 
@@ -67,7 +68,7 @@ class PageViewBody extends Component {
 	buildFakeUserInfo() {
 		//get random user info
 		axios
-			.get("https://randomuser.me/api/?results=10")
+			.get("https://randomuser.me/api/?results=10", { crossdomain: true })
 			.then((response) => {
 				if (response.data) {
 					// const img = response.data.results[0].picture.large;
@@ -88,6 +89,7 @@ class PageViewBody extends Component {
 			.then((response) => {
 				if (response.data.length > 0) {
 					this.setState({
+						userStories: response.data,
 						titles: response.data.map(
 							(userStory) => userStory.title
 						),
@@ -106,6 +108,10 @@ class PageViewBody extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
+	}
+
+	deleteUserStories() {
+		
 	}
 
 	trimString(str, length) {
@@ -127,10 +133,10 @@ class PageViewBody extends Component {
 			data.push({ id: i });
 		}
 
-		if (this.state.readFlag && this.state.profiles) {
+		if (this.state.readFlag && this.state.profiles && this.state.userStories) {
 			// this.getUserStories();
 			renderData = DB.userstories.map((d, i) => (
-				<span key={d.id}>
+				<span key={this.state.userStories[i]._id}>
 					<hr
 						className="horizRule mb-5 mt-4 px-0 mx-0"
 						style={styles.horizRule}
@@ -173,7 +179,7 @@ class PageViewBody extends Component {
 								></div> */}
 								<div
 									dangerouslySetInnerHTML={{
-										__html: this.state.stories[i],
+										__html: this.state.userStories[i].story,
 									}}
 								></div>
 								<Button
@@ -242,9 +248,9 @@ class PageViewBody extends Component {
 				</form>
 			);
 		} else if (this.state.preview && this.state.profiles) {
-			console.log(typeof this.state.stories[0]);
+			// console.log(typeof this.state.stories[0]);
 			renderData = DB.userstories.map((d, i) => (
-				<span key={d.id}>
+				<span key={this.state.userStories[i]._id}>
 					<hr
 						className="horizRule mb-5 mt-4 px-0 mx-0"
 						style={styles.horizRule}
@@ -286,7 +292,7 @@ class PageViewBody extends Component {
 								<div
 									dangerouslySetInnerHTML={{
 										__html: this.trimString(
-											this.state.stories[i],
+											this.state.userStories[i].story,
 											450
 										),
 									}}
@@ -299,8 +305,28 @@ class PageViewBody extends Component {
 											</Button> */}
 							</Col>
 							<Col xs="12" lg="1" className="pl-0">
-								<i className="fa fa-pencil-square-o mr-3"></i>
-								<i className="fa fa-trash-o"></i>
+								<Row className="pl-3">
+									<span
+										type="button"
+										title="Edit"
+										// onCLick={this.clickFunctionHere}
+									>
+										<i
+											className="fa fa-pencil-square-o fa-2x mr-3"
+											style={styles.icons}
+										></i>
+									</span>
+									<span
+										type="button"
+										title="Delete"
+										// onCLick={this.clickFunctionHere}
+									>
+										<i
+											className="fa fa-trash-o fa-2x"
+											style={styles.icons}
+										></i>
+									</span>
+								</Row>
 							</Col>
 						</Row>
 					</Container>
@@ -310,8 +336,8 @@ class PageViewBody extends Component {
 
 		return (
 			<React.Fragment>
-				<Button onClick={this.toggleRead}>Read</Button>
-				<Button onClick={this.toggleWrite}>Write</Button>
+				{/* <Button onClick={this.toggleRead}>Read</Button> */}
+				{/* <Button onClick={this.toggleWrite}>Write</Button> */}
 				<div className="pb-4">{renderData}</div>
 			</React.Fragment>
 		);
@@ -347,6 +373,9 @@ const styles = {
 		border: "none",
 		backgroundImage:
 			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
+	},
+	icons: {
+		color: "gray",
 	},
 };
 

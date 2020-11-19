@@ -21,7 +21,7 @@ class PageView extends Component {
 				>
 					<Row>
 						<Col className="px-0">
-							<h1>{this.props.response.body}</h1>
+							{/* <h1>{this.props.response.body}</h1> */}
 							<TopNav />
 						</Col>
 					</Row>
