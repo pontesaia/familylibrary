@@ -9,8 +9,9 @@ class PageViewBody extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			readFlag: true,
+			readFlag: false,
 			writeFlag: false,
+			preview: true,
 		};
 	}
 
@@ -80,10 +81,7 @@ class PageViewBody extends Component {
 			});
 	}
 
-	componentDidMount() {
-		//builder fake users
-		this.buildFakeUserInfo();
-
+	getUserStories() {
 		//get userStories
 		axios
 			.get("http://localhost:5000/userStories")
@@ -110,6 +108,18 @@ class PageViewBody extends Component {
 			});
 	}
 
+	trimString(str, length) {
+		if (str && str.length > length)
+			return str.substring(0, length) + ".....";
+		else return str;
+	}
+
+	componentDidMount() {
+		//builder fake users
+		this.buildFakeUserInfo();
+		this.getUserStories();
+	}
+
 	render() {
 		let renderData;
 		let data = [];
@@ -118,6 +128,7 @@ class PageViewBody extends Component {
 		}
 
 		if (this.state.readFlag && this.state.profiles) {
+			// this.getUserStories();
 			renderData = DB.userstories.map((d, i) => (
 				<span key={d.id}>
 					<hr
@@ -230,6 +241,71 @@ class PageViewBody extends Component {
 					</div>
 				</form>
 			);
+		} else if (this.state.preview && this.state.profiles) {
+			console.log(typeof this.state.stories[0]);
+			renderData = DB.userstories.map((d, i) => (
+				<span key={d.id}>
+					<hr
+						className="horizRule mb-5 mt-4 px-0 mx-0"
+						style={styles.horizRule}
+					/>
+					<Container>
+						<Row className="ml-2">
+							<Col
+								xs="12"
+								lg="1"
+								className="pr-2 px-0 text-lg-center"
+							>
+								<img
+									// src="/images/Ellipse2.png"
+									src={this.state.profiles[i].picture.large}
+									style={styles.avatar}
+									className="mb-2"
+									alt="avatar"
+								/>
+							</Col>
+							<Col xs="12" lg="3" className="px-0">
+								<h4>{d.title}</h4>
+								{/* <h6>Posted By: {d.author}</h6> */}
+								<h6>
+									Posted By:{" "}
+									{this.state.profiles[i].name.first}{" "}
+									{this.state.profiles[i].name.last}
+								</h6>
+								<h6>Date posted: {d.date}</h6>
+								<h6 className="mb-4">{d.tags}</h6>
+							</Col>
+							<Col xs="12" lg="7" className="pl-0 mb-2 pr-4">
+								{/* <div
+									dangerouslySetInnerHTML={{
+										__html:
+											"<p>" +
+											d.story.replace(/\n/g, "</p><p>"),
+									}}
+								></div> */}
+								<div
+									dangerouslySetInnerHTML={{
+										__html: this.trimString(
+											this.state.stories[i],
+											450
+										),
+									}}
+								></div>
+								{/* <Button
+												className="rounded-pill m-0"
+												style={styles.readMoreButton}
+											>
+												<span>read more...</span>
+											</Button> */}
+							</Col>
+							<Col xs="12" lg="1" className="pl-0">
+								<i className="fa fa-pencil-square-o mr-3"></i>
+								<i className="fa fa-trash-o"></i>
+							</Col>
+						</Row>
+					</Container>
+				</span>
+			));
 		}
 
 		return (
