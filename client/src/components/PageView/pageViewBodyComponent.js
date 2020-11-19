@@ -10,8 +10,8 @@ class PageViewBody extends Component {
 		super(props);
 		this.state = {
 			readFlag: false,
-			writeFlag: false,
-			preview: true,
+			writeFlag: true,
+			preview: false,
 			stories: [],
 		};
 	}
@@ -201,55 +201,85 @@ class PageViewBody extends Component {
 			// renderData = renderData.replace(/\n/g, "<br />");
 		} else if (this.state.writeFlag) {
 			renderData = (
-				<form onSubmit={this.onSubmit}>
-					<div className="form-group">
-						<label>Author</label>
-						<input
-							required
-							className="form-control"
-							value={this.state.author || ""}
-							onChange={this.onChangeAuthor}
-						></input>
-					</div>
-					<div className="form-group">
-						<label>Title of Story</label>
-						<input
-							required
-							className="form-control"
-							value={this.state.title || ""}
-							onChange={this.onChangeTitle}
-						></input>
-					</div>
-					<div className="form-group">
-						<label>Story</label>
-						{/* <textarea
-							rows="10"
-							cols="40"
-							required
-							className="form-control"
-							value={this.state.story || ""}
-							onChange={this.onChangeStory}
-						></textarea> */}
-						<ReactQuill
-							className="quillApp"
-							theme="snow"
-							onChange={this.onChangeStory}
-							// value={this.state.editorHtml}
-							modules={PageViewBody.modules}
-							formats={PageViewBody.formats}
-						/>
-					</div>
-					<div className="form-group">
-						{/* <input type="submit" className="btn btn-primary" /> */}
-						<Button
-							onClick={this.onSubmit}
-							type="button"
-							className="btn btn-primary"
-						>
-							Submit
-						</Button>
-					</div>
-				</form>
+				<Container>
+					<hr
+						className="horizRule mb-5 mt-4 px-0 mx-0"
+						style={styles.horizRule}
+					/>
+					<form onSubmit={this.onSubmit}>
+						{/* <Row>
+							<Col xs="6">
+								<div className="form-group">
+									<label>Author</label>
+									<input
+										required
+										className="form-control"
+										value={this.state.author || ""}
+										onChange={this.onChangeAuthor}
+									></input>
+								</div>
+							</Col>
+						</Row> */}
+						<Row>
+							<Col
+								xs="12"
+								lg="1"
+								className="pr-2 px-0 text-lg-center"
+							>
+								<img
+									src="/images/Ellipse2.png"
+									style={styles.avatar}
+									className="mb-2"
+									alt="avatar"
+								/>
+							</Col>
+							<Col xs="10">
+								<div className="form-group">
+									<label style={{ fontWeight: "700" }}>
+										Title of Story
+									</label>
+									<input
+										required
+										className="form-control"
+										value={this.state.title || ""}
+										onChange={this.onChangeTitle}
+										placeholder={
+											"Enter Title of Family Story Here..."
+										}
+									></input>
+								</div>
+							</Col>
+						</Row>
+						<Row>
+							<Col xs="10" className="offset-sm-1">
+								<div className="form-group">
+									<label style={{ fontWeight: "700" }}>
+										Family Story
+									</label>
+									<ReactQuill
+										className="quillApp"
+										theme="snow"
+										onChange={this.onChangeStory}
+										placeholder={"Write your story..."}
+										// value={this.state.editorHtml}
+										modules={PageViewBody.modules}
+										formats={PageViewBody.formats}
+									/>
+								</div>
+								<div className="form-group">
+									{/* <input type="submit" className="btn btn-primary" /> */}
+									<Button
+										onClick={this.onSubmit}
+										type="button"
+										className="btn btn-primary"
+									>
+										Submit
+									</Button>
+								</div>
+							</Col>
+						</Row>
+					</form>
+				</Container>
 			);
 		} else if (this.state.preview && this.state.profiles) {
 			// console.log(typeof this.state.stories[0]);
