@@ -61,7 +61,7 @@ class PageViewBody extends Component {
 		// console.log(userStory);
 		// window.location = "/";
 		axios
-			.post("http://localhost:5000/userStories/add", userStory)
+			.post("http://localhost:5000/userStories", userStory)
 			.then((res) => console.log(res.data));
 	};
 
@@ -110,8 +110,12 @@ class PageViewBody extends Component {
 			});
 	}
 
+	editUserStories() {
+
+	}
+
 	deleteUserStories() {
-		
+
 	}
 
 	trimString(str, length) {
