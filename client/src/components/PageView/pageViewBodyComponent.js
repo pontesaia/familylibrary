@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
+import ReactQuill from "react-quill";
 
 import DB from "./../../db.json";
 
@@ -17,13 +18,14 @@ class PageViewBody extends Component {
 		this.setState({
 			writeFlag: false,
 			readFlag: !this.state.readFlag,
-			profiles: [],
-			title: "",
-			author: "",
-			story: "",
-			titles: [],
-			authors: [],
-			stories: [],
+			// profiles: [],
+			// title: "",
+			// author: "",
+			// story: "",
+			// editorHtml: "",
+			// titles: [],
+			// authors: [],
+			// stories: [],
 		});
 	};
 
@@ -41,9 +43,9 @@ class PageViewBody extends Component {
 			author: e.target.value,
 		});
 	};
-	onChangeStory = (e) => {
+	onChangeStory = (html) => {
 		this.setState({
-			story: e.target.value,
+			story: html,
 		});
 	};
 
@@ -151,11 +153,16 @@ class PageViewBody extends Component {
 						</Row>
 						<Row className="ml-2 mr-5">
 							<Col xs="12" lg="11" className="px-0 offset-lg-1">
-								<div
+								{/* <div
 									dangerouslySetInnerHTML={{
 										__html:
 											"<p>" +
 											d.story.replace(/\n/g, "</p><p>"),
+									}}
+								></div> */}
+								<div
+									dangerouslySetInnerHTML={{
+										__html: this.state.stories[i],
 									}}
 								></div>
 								<Button
@@ -194,16 +201,23 @@ class PageViewBody extends Component {
 					</div>
 					<div className="form-group">
 						<label>Story</label>
-						<textarea
+						{/* <textarea
 							rows="10"
 							cols="40"
 							required
 							className="form-control"
 							value={this.state.story || ""}
 							onChange={this.onChangeStory}
-						></textarea>
+						></textarea> */}
+						<ReactQuill
+							className="quillApp"
+							theme="snow"
+							onChange={this.onChangeStory}
+							// value={this.state.editorHtml}
+							modules={PageViewBody.modules}
+							formats={PageViewBody.formats}
+						/>
 					</div>
-
 					<div className="form-group">
 						{/* <input type="submit" className="btn btn-primary" /> */}
 						<Button
@@ -259,5 +273,45 @@ const styles = {
 			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 };
+
+//Quill stuff
+PageViewBody.modules = {
+	toolbar: [
+		// [{ header: "1" }, { header: "2" }, { font: [] }],
+		[{ header: "1" }, { header: "2" }],
+		[{ size: [] }],
+		// ["bold", "italic", "underline", "strike", "blockquote"],
+		["bold", "italic", "underline", "strike"],
+		[
+			{ list: "ordered" },
+			{ list: "bullet" },
+			{ indent: "-1" },
+			{ indent: "+1" },
+		],
+		["link", "image", "video"],
+		["clean"],
+	],
+	clipboard: {
+		// toggle to add extra line breaks when pasting HTML:
+		matchVisual: false,
+	},
+};
+
+PageViewBody.formats = [
+	"header",
+	"font",
+	"size",
+	"bold",
+	"italic",
+	"underline",
+	"strike",
+	// "blockquote",
+	"list",
+	"bullet",
+	"indent",
+	"link",
+	"image",
+	"video",
+];
 
 export default PageViewBody;

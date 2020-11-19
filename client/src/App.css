@@ -211,3 +211,26 @@ p {
   overflow-x: hidden;
   border-right: solid #9efdf5 4px;
 }
+
+/* Quill */
+.quillApp {
+  /* margin: 1rem 4rem; */
+}
+
+.quillApp .ql-container {
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background: #fefcfc;
+}
+
+/* Snow Theme */
+.quillApp .ql-snow.ql-toolbar {
+  display: block;
+  background: #eaecec;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.quillApp .ql-editor {
+  min-height: 18em;
+}
