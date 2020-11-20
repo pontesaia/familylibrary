@@ -6,7 +6,10 @@ const cors = require("cors");
 const path = require("path");
 const api = require("./routes/routes");
 const userStoriesRouter = require("./routes/userStories");
+const dotenv = require("dotenv");
+// require("./database");
 
+dotenv.config();
 
 // Create a new express application named 'app'
 const app = express();
@@ -35,7 +38,6 @@ app.use(cors());
 app.use("/api/v1/", api);
 app.use("/userStories", userStoriesRouter);
 
-
 // This middleware informs the express application to serve our compiled React files
 if (
 	process.env.NODE_ENV === "production" ||
@@ -55,7 +57,7 @@ app.get("*", (req, res) => {
 	});
 });
 
-mongoose.connect("mongodb://localhost:27017/family-library");
+mongoose.connect(process.env.REACT_APP_MONGODB_URI);
 
 // Configure our server to listen on the port defiend by our port variable
 app.listen(port, () => console.log(`BACK_END_SERVICE_PORT: ${port}`));
