@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const userStorySchema = new Schema({
 	title: { type: String, required: true },
-	author: { type: String, required: true },
 	story: { type: String, required: true },
 });
 

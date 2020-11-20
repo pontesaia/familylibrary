@@ -4,4 +4,5 @@ module.exports = {
 			body: "Hello from the server!",
 		});
 	},
+	
 };
