@@ -20,14 +20,6 @@ class PageViewBody extends Component {
 		this.setState({
 			writeFlag: false,
 			readFlag: !this.state.readFlag,
-			// profiles: [],
-			// title: "",
-			// author: "",
-			// story: "",
-			// editorHtml: "",
-			// titles: [],
-			// authors: [],
-			// stories: [],
 		});
 	};
 
@@ -40,11 +32,6 @@ class PageViewBody extends Component {
 			title: e.target.value,
 		});
 	};
-	onChangeAuthor = (e) => {
-		this.setState({
-			author: e.target.value,
-		});
-	};
 	onChangeStory = (html) => {
 		this.setState({
 			story: html,
@@ -55,7 +42,6 @@ class PageViewBody extends Component {
 		e.preventDefault();
 		const userStory = {
 			title: this.state.title,
-			author: this.state.author,
 			story: this.state.story,
 		};
 		// console.log(userStory);
@@ -68,7 +54,7 @@ class PageViewBody extends Component {
 	buildFakeUserInfo() {
 		//get random user info
 		axios
-			.get("https://randomuser.me/api/?results=10", { crossdomain: true })
+			.get("https://randomuser.me/api/?results=11", { crossdomain: true })
 			.then((response) => {
 				if (response.data) {
 					// const img = response.data.results[0].picture.large;
@@ -93,15 +79,11 @@ class PageViewBody extends Component {
 						titles: response.data.map(
 							(userStory) => userStory.title
 						),
-						authors: response.data.map(
-							(userStory) => userStory.author
-						),
 						stories: response.data.map(
 							(userStory) => userStory.story
 						),
 					});
 					// console.log(this.state.titles);
-					// console.log(this.state.authors);
 					// console.log(this.state.stories);
 				}
 			})
@@ -133,7 +115,7 @@ class PageViewBody extends Component {
 	render() {
 		let renderData;
 		let data = [];
-		for (let i = 0; i < 10; ++i) {
+		for (let i = 0; i < 11; ++i) {
 			data.push({ id: i });
 		}
 
@@ -279,6 +261,10 @@ class PageViewBody extends Component {
 							</Col>
 						</Row>
 					</form>
+					<hr
+						className="horizRule mb-5 mt-4 px-0 mx-0"
+						style={styles.horizRule}
+					/>
 				</Container>
 			);
 		} else if (this.state.preview && this.state.profiles) {
