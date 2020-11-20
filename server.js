@@ -6,10 +6,10 @@ const cors = require("cors");
 const path = require("path");
 const api = require("./routes/routes");
 const userStoriesRouter = require("./routes/userStories");
-const dotenv = require("dotenv");
-// require("./database");
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+	require("dotenv").config();
+}
 
 // Create a new express application named 'app'
 const app = express();
