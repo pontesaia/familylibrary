@@ -27,6 +27,7 @@ class TopNav extends Component {
 								src="/images/logoImage.png"
 								style={{ width: "150px" }}
 								id="brandLogo"
+								alt="brandLogo"
 							/>
 							<h1
 								id="brandLogoTitle"

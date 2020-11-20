@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Collapse } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 import TopNav from "./topNavComponent";
 import Sidebar from "./sidebarComponent";
@@ -21,7 +21,7 @@ class PageView extends Component {
 				>
 					<Row>
 						<Col className="px-0">
-							<h1>{this.props.response.body}</h1>
+							{/* <h1>{this.props.response.body}</h1> */}
 							<TopNav />
 						</Col>
 					</Row>

@@ -4,11 +4,6 @@ import {
 	Row,
 	Col,
 	Button,
-	Collapse,
-	Form,
-	FormGroup,
-	Input,
-	Label,
 } from "reactstrap";
 
 class Login extends Component {

@@ -4,11 +4,9 @@ import {
 	Row,
 	Col,
 	Button,
-	Collapse,
 	Form,
 	FormGroup,
 	Input,
-	Label,
 } from "reactstrap";
 
 class Register extends Component {
