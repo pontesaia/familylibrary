@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="public/logoImage.png" alt="Logo" width="80" height="80">
+    <img src="logoImage.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Family Library</h3>
