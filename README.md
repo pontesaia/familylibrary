@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="logoImage.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/pontesaia/familylibrary">
+    <img src="client\public\images\logoImage.png" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Family Library</h3>
