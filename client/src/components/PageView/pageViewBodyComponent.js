@@ -1,59 +1,19 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 
 import MainFeed from "./readComponents/mainFeedComponent";
 import PersonalFeedPreview from "./readComponents/personalFeedPreviewComponent";
-import ComposeStory from "./writeComponents/composeStoryComponent"
-import DB from "./../../db.json";
+import ComposeStory from "./writeComponents/composeStoryComponent";
 
 class PageViewBody extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			readFlag: false,
-			writeFlag: true,
-			preview: false,
 			stories: [],
-			userStories: [],
-			profiles: [],
+			userStories: null,
+			profiles: null,
 		};
 	}
-
-	toggleRead = () => {
-		this.setState({
-			writeFlag: false,
-			readFlag: !this.state.readFlag,
-		});
-	};
-
-	toggleWrite = () => {
-		this.setState({ readFlag: false, writeFlag: !this.state.writeFlag });
-	};
-
-	onChangeTitle = (e) => {
-		this.setState({
-			title: e.target.value,
-		});
-	};
-	onChangeStory = (html) => {
-		this.setState({
-			story: html,
-		});
-	};
-
-	onSubmit = (e) => {
-		e.preventDefault();
-		const userStory = {
-			title: this.state.title,
-			story: this.state.story,
-		};
-		// console.log(userStory);
-		// window.location = "/";
-		axios
-			.post("http://localhost:5000/userStories", userStory)
-			.then((res) => console.log(res.data));
-	};
 
 	buildFakeUserInfo() {
 		//get random user info
@@ -87,8 +47,6 @@ class PageViewBody extends Component {
 							(userStory) => userStory.story
 						),
 					});
-					// console.log(this.state.titles);
-					// console.log(this.state.stories);
 				}
 			})
 			.catch((error) => {
@@ -99,12 +57,6 @@ class PageViewBody extends Component {
 	editUserStories() {}
 
 	deleteUserStories() {}
-
-	trimString(str, length) {
-		if (str && str.length > length)
-			return str.substring(0, length) + ".....";
-		else return str;
-	}
 
 	componentDidMount() {
 		//builder fake users
@@ -119,7 +71,18 @@ class PageViewBody extends Component {
 			data.push({ id: i });
 		}
 		if (
-			this.state.readFlag &&
+			this.props.mainFeedFlag &&
+			this.state.profiles &&
+			this.state.userStories
+		) {
+			renderData = (
+				<MainFeed
+					userStories={this.state.userStories}
+					profiles={this.state.profiles}
+				/>
+			);
+		} else if (
+			this.props.personalFeedPreviewFlag &&
 			this.state.profiles &&
 			this.state.userStories
 		) {
@@ -129,25 +92,13 @@ class PageViewBody extends Component {
 					profiles={this.state.profiles}
 				/>
 			);
-		} else if (this.state.writeFlag) {
-			renderData = (
-				<ComposeStory
-					userStories={this.state.userStories}
-					profiles={this.state.profiles}
-				/>
-			);
-		} else if (this.state.preview && this.state.profiles) {
-			renderData = (
-				<MainFeed
-					userStories={this.state.userStories}
-					profiles={this.state.profiles}
-				/>
-			);
+		} else if (this.props.composeStoryFlag) {
+			renderData = <ComposeStory />;
 		}
 
 		return (
 			<React.Fragment>
-				{/* <Button onClick={this.toggleRead}>Read</Button> */}
+				{/* <Button onClick={this.toggleMainFeed}>Read</Button> */}
 				{/* <Button onClick={this.toggleWrite}>Write</Button> */}
 				<div className="pb-4">{renderData}</div>
 			</React.Fragment>

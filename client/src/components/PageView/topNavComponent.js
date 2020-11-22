@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-	Navbar,
-	Nav,
-	NavbarBrand,
-	NavItem,
-	NavLink,
-	Button,
-} from "reactstrap";
+import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Button } from "reactstrap";
 
 class TopNav extends Component {
 	constructor(props) {
@@ -39,12 +32,20 @@ class TopNav extends Component {
 					</NavbarBrand>
 					<Nav navbar className="nav-fill w-100" style={styles.nav}>
 						<NavItem>
-							<NavLink href="#" style={styles.navLinks}>
+							<NavLink
+								href="#"
+								style={styles.navLinks}
+								onClick={this.props.setPersonalFeedPreview}
+							>
 								Read
 							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href="#" style={styles.navLinks}>
+							<NavLink
+								href="#"
+								style={styles.navLinks}
+								onClick={this.props.setComposeStory}
+							>
 								Write
 								<span className="d-none d-lg-inline">
 									<Button

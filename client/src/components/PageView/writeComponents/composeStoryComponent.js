@@ -1,13 +1,41 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import ReactQuill from "react-quill";
-
+import axios from "axios";
 
 class ComposeStory extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+        this.state = {
+            title: "",
+            story: "",
+        };
 	}
+
+	onChangeTitle = (e) => {
+		this.setState({
+			title: e.target.value,
+		});
+	};
+	onChangeStory = (html) => {
+		this.setState({
+			story: html,
+		});
+	};
+
+	onSubmit = (e) => {
+		e.preventDefault();
+		const userStory = {
+			title: this.state.title,
+			story: this.state.story,
+		};
+		// console.log(userStory);
+		// window.location = "/";
+		axios
+			.post("http://localhost:5000/userStories", userStory)
+			.then((res) => console.log(res.data));
+	};
+
 	render() {
 		let renderData = (
 			<Container>
@@ -25,11 +53,11 @@ class ComposeStory extends Component {
 							<img
 								src="/images/Ellipse2.png"
 								style={styles.avatar}
-								className="mb-2"
+								className="mb-2 ml-3"
 								alt="avatar"
 							/>
 						</Col>
-						<Col xs="10">
+						<Col xs="12" lg="11" className="pl-lg-4">
 							<div className="form-group">
 								<label style={{ fontWeight: "700" }}>
 									Title of Story
@@ -46,8 +74,8 @@ class ComposeStory extends Component {
 							</div>
 						</Col>
 					</Row>
-					<Row>
-						<Col xs="10" className="offset-sm-1">
+					<Row className="offset-lg-1">
+						<Col xs="12">
 							<div className="form-group">
 								<label style={{ fontWeight: "700" }}>
 									Family Story

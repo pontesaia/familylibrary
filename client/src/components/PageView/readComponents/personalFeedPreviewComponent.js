@@ -8,6 +8,13 @@ class PersonalFeedPreview extends Component {
 		super(props);
 		this.state = {};
 	}
+
+	trimString(str, length) {
+		if (str && str.length > length)
+			return str.substring(0, length) + ".....";
+		else return str;
+	}
+
 	render() {
 		let renderData = DB.userstories.map((d, i) => (
 			<span key={this.props.userStories[i]._id}>
@@ -52,7 +59,10 @@ class PersonalFeedPreview extends Component {
 								></div> */}
 							<div
 								dangerouslySetInnerHTML={{
-									__html: this.props.userStories[i].story,
+									__html: this.trimString(
+										this.props.userStories[i].story,
+										450
+									),
 								}}
 							></div>
 							<Button
