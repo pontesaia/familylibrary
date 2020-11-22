@@ -36,7 +36,8 @@ corsOptions = {
 	origin: "https://family-library-app.herokuapp.com",
 	optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-app.use(cors(corsOptions));
+app.use(cors());
+// app.use(cors(corsOptions));
 
 // Configure app to use routes
 app.use("/api/v1/", api);
@@ -63,7 +64,8 @@ app.get("*", (req, res) => {
 
 mongoose
 	.connect(
-		process.env.REACT_APP_MONGODB_URI,
+		process.env.REACT_APP_MONGODB_URI ||
+			"http://localhost:5000/userStories",
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
