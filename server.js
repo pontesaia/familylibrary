@@ -32,7 +32,11 @@ app.use(
 );
 
 // Configure the CORs middleware
-app.use(cors());
+corsOptions = {
+	origin: "https://family-library-app.herokuapp.com",
+	optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions));
 
 // Configure app to use routes
 app.use("/api/v1/", api);
@@ -57,7 +61,14 @@ app.get("*", (req, res) => {
 	});
 });
 
-mongoose.connect(process.env.REACT_APP_MONGODB_URI);
+mongoose
+	.connect(process.env.REACT_APP_MONGODB_URI, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
+	})
+	.then(() => console.log("Database Connected Successfully"))
+	.catch((err) => console.log(err));
 
 // Configure our server to listen on the port defiend by our port variable
 app.listen(port, () => console.log(`BACK_END_SERVICE_PORT: ${port}`));
