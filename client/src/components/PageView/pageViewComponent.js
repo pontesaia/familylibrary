@@ -51,7 +51,7 @@ class PageView extends Component {
 		//get userStories
 		axios
 			// .get("http://localhost:5000/userStories")
-			.get("http://localhost:5000/userStories" || "/userStories/")
+			.get("/userStories/")
 			.then((response) => {
 				if (response.data.length > 0) {
 					this.setState({
