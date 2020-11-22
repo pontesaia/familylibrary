@@ -62,11 +62,14 @@ app.get("*", (req, res) => {
 });
 
 mongoose
-	.connect(process.env.REACT_APP_MONGODB_URI, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-		useFindAndModify: false,
-	})
+	.connect(
+		process.env.REACT_APP_MONGODB_URI || "mongodb://127.0.0.1:27017/",
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			useFindAndModify: false,
+		}
+	)
 	.then(() => console.log("Database Connected Successfully"))
 	.catch((err) => console.log(err));
 

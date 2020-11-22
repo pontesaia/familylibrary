@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+  "node": "12.9.0",
+  "npm": "6.10.2"
+},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client && npm start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\"",
     "client:build": "cd client && npm run build",
-    "dotenv": "node -r dotenv/config ."
+    "heroku-postbuild": "npm run client:build"
   },
   "repository": {
     "type": "git",
@@ -26,10 +30,6 @@
     "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.10.15",
     "nodemon": "^2.0.6"
-  },
-  "devDependencies": {
-    "dotenv": "^8.2.0"
   }
 }
