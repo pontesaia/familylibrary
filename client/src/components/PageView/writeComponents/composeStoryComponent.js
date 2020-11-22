@@ -33,7 +33,7 @@ class ComposeStory extends Component {
 		// window.location = "/";
 		if (this.state.title && this.state.story) {
 			axios
-				.post("http://localhost:5000/userStories", userStory)
+				.post("/userStories", userStory)
 				.then((res) => console.log(res.data));
 			setTimeout(() => {
 				this.props.setMainFeed();
