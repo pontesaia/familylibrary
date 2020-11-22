@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
+import axios from "axios";
 
 import TopNav from "./topNavComponent";
 import Sidebar from "./sidebarComponent";
@@ -11,13 +12,17 @@ class PageView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mainFeedFlag: true,
+			mainFeedFlag: false,
 			personalFeedPreviewFlag: false,
-			composeStoryFlag: false,
+			composeStoryFlag: true,
+			titles: [],
+			stories: [],
+			userStories: null,
 		};
 	}
 
 	setMainFeed = () => {
+		this.getUserStories();
 		this.setState({
 			mainFeedFlag: true,
 			personalFeedPreviewFlag: false,
@@ -26,6 +31,7 @@ class PageView extends Component {
 	};
 
 	setPersonalFeedPreview = () => {
+		this.getUserStories();
 		this.setState({
 			mainFeedFlag: false,
 			personalFeedPreviewFlag: true,
@@ -40,6 +46,33 @@ class PageView extends Component {
 			composeStoryFlag: true,
 		});
 	};
+
+	getUserStories() {
+		console.log("USER STORIES")
+		//get userStories
+		axios
+			.get("http://localhost:5000/userStories")
+			.then((response) => {
+				if (response.data.length > 0) {
+					this.setState({
+						userStories: response.data,
+						titles: response.data.map(
+							(userStory) => userStory.title
+						),
+						stories: response.data.map(
+							(userStory) => userStory.story
+						),
+					});
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	componentDidMount() {
+		this.getUserStories();
+	}
 
 	render() {
 		return (
@@ -85,6 +118,8 @@ class PageView extends Component {
 										composeStoryFlag={
 											this.state.composeStoryFlag
 										}
+										userStories={this.state.userStories}
+										setMainFeed={this.setMainFeed}
 									/>
 								</Col>
 							</Row>

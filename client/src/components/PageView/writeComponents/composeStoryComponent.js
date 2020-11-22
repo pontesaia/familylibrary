@@ -6,10 +6,10 @@ import axios from "axios";
 class ComposeStory extends Component {
 	constructor(props) {
 		super(props);
-        this.state = {
-            title: "",
-            story: "",
-        };
+		this.state = {
+			title: "",
+			story: "",
+		};
 	}
 
 	onChangeTitle = (e) => {
@@ -34,6 +34,9 @@ class ComposeStory extends Component {
 		axios
 			.post("http://localhost:5000/userStories", userStory)
 			.then((res) => console.log(res.data));
+		setTimeout(() => {
+			this.props.setMainFeed();
+		}, 500);
 	};
 
 	render() {

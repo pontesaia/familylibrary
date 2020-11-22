@@ -9,16 +9,15 @@ class PageViewBody extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			stories: [],
-			userStories: null,
 			profiles: null,
 		};
 	}
 
 	buildFakeUserInfo() {
 		//get random user info
+		// if(this.props.userStories)
 		axios
-			.get("https://randomuser.me/api/?results=11", { crossdomain: true })
+			.get("https://randomuser.me/api/?results=35", { crossdomain: true })
 			.then((response) => {
 				if (response.data) {
 					// const img = response.data.results[0].picture.large;
@@ -32,27 +31,7 @@ class PageViewBody extends Component {
 			});
 	}
 
-	getUserStories() {
-		//get userStories
-		axios
-			.get("http://localhost:5000/userStories")
-			.then((response) => {
-				if (response.data.length > 0) {
-					this.setState({
-						userStories: response.data,
-						titles: response.data.map(
-							(userStory) => userStory.title
-						),
-						stories: response.data.map(
-							(userStory) => userStory.story
-						),
-					});
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
+
 
 	editUserStories() {}
 
@@ -61,39 +40,41 @@ class PageViewBody extends Component {
 	componentDidMount() {
 		//builder fake users
 		this.buildFakeUserInfo();
-		this.getUserStories();
+		// this.getUserStories();
 	}
 
 	render() {
 		let renderData;
-		let data = [];
-		for (let i = 0; i < 11; ++i) {
-			data.push({ id: i });
-		}
+		// let data = [];
+		// if (this.props.userStories) {
+		// 	for (let i = 0; i < this.props.userStories.length; ++i) {
+		// 		data.push({ id: i });
+		// 	}
+		// }
 		if (
 			this.props.mainFeedFlag &&
 			this.state.profiles &&
-			this.state.userStories
+			this.props.userStories
 		) {
 			renderData = (
 				<MainFeed
-					userStories={this.state.userStories}
+					userStories={this.props.userStories}
 					profiles={this.state.profiles}
 				/>
 			);
 		} else if (
 			this.props.personalFeedPreviewFlag &&
 			this.state.profiles &&
-			this.state.userStories
+			this.props.userStories
 		) {
 			renderData = (
 				<PersonalFeedPreview
-					userStories={this.state.userStories}
+					userStories={this.props.userStories}
 					profiles={this.state.profiles}
 				/>
 			);
 		} else if (this.props.composeStoryFlag) {
-			renderData = <ComposeStory />;
+			renderData = <ComposeStory setMainFeed={this.props.setMainFeed} />;
 		}
 
 		return (
