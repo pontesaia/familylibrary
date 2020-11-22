@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
+import axios from "axios";
 
 import TopNav from "./topNavComponent";
 import Sidebar from "./sidebarComponent";
@@ -10,8 +11,68 @@ import Search from "./searchComponent";
 class PageView extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			mainFeedFlag: true,
+			personalFeedPreviewFlag: false,
+			composeStoryFlag: false,
+			titles: [],
+			stories: [],
+			userStories: null,
+		};
 	}
+
+	setMainFeed = () => {
+		this.getUserStories();
+		this.setState({
+			mainFeedFlag: true,
+			personalFeedPreviewFlag: false,
+			composeStoryFlag: false,
+		});
+	};
+
+	setPersonalFeedPreview = () => {
+		this.getUserStories();
+		this.setState({
+			mainFeedFlag: false,
+			personalFeedPreviewFlag: true,
+			composeStoryFlag: false,
+		});
+	};
+
+	setComposeStory = () => {
+		this.setState({
+			mainFeedFlag: false,
+			personalFeedPreviewFlag: false,
+			composeStoryFlag: true,
+		});
+	};
+
+	getUserStories() {
+		//get userStories
+		axios
+			.get("http://localhost:5000/userStories")
+			.then((response) => {
+				if (response.data.length > 0) {
+					this.setState({
+						userStories: response.data,
+						titles: response.data.map(
+							(userStory) => userStory.title
+						),
+						stories: response.data.map(
+							(userStory) => userStory.story
+						),
+					});
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	componentDidMount() {
+		this.getUserStories();
+	}
+
 	render() {
 		return (
 			<React.Fragment>
@@ -22,7 +83,12 @@ class PageView extends Component {
 					<Row>
 						<Col className="px-0">
 							{/* <h1>{this.props.response.body}</h1> */}
-							<TopNav />
+							<TopNav
+								setPersonalFeedPreview={
+									this.setPersonalFeedPreview
+								}
+								setComposeStory={this.setComposeStory}
+							/>
 						</Col>
 					</Row>
 					<Row className="flex-grow-1 overflow-hidden">
@@ -43,7 +109,17 @@ class PageView extends Component {
 											<Search />
 										</Col>
 									</Row>
-									<PageViewBody />
+									<PageViewBody
+										mainFeedFlag={this.state.mainFeedFlag}
+										personalFeedPreviewFlag={
+											this.state.personalFeedPreviewFlag
+										}
+										composeStoryFlag={
+											this.state.composeStoryFlag
+										}
+										userStories={this.state.userStories}
+										setMainFeed={this.setMainFeed}
+									/>
 								</Col>
 							</Row>
 						</Col>
@@ -64,7 +140,7 @@ class PageView extends Component {
 }
 
 const styles = {
-	footer: { position: "fixed", left: "0", bottom: "0", width: "100%", },
+	footer: { position: "fixed", left: "0", bottom: "0", width: "100%" },
 	mainBody: { overflowY: "auto", overflowX: "hidden" },
 };
 
