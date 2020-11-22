@@ -12,9 +12,9 @@ class PageView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			mainFeedFlag: false,
+			mainFeedFlag: true,
 			personalFeedPreviewFlag: false,
-			composeStoryFlag: true,
+			composeStoryFlag: false,
 			titles: [],
 			stories: [],
 			userStories: null,
@@ -48,7 +48,6 @@ class PageView extends Component {
 	};
 
 	getUserStories() {
-		console.log("USER STORIES")
 		//get userStories
 		axios
 			.get("http://localhost:5000/userStories")

@@ -31,12 +31,14 @@ class ComposeStory extends Component {
 		};
 		// console.log(userStory);
 		// window.location = "/";
-		axios
-			.post("http://localhost:5000/userStories", userStory)
-			.then((res) => console.log(res.data));
-		setTimeout(() => {
-			this.props.setMainFeed();
-		}, 500);
+		if (this.state.title && this.state.story) {
+			axios
+				.post("http://localhost:5000/userStories", userStory)
+				.then((res) => console.log(res.data));
+			setTimeout(() => {
+				this.props.setMainFeed();
+			}, 500);
+		}
 	};
 
 	render() {
