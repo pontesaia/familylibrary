@@ -8,6 +8,7 @@ import Home from "./components/Home/homeComponent";
 // import Features from "./components/featuresComponent";
 import PageView from "./components/PageView/pageViewComponent";
 import MainFeed from "./components/PageView/readComponents/mainFeedComponent";
+import TestDB from "./components/PageView/testDB/testDBComponent"
 
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 
@@ -72,6 +73,14 @@ class App extends Component {
 							render={() => (
 								// <PageView response={this.state.response} />
 								<PageView />
+							)}
+						/>
+						<Route
+							exact
+							path="/TestDB"
+							render={() => (
+								// <PageView response={this.state.response} />
+								<TestDB />
 							)}
 						/>
 

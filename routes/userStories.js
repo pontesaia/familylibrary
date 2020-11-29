@@ -4,7 +4,8 @@ const userStoriesController = require("../controllers/userStoriesController.js")
 router
 	.route("/")
 	.get(userStoriesController.findAll)
-	.post(userStoriesController.create);
+	.post(userStoriesController.create)
+	.delete (userStoriesController.removeAll);
 
 router
 	.route("/:id")
