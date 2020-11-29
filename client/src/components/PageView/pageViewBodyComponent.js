@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import MainFeed from "./readComponents/mainFeedComponent";
 import PersonalFeedPreview from "./readComponents/personalFeedPreviewComponent";
@@ -31,8 +32,6 @@ class PageViewBody extends Component {
 			});
 	}
 
-
-
 	editUserStories() {}
 
 	deleteUserStories() {}
@@ -56,6 +55,7 @@ class PageViewBody extends Component {
 			this.state.profiles &&
 			this.props.userStories
 		) {
+			// this.setState({ redirect: "/Feed" });
 			renderData = (
 				<MainFeed
 					userStories={this.props.userStories}
@@ -67,6 +67,7 @@ class PageViewBody extends Component {
 			this.state.profiles &&
 			this.props.userStories
 		) {
+			// this.setState({ redirect: "/PersonalPreview" });
 			renderData = (
 				<PersonalFeedPreview
 					userStories={this.props.userStories}
@@ -81,6 +82,7 @@ class PageViewBody extends Component {
 			<React.Fragment>
 				{/* <Button onClick={this.toggleMainFeed}>Read</Button> */}
 				{/* <Button onClick={this.toggleWrite}>Write</Button> */}
+				<Redirect to={this.props.redirect} />
 				<div className="pb-4">{renderData}</div>
 			</React.Fragment>
 		);

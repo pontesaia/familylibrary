@@ -15,6 +15,7 @@ class PageView extends Component {
 			mainFeedFlag: true,
 			personalFeedPreviewFlag: false,
 			composeStoryFlag: false,
+			redirect: "/Feed",
 			titles: [],
 			stories: [],
 			userStories: null,
@@ -27,6 +28,7 @@ class PageView extends Component {
 			mainFeedFlag: true,
 			personalFeedPreviewFlag: false,
 			composeStoryFlag: false,
+			redirect: "/Feed",
 		});
 	};
 
@@ -36,6 +38,7 @@ class PageView extends Component {
 			mainFeedFlag: false,
 			personalFeedPreviewFlag: true,
 			composeStoryFlag: false,
+			redirect: "/PersonalPreview",
 		});
 	};
 
@@ -44,13 +47,13 @@ class PageView extends Component {
 			mainFeedFlag: false,
 			personalFeedPreviewFlag: false,
 			composeStoryFlag: true,
+			redirect: "/ComposeStory",
 		});
 	};
 
 	getUserStories() {
 		//get userStories
 		axios
-			// .get("http://localhost:5000/userStories")
 			.get("/userStories/")
 			.then((response) => {
 				if (response.data.length > 0) {
@@ -83,7 +86,6 @@ class PageView extends Component {
 				>
 					<Row>
 						<Col className="px-0">
-							{/* <h1>{this.props.response.body}</h1> */}
 							<TopNav
 								setPersonalFeedPreview={
 									this.setPersonalFeedPreview
@@ -120,6 +122,7 @@ class PageView extends Component {
 										}
 										userStories={this.state.userStories}
 										setMainFeed={this.setMainFeed}
+										redirect={this.state.redirect}
 									/>
 								</Col>
 							</Row>

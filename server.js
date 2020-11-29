@@ -32,10 +32,10 @@ app.use(
 );
 
 // Configure the CORs middleware
-corsOptions = {
-	origin: "https://family-library-app.herokuapp.com",
-	optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// corsOptions = {
+// 	origin: "https://family-library-app.herokuapp.com",
+// 	optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
 app.use(cors());
 // app.use(cors(corsOptions));
 

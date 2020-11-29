@@ -15,6 +15,16 @@ class PersonalFeedPreview extends Component {
 		else return str;
 	}
 
+	getStoryDate() {
+		let createdAt;
+		let date;
+		if (this.props.userStories) {
+			createdAt = this.props.userStories[27].createdAt;
+			date = JSON.stringify(new Date(createdAt).toDateString());
+		}
+		return date;
+	}
+
 	render() {
 		let renderData = null;
 		if (this.props.userStories)
@@ -47,7 +57,7 @@ class PersonalFeedPreview extends Component {
 									{this.props.profiles[i].name.first}{" "}
 									{this.props.profiles[i].name.last}
 								</h6>
-								<h6>Date posted: {d.date}</h6>
+								<h6>Date posted: {this.getStoryDate()}</h6>
 								<h6 className="mb-4">{d.tags}</h6>
 							</Col>
 						</Row>

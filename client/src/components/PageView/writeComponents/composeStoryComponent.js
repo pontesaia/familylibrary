@@ -30,7 +30,7 @@ class ComposeStory extends Component {
 			story: this.state.story,
 		};
 		// console.log(userStory);
-		// window.location = "/";
+		// window.location = "/PageView";
 		if (this.state.title && this.state.story) {
 			axios
 				.post("/userStories", userStory)

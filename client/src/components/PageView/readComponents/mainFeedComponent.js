@@ -15,6 +15,17 @@ class MainFeed extends Component {
 		else return str;
 	}
 
+	getStoryDate() {
+		let createdAt;
+		let date;
+		if (this.props.userStories) {
+			createdAt = this.props.userStories[27].createdAt;
+			date = JSON.stringify(new Date(createdAt).toDateString());
+			date = date.substring(1, date.length - 1);
+		}
+		return date;
+	}
+
 	render() {
 		// let renderData = DB.userstories.map((d, i) => (
 		let renderData = null;
@@ -48,7 +59,7 @@ class MainFeed extends Component {
 									{this.props.profiles[i].name.first}{" "}
 									{this.props.profiles[i].name.last}
 								</h6>
-								<h6>Date posted: {d.date}</h6>
+								<h6>Date posted: {this.getStoryDate()}</h6>
 								<h6 className="mb-4">{d.tags}</h6>
 							</Col>
 							<Col xs="12" lg="7" className="pl-0 mb-2 pr-4">
