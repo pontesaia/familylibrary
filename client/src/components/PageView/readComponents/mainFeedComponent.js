@@ -45,7 +45,8 @@ class MainFeed extends Component {
 							>
 								<img
 									// src="/images/Ellipse2.png"
-									src={this.props.profiles[i].picture.large}
+									// src={this.props.profiles[i].picture.large}
+									src={this.props.userStories[i].avatar}
 									style={styles.avatar}
 									className="mb-2"
 									alt="avatar"
@@ -56,8 +57,9 @@ class MainFeed extends Component {
 								{/* <h6>Posted By: {d.author}</h6> */}
 								<h6>
 									Posted By:{" "}
-									{this.props.profiles[i].name.first}{" "}
-									{this.props.profiles[i].name.last}
+									{this.props.userStories[i].author}
+									{/* {this.props.profiles[i].name.first}{" "}
+									{this.props.profiles[i].name.last} */}
 								</h6>
 								<h6>Date posted: {this.getStoryDate(i)}</h6>
 								<h6 className="mb-4">{d.tags}</h6>

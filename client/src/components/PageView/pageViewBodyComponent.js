@@ -10,27 +10,24 @@ class PageViewBody extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			profiles: null,
+			// profiles: null,
 		};
 	}
 
-	buildFakeUserInfo() {
-		//get random user info
-		// if(this.props.userStories)
-		axios
-			.get("https://randomuser.me/api/?results=35", { crossdomain: true })
-			.then((response) => {
-				if (response.data) {
-					// const img = response.data.results[0].picture.large;
-					this.setState({
-						profiles: response.data.results,
-					});
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
+	// buildFakeUserInfo() {
+	// 	axios
+	// 		.get("https://randomuser.me/api/?results=35", { crossdomain: true })
+	// 		.then((response) => {
+	// 			if (response.data) {
+	// 				this.setState({
+	// 					profiles: response.data.results,
+	// 				});
+	// 			}
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error);
+	// 		});
+	// }
 
 	editUserStories() {}
 
@@ -38,7 +35,7 @@ class PageViewBody extends Component {
 
 	componentDidMount() {
 		//builder fake users
-		this.buildFakeUserInfo();
+		// this.buildFakeUserInfo();
 		// this.getUserStories();
 	}
 
@@ -52,26 +49,26 @@ class PageViewBody extends Component {
 		// }
 		if (
 			this.props.mainFeedFlag &&
-			this.state.profiles &&
+			// this.state.profiles &&
 			this.props.userStories
 		) {
 			// this.setState({ redirect: "/Feed" });
 			renderData = (
 				<MainFeed
 					userStories={this.props.userStories}
-					profiles={this.state.profiles}
+					// profiles={this.state.profiles}
 				/>
 			);
 		} else if (
 			this.props.personalFeedPreviewFlag &&
-			this.state.profiles &&
+			// this.state.profiles &&
 			this.props.userStories
 		) {
 			// this.setState({ redirect: "/PersonalPreview" });
 			renderData = (
 				<PersonalFeedPreview
 					userStories={this.props.userStories}
-					profiles={this.state.profiles}
+					// profiles={this.state.profiles}
 				/>
 			);
 		} else if (this.props.composeStoryFlag) {

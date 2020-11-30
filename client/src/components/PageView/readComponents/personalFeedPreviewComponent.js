@@ -15,12 +15,13 @@ class PersonalFeedPreview extends Component {
 		else return str;
 	}
 
-	getStoryDate() {
+	getStoryDate(i) {
 		let createdAt;
 		let date;
 		if (this.props.userStories) {
-			createdAt = this.props.userStories[27].createdAt;
+			createdAt = this.props.userStories[i].createdAt;
 			date = JSON.stringify(new Date(createdAt).toDateString());
+			date = date.substring(1, date.length - 1);
 		}
 		return date;
 	}
@@ -43,7 +44,8 @@ class PersonalFeedPreview extends Component {
 							>
 								<img
 									// src="/images/Ellipse2.png"
-									src={this.props.profiles[i].picture.large}
+									// src={this.props.profiles[i].picture.large}
+									src={this.props.userStories[i].avatar}
 									style={styles.avatar}
 									className="mb-2"
 									alt="avatar"
@@ -54,10 +56,11 @@ class PersonalFeedPreview extends Component {
 								{/* <h6>Posted By: {d.author}</h6> */}
 								<h6>
 									Posted By:{" "}
-									{this.props.profiles[i].name.first}{" "}
-									{this.props.profiles[i].name.last}
+									{/* {this.props.profiles[i].name.first}{" "} */}
+									{/* {this.props.profiles[i].name.last} */}
+									{this.props.userStories[i].author}
 								</h6>
-								<h6>Date posted: {this.getStoryDate()}</h6>
+								<h6>Date posted: {this.getStoryDate(i)}</h6>
 								<h6 className="mb-4">{d.tags}</h6>
 							</Col>
 						</Row>
