@@ -21,6 +21,10 @@ class Story extends Component {
 	render() {
 		return (
 			<React.Fragment>
+				<hr
+					className="horizRule mb-5 mt-4 px-0 mx-0"
+					style={styles.horizRule}
+				/>
 				<Container>
 					<Row className="ml-2">
 						<Col
@@ -67,6 +71,10 @@ class Story extends Component {
 						</Col>
 					</Row>
 				</Container>
+				<hr
+					className="horizRule mb-5 mt-4 px-0 mx-0"
+					style={styles.horizRule}
+				/>
 			</React.Fragment>
 		);
 	}
@@ -76,6 +84,10 @@ const styles = {
 	avatar: {
 		width: "clamp(10px, 100%, 105px)",
 		borderRadius: "50%",
+	},
+	horizRule: {
+		width: "calc(100% + 30px)",
+		borderTop: "2px solid rgba(0,0,0,.15)",
 	},
 };
 
