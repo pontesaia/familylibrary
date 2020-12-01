@@ -94,20 +94,20 @@ class MainFeed extends Component {
 										title="Edit"
 										// onCLick={this.clickFunctionHere}
 									>
-										<i
+										{/* <i
 											className="fa fa-pencil-square-o fa-2x mr-3"
 											style={styles.icons}
-										></i>
+										></i> */}
 									</span>
 									<span
 										type="button"
 										title="Delete"
 										// onCLick={this.clickFunctionHere}
 									>
-										<i
+										{/* <i
 											className="fa fa-trash-o fa-2x"
 											style={styles.icons}
-										></i>
+										></i> */}
 									</span>
 								</Row>
 							</Col>

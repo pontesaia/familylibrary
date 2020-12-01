@@ -87,9 +87,7 @@ class PageView extends Component {
 					<Row>
 						<Col className="px-0">
 							<TopNav
-								setPersonalFeedPreview={
-									this.setPersonalFeedPreview
-								}
+								setMainFeed={this.setMainFeed}
 								setComposeStory={this.setComposeStory}
 							/>
 						</Col>
@@ -134,7 +132,11 @@ class PageView extends Component {
 							className="px-0 pt-1"
 							styles={styles.footer}
 						>
-							<BottomNav />
+							<BottomNav
+								setPersonalFeedPreview={
+									this.setPersonalFeedPreview
+								}
+							/>
 						</Col>
 					</Row>
 				</Container>
