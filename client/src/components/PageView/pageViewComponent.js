@@ -12,6 +12,8 @@ class PageView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			mainFeedStoryFlag: false,
+			personalPreviewStoryFlag: false,
 			mainFeedFlag: true,
 			personalFeedPreviewFlag: false,
 			composeStoryFlag: false,
@@ -21,6 +23,13 @@ class PageView extends Component {
 			userStories: null,
 		};
 	}
+	setMainFeedStory = (flag) => {
+		this.setState({ mainFeedStoryFlag: flag });
+	};
+
+	setPersonalPreviewStory = (flag) => {
+		this.setState({ personalPreviewStoryFlag: flag });
+	};
 
 	setMainFeed = () => {
 		this.getUserStories();
@@ -89,6 +98,7 @@ class PageView extends Component {
 							<TopNav
 								setMainFeed={this.setMainFeed}
 								setComposeStory={this.setComposeStory}
+								setMainFeedStory={this.setMainFeedStory}
 							/>
 						</Col>
 					</Row>
@@ -111,6 +121,10 @@ class PageView extends Component {
 										</Col>
 									</Row>
 									<PageViewBody
+										mainFeedStoryFlag={
+											this.state.mainFeedStoryFlag
+										}
+										setMainFeedStory={this.setMainFeedStory}
 										mainFeedFlag={this.state.mainFeedFlag}
 										personalFeedPreviewFlag={
 											this.state.personalFeedPreviewFlag

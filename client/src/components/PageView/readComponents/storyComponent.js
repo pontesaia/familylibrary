@@ -56,13 +56,6 @@ class Story extends Component {
 					</Row>
 					<Row className="ml-2 mr-5">
 						<Col xs="12" lg="11" className="px-0 offset-lg-1">
-							{/* <div
-									dangerouslySetInnerHTML={{
-										__html:
-											"<p>" +
-											d.story.replace(/\n/g, "</p><p>"),
-									}}
-								></div> */}
 							<div
 								dangerouslySetInnerHTML={{
 									__html: this.props.currentUserStory.story,

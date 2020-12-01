@@ -35,7 +35,7 @@ class BottomNav extends Component {
 								// to="/about"
 								href="#"
 								name="aboutCollapsed"
-								onClick={this.props.toggleComponent}
+								// onClick={this.props.toggleComponent}
 							>
 								About
 							</NavLink>
@@ -60,7 +60,7 @@ class BottomNav extends Component {
 								// to="/contact"
 								href="#"
 								name="contactCollapsed"
-								onClick={this.props.toggleComponent}
+								// onClick={this.props.toggleComponent}
 							>
 								Contact
 							</NavLink>
@@ -72,7 +72,7 @@ class BottomNav extends Component {
 								// to="/features"
 								href="#"
 								name="featuresCollapsed"
-								onClick={this.props.toggleComponent}
+								// onClick={this.props.toggleComponent}
 							>
 								Features
 							</NavLink>

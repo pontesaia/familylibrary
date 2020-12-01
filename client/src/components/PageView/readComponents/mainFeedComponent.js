@@ -7,7 +7,7 @@ import DB from "./../../../db.json";
 class MainFeed extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { currentUserStory: "", toggleStory: false };
+		this.state = { currentUserStory: ""};
 	}
 
 	trimString(str, length) {
@@ -30,14 +30,15 @@ class MainFeed extends Component {
 	getCurrentUserStory(story) {
 		// e.preventDefault();
 		// console.log(story)
-		this.setState({ currentUserStory: story, toggleStory: true });
+		this.setState({ currentUserStory: story});
 	}
 
 	render() {
 		// let renderData = DB.userstories.map((d, i) => (
 		let renderData = null;
 		if (this.props.userStories)
-			if (!this.state.toggleStory) {
+			// if (!this.state.toggleStory) {
+			if (!this.props.mainFeedStoryFlag) {
 				renderData = this.props.userStories.map((d, i) => (
 					<span key={this.props.userStories[i]._id}>
 						<hr
@@ -91,10 +92,12 @@ class MainFeed extends Component {
 									<Button
 										className="rounded-pill m-0"
 										style={styles.readMoreButton}
-										onClick={() =>
+										onClick={() => {
 											this.getCurrentUserStory(
 												this.props.userStories[i]
-											)
+											);
+											this.props.setMainFeedStory(true);
+										}
 										}
 									>
 										<span>read more...</span>
@@ -105,7 +108,7 @@ class MainFeed extends Component {
 										<span
 											type="button"
 											title="Edit"
-										// onCLick={this.clickFunctionHere}
+											// onCLick={this.clickFunctionHere}
 										>
 											{/* <i
 											className="fa fa-pencil-square-o fa-2x mr-3"
@@ -115,7 +118,7 @@ class MainFeed extends Component {
 										<span
 											type="button"
 											title="Delete"
-										// onCLick={this.clickFunctionHere}
+											// onCLick={this.clickFunctionHere}
 										>
 											{/* <i
 											className="fa fa-trash-o fa-2x"
@@ -128,10 +131,13 @@ class MainFeed extends Component {
 						</Container>
 					</span>
 				));
-			} else if (this.state.toggleStory) {
+			// } else if (this.state.toggleStory) {
+			} else if (this.props.mainFeedStoryFlag) {
 				renderData = (
 					<StoryComponent
 						currentUserStory={this.state.currentUserStory}
+						// mainFeedStoryFlag={this.props.mainFeedStoryFlag}
+						// setMainFeedStory={this.props.setMainFeedStory}
 					/>
 				);
 			}

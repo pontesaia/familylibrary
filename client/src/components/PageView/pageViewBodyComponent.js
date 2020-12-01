@@ -56,6 +56,8 @@ class PageViewBody extends Component {
 			renderData = (
 				<MainFeed
 					userStories={this.props.userStories}
+					mainFeedStoryFlag={this.props.mainFeedStoryFlag}
+					setMainFeedStory={this.props.setMainFeedStory}
 					// profiles={this.state.profiles}
 				/>
 			);
