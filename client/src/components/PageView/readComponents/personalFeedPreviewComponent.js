@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import StoryComponent from "./storyComponent"
 
-import DB from "./../../../db.json";
+import DB from "../testDB/testDB.json";
 
 class PersonalFeedPreview extends Component {
 	constructor(props) {
@@ -19,8 +19,8 @@ class PersonalFeedPreview extends Component {
 	getStoryDate(i) {
 		let createdAt;
 		let date;
-		if (this.props.userStories) {
-			createdAt = this.props.userStories[i].createdAt;
+		if (DB.mystories) {
+			createdAt = DB.mystories[i].createdAt;
 			date = JSON.stringify(new Date(createdAt).toDateString());
 			date = date.substring(1, date.length - 1);
 		}
@@ -35,87 +35,86 @@ class PersonalFeedPreview extends Component {
 
 	render() {
 		let renderData = null;
-		if (this.props.userStories)
-			if (!this.state.toggleStory) {
-				renderData = this.props.userStories.map((d, i) => (
-					<span key={this.props.userStories[i]._id}>
-						<hr
-							className="horizRule mb-5 mt-4 px-0 mx-0"
-							style={styles.horizRule}
-						/>
-						<Container>
-							<Row className="ml-2">
-								<Col
-									xs="12"
-									lg="1"
-									className="pr-2 px-0 text-lg-center"
-								>
-									<img
-										// src="/images/Ellipse2.png"
-										// src={this.props.profiles[i].picture.large}
-										src={this.props.userStories[i].avatar}
-										style={styles.avatar}
-										className="mb-2"
-										alt="avatar"
-									/>
-								</Col>
-								<Col className="px-0">
-									<h4>{d.title}</h4>
-									{/* <h6>Posted By: {d.author}</h6> */}
-									<h6>
-										Posted By:{" "}
-										{/* {this.props.profiles[i].name.first}{" "} */}
-										{/* {this.props.profiles[i].name.last} */}
-										{this.props.userStories[i].author}
-									</h6>
-									<h6>Date posted: {this.getStoryDate(i)}</h6>
-									<h6 className="mb-4">{d.tags}</h6>
-								</Col>
-							</Row>
-							<Row className="ml-2 mr-5">
-								<Col
-									xs="12"
-									lg="11"
-									className="px-0 offset-lg-1"
-								>
-									{/* <div
+		// if (this.props.userStories)
+		if (DB.mystories)
+		if (!this.state.toggleStory) {
+			// renderData = this.props.userStories.map((d, i) => (
+			renderData = DB.mystories.map((d, i) => (
+				// <span key={this.props.userStories[i]._id}>
+				<span key={i}>
+					<hr
+						className="horizRule mb-5 mt-4 px-0 mx-0"
+						style={styles.horizRule}
+					/>
+					<Container>
+						<Row className="ml-2">
+							<Col
+								xs="12"
+								lg="1"
+								className="pr-2 px-0 text-lg-center"
+							>
+								<img
+									// src="/images/Ellipse2.png"
+									// src={this.props.profiles[i].picture.large}
+									src={DB.mystories[i].avatar}
+									style={styles.avatar}
+									className="mb-2"
+									alt="avatar"
+								/>
+							</Col>
+							<Col className="px-0">
+								<h4>{d.title}</h4>
+								{/* <h6>Posted By: {d.author}</h6> */}
+								<h6>
+									Posted By:{" "}
+									{/* {this.props.profiles[i].name.first}{" "} */}
+									{/* {this.props.profiles[i].name.last} */}
+									{DB.mystories[i].author}
+								</h6>
+								<h6>Date posted: {this.getStoryDate(i)}</h6>
+								<h6 className="mb-4">{d.tags}</h6>
+							</Col>
+						</Row>
+						<Row className="ml-2 mr-5">
+							<Col xs="12" lg="11" className="px-0 offset-lg-1">
+								{/* <div
 									dangerouslySetInnerHTML={{
 										__html:
 											"<p>" +
 											d.story.replace(/\n/g, "</p><p>"),
 									}}
 								></div> */}
-									<div
-										dangerouslySetInnerHTML={{
-											__html: this.trimString(
-												this.props.userStories[i].story,
-												450
-											),
-										}}
-									></div>
-									<Button
-										className="rounded-pill m-0"
-										style={styles.readMoreButton}
-										onClick={() =>
-											this.getCurrentUserStory(
-												this.props.userStories[i]
-											)
-										}
-									>
-										<span>read more...</span>
-									</Button>
-								</Col>
-							</Row>
-						</Container>
-					</span>
-				));
-			} else if (this.state.toggleStory) {
-				renderData = (
-					<StoryComponent
-						currentUserStory={this.state.currentUserStory}
-					/>
-				);
-			}
+								<div
+									dangerouslySetInnerHTML={{
+										__html: this.trimString(
+											DB.mystories[i].story,
+											450
+										),
+									}}
+								></div>
+								<Button
+									className="rounded-pill m-0"
+									style={styles.readMoreButton}
+									onClick={() =>
+										this.getCurrentUserStory(
+											DB.mystories[i]
+										)
+									}
+								>
+									<span>read more...</span>
+								</Button>
+							</Col>
+						</Row>
+					</Container>
+				</span>
+			));
+		} else if (this.state.toggleStory) {
+			renderData = (
+				<StoryComponent
+					currentUserStory={this.state.currentUserStory}
+				/>
+			);
+		}
 		return <React.Fragment>{renderData}</React.Fragment>;
 	}
 }

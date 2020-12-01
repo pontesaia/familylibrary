@@ -1,4 +1,22 @@
 {
+    "mystories":[        
+        {
+            "title": "A Collector of Things",
+            "author": "Maria McCarthy",
+            "avatar": "/images/Ellipse.png",
+            "tags": "Memories | Folklore | Father",
+            "story": "<p>My great grandfather was said to be a collector of things that he shouldn't have. He was a veteran of WW1, WW2 and the Korean war, and collected a number of objects thought out this time. During the 50's and 60 's Britain cracked down on there's sort of things, according to my farther my great grandfather had such a vast collection that he could not reasonably hand in such a collection to the police without making a fuse. So according to my farther he  hid his collection under the foundation of my families horse stable ( which he built)  Which is now slowly being washed in to a river. My father was told my his father to never sell the land that the stable in case something was to happen, I have been told the same and plan to continue to do so.</p><p>I don't know if any of this is true but I do know that there is a cavalry sword and a kukri hidden in my nans house.</p>",
+            "createdAt":"2020-12-01T00:46:29.002+00:00"
+        },
+        {
+            "title": "Lorem Ipsum",
+            "author": "Maria McCarthy",
+            "avatar": "/images/Ellipse.png",
+            "tags": "Memories | Folklore | Father",
+            "story": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "createdAt":"2020-12-01T00:46:29.002+00:00"
+        }
+    ],
     "userstories": [
         {
             "title": "A Collector of Things",
