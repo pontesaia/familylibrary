@@ -48,7 +48,11 @@ class BottomNav extends Component {
 								href="#"
 								name="inviteCollapsed"
 								// onClick={this.props.toggleComponent}
-								onClick={this.props.setPersonalFeedPreview}
+								// onClick={this.props.setPersonalFeedPreview}
+								onClick={() => {
+									this.props.setPersonalFeedPreview();
+									this.props.setPersonalPreviewStory(false);
+								}}
 							>
 								My Stories
 							</NavLink>

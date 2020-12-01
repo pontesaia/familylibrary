@@ -70,6 +70,10 @@ class PageViewBody extends Component {
 			renderData = (
 				<PersonalFeedPreview
 					userStories={this.props.userStories}
+					personalPreviewStoryFlag={
+						this.props.personalPreviewStoryFlag
+					}
+					setPersonalPreviewStory={this.props.setPersonalPreviewStory}
 					// profiles={this.state.profiles}
 				/>
 			);

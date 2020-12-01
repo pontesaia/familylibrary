@@ -125,6 +125,12 @@ class PageView extends Component {
 											this.state.mainFeedStoryFlag
 										}
 										setMainFeedStory={this.setMainFeedStory}
+										personalPreviewStoryFlag={
+											this.state.personalPreviewStoryFlag
+										}
+										setPersonalPreviewStory={
+											this.setPersonalPreviewStory
+										}
 										mainFeedFlag={this.state.mainFeedFlag}
 										personalFeedPreviewFlag={
 											this.state.personalFeedPreviewFlag
@@ -147,6 +153,9 @@ class PageView extends Component {
 							styles={styles.footer}
 						>
 							<BottomNav
+								setPersonalPreviewStory={
+									this.setPersonalPreviewStory
+								}
 								setPersonalFeedPreview={
 									this.setPersonalFeedPreview
 								}
