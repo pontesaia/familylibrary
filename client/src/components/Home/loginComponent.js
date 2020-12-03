@@ -29,19 +29,19 @@ class Login extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
+		window.location = "/Feed";
+		// if (this.validate()) {
+		// 	console.log(this.state);
 
-		if (this.validate()) {
-			console.log(this.state);
+		// 	let input = {};
 
-			let input = {};
+		// 	input["email"] = "";
+		// 	input["password"] = "";
 
-			input["email"] = "";
-			input["password"] = "";
+		// 	this.setState({ input: input });
 
-			this.setState({ input: input });
-
-			alert("Login Form is submitted");
-		}
+		// 	alert("Login Form is submitted");
+		// }
 	}
 
 	validate() {

@@ -27,4 +27,15 @@ module.exports = {
 			.then((userStory) => res.json(userStory))
 			.catch((err) => res.status(422).json(err));
 	},
+	removeAll: function (req, res) {
+		UserStory.deleteMany({}, function (err) {
+			if (err) {
+				res.status(500).send({ error: "Could not clead database..." });
+			} else {
+				res.status(200).send({
+					message: "All hasp info was deleted succesfully...",
+				});
+			}
+		});
+	},
 };

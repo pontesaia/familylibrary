@@ -35,9 +35,13 @@ class TopNav extends Component {
 							<NavLink
 								href="#"
 								style={styles.navLinks}
-								onClick={this.props.setPersonalFeedPreview}
+								// onClick={() => {
+								// 	this.props.setMainFeed();
+								// 	this.props.setMainFeedStory(false);
+								// }}
+								onClick={() => { this.props.setMainFeed(); this.props.setMainFeedStory(false); }}
 							>
-								Read
+								Stories
 							</NavLink>
 						</NavItem>
 						<NavItem>

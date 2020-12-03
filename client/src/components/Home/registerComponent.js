@@ -32,19 +32,19 @@ class Register extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
+		window.location = "/Feed";
+		// if (this.validate()) {
+		// 	console.log(this.state);
 
-		if (this.validate()) {
-			console.log(this.state);
+		// 	let input = {};
+		// 	input["username"] = "";
+		// 	input["email"] = "";
+		// 	input["password"] = "";
+		// 	input["confirm_password"] = "";
+		// 	this.setState({ input: input });
 
-			let input = {};
-			input["username"] = "";
-			input["email"] = "";
-			input["password"] = "";
-			input["confirm_password"] = "";
-			this.setState({ input: input });
-
-			alert("Register Form is submitted");
-		}
+		// 	alert("Register Form is submitted");
+		// }
 	}
 
 	validate() {

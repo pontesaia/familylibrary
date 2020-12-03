@@ -12,14 +12,24 @@ class PageView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			mainFeedStoryFlag: false,
+			personalPreviewStoryFlag: false,
 			mainFeedFlag: true,
 			personalFeedPreviewFlag: false,
 			composeStoryFlag: false,
+			redirect: "/Feed",
 			titles: [],
 			stories: [],
 			userStories: null,
 		};
 	}
+	setMainFeedStory = (flag) => {
+		this.setState({ mainFeedStoryFlag: flag });
+	};
+
+	setPersonalPreviewStory = (flag) => {
+		this.setState({ personalPreviewStoryFlag: flag });
+	};
 
 	setMainFeed = () => {
 		this.getUserStories();
@@ -27,6 +37,7 @@ class PageView extends Component {
 			mainFeedFlag: true,
 			personalFeedPreviewFlag: false,
 			composeStoryFlag: false,
+			redirect: "/Feed",
 		});
 	};
 
@@ -36,6 +47,7 @@ class PageView extends Component {
 			mainFeedFlag: false,
 			personalFeedPreviewFlag: true,
 			composeStoryFlag: false,
+			redirect: "/PersonalPreview",
 		});
 	};
 
@@ -44,13 +56,13 @@ class PageView extends Component {
 			mainFeedFlag: false,
 			personalFeedPreviewFlag: false,
 			composeStoryFlag: true,
+			redirect: "/ComposeStory",
 		});
 	};
 
 	getUserStories() {
 		//get userStories
 		axios
-			// .get("http://localhost:5000/userStories")
 			.get("/userStories/")
 			.then((response) => {
 				if (response.data.length > 0) {
@@ -83,12 +95,10 @@ class PageView extends Component {
 				>
 					<Row>
 						<Col className="px-0">
-							{/* <h1>{this.props.response.body}</h1> */}
 							<TopNav
-								setPersonalFeedPreview={
-									this.setPersonalFeedPreview
-								}
+								setMainFeed={this.setMainFeed}
 								setComposeStory={this.setComposeStory}
+								setMainFeedStory={this.setMainFeedStory}
 							/>
 						</Col>
 					</Row>
@@ -111,6 +121,16 @@ class PageView extends Component {
 										</Col>
 									</Row>
 									<PageViewBody
+										mainFeedStoryFlag={
+											this.state.mainFeedStoryFlag
+										}
+										setMainFeedStory={this.setMainFeedStory}
+										personalPreviewStoryFlag={
+											this.state.personalPreviewStoryFlag
+										}
+										setPersonalPreviewStory={
+											this.setPersonalPreviewStory
+										}
 										mainFeedFlag={this.state.mainFeedFlag}
 										personalFeedPreviewFlag={
 											this.state.personalFeedPreviewFlag
@@ -120,6 +140,7 @@ class PageView extends Component {
 										}
 										userStories={this.state.userStories}
 										setMainFeed={this.setMainFeed}
+										redirect={this.state.redirect}
 									/>
 								</Col>
 							</Row>
@@ -131,7 +152,14 @@ class PageView extends Component {
 							className="px-0 pt-1"
 							styles={styles.footer}
 						>
-							<BottomNav />
+							<BottomNav
+								setPersonalPreviewStory={
+									this.setPersonalPreviewStory
+								}
+								setPersonalFeedPreview={
+									this.setPersonalFeedPreview
+								}
+							/>
 						</Col>
 					</Row>
 				</Container>

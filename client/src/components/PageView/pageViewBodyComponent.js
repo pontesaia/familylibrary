@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import MainFeed from "./readComponents/mainFeedComponent";
 import PersonalFeedPreview from "./readComponents/personalFeedPreviewComponent";
@@ -9,29 +10,24 @@ class PageViewBody extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			profiles: null,
+			// profiles: null,
 		};
 	}
 
-	buildFakeUserInfo() {
-		//get random user info
-		// if(this.props.userStories)
-		axios
-			.get("https://randomuser.me/api/?results=35", { crossdomain: true })
-			.then((response) => {
-				if (response.data) {
-					// const img = response.data.results[0].picture.large;
-					this.setState({
-						profiles: response.data.results,
-					});
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
-
-
+	// buildFakeUserInfo() {
+	// 	axios
+	// 		.get("https://randomuser.me/api/?results=35", { crossdomain: true })
+	// 		.then((response) => {
+	// 			if (response.data) {
+	// 				this.setState({
+	// 					profiles: response.data.results,
+	// 				});
+	// 			}
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error);
+	// 		});
+	// }
 
 	editUserStories() {}
 
@@ -39,7 +35,7 @@ class PageViewBody extends Component {
 
 	componentDidMount() {
 		//builder fake users
-		this.buildFakeUserInfo();
+		// this.buildFakeUserInfo();
 		// this.getUserStories();
 	}
 
@@ -53,24 +49,32 @@ class PageViewBody extends Component {
 		// }
 		if (
 			this.props.mainFeedFlag &&
-			this.state.profiles &&
+			// this.state.profiles &&
 			this.props.userStories
 		) {
+			// this.setState({ redirect: "/Feed" });
 			renderData = (
 				<MainFeed
 					userStories={this.props.userStories}
-					profiles={this.state.profiles}
+					mainFeedStoryFlag={this.props.mainFeedStoryFlag}
+					setMainFeedStory={this.props.setMainFeedStory}
+					// profiles={this.state.profiles}
 				/>
 			);
 		} else if (
 			this.props.personalFeedPreviewFlag &&
-			this.state.profiles &&
+			// this.state.profiles &&
 			this.props.userStories
 		) {
+			// this.setState({ redirect: "/PersonalPreview" });
 			renderData = (
 				<PersonalFeedPreview
 					userStories={this.props.userStories}
-					profiles={this.state.profiles}
+					personalPreviewStoryFlag={
+						this.props.personalPreviewStoryFlag
+					}
+					setPersonalPreviewStory={this.props.setPersonalPreviewStory}
+					// profiles={this.state.profiles}
 				/>
 			);
 		} else if (this.props.composeStoryFlag) {
@@ -81,6 +85,7 @@ class PageViewBody extends Component {
 			<React.Fragment>
 				{/* <Button onClick={this.toggleMainFeed}>Read</Button> */}
 				{/* <Button onClick={this.toggleWrite}>Write</Button> */}
+				<Redirect to={this.props.redirect} />
 				<div className="pb-4">{renderData}</div>
 			</React.Fragment>
 		);
