@@ -7,7 +7,8 @@ import Home from "./components/Home/homeComponent";
 // import Contact from "./components/contactComponent";
 // import Features from "./components/featuresComponent";
 import PageView from "./components/PageView/pageViewComponent";
-import MainFeed from "./components/PageView/readComponents/mainFeedComponent";
+// import MainFeed from "./components/PageView/readComponents/mainFeedComponent";
+import FamilyView from "./components/FamilyView/familyViewComponent"
 import TestDB from "./components/PageView/testDB/testDBComponent"
 
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
@@ -73,6 +74,30 @@ class App extends Component {
 							render={() => (
 								// <PageView response={this.state.response} />
 								<PageView />
+							)}
+						/>
+						<Route
+							exact
+							path="/FamilyView/About"
+							render={() => (
+								// <PageView response={this.state.response} />
+								<FamilyView />
+							)}
+						/>
+						<Route
+							exact
+							path="/FamilyView/Contact"
+							render={() => (
+								// <PageView response={this.state.response} />
+								<FamilyView />
+							)}
+						/>
+						<Route
+							exact
+							path="/FamilyView/Features"
+							render={() => (
+								// <PageView response={this.state.response} />
+								<FamilyView />
 							)}
 						/>
 						<Route

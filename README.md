@@ -98,7 +98,7 @@ How to contribute
 ## Contact
 
 * [View the website homepage live](https://family-library-app.herokuapp.com/)
-* [View the website pageview live](https://family-library-app.herokuapp.com/PageView)
+* [View the website feed live](https://family-library-app.herokuapp.com/Feed)
 * Project Link: [https://github.com/pontesaia/familylibrary](https://github.com/pontesaia/familylibrary)
 
 

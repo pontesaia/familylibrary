@@ -12,6 +12,7 @@ class BottomNav extends Component {
 		super(props);
 		this.state = {};
 	}
+
 	render() {
 		return (
 			<React.Fragment>
@@ -35,7 +36,7 @@ class BottomNav extends Component {
 								// to="/about"
 								href="#"
 								name="aboutCollapsed"
-								// onClick={this.props.toggleComponent}
+								onClick={this.props.toggleAbout}
 							>
 								About
 							</NavLink>
@@ -64,7 +65,7 @@ class BottomNav extends Component {
 								// to="/contact"
 								href="#"
 								name="contactCollapsed"
-								// onClick={this.props.toggleComponent}
+								onClick={this.props.toggleContact}
 							>
 								Contact
 							</NavLink>
@@ -76,7 +77,7 @@ class BottomNav extends Component {
 								// to="/features"
 								href="#"
 								name="featuresCollapsed"
-								// onClick={this.props.toggleComponent}
+								onClick={this.props.toggleFeatures}
 							>
 								Features
 							</NavLink>
