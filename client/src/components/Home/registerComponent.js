@@ -7,6 +7,7 @@ import {
 	Form,
 	FormGroup,
 	Input,
+	Label,
 } from "reactstrap";
 
 class Register extends Component {
@@ -32,19 +33,21 @@ class Register extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		window.location = "/Feed";
-		// if (this.validate()) {
-		// 	console.log(this.state);
+		// window.location = "/Feed";
+		if (this.validate()) {
+			console.log(this.state);
 
-		// 	let input = {};
-		// 	input["username"] = "";
-		// 	input["email"] = "";
-		// 	input["password"] = "";
-		// 	input["confirm_password"] = "";
-		// 	this.setState({ input: input });
+			let input = {};
+			input["username"] = "";
+			input["email"] = "";
+			input["password"] = "";
+			input["confirm_password"] = "";
+			input["familyEmail"] = "";
 
-		// 	alert("Register Form is submitted");
-		// }
+			this.setState({ input: input });
+
+			alert("Register Form is submitted");
+		}
 	}
 
 	validate() {
@@ -104,6 +107,21 @@ class Register extends Component {
 			if (input["password"] !== input["confirm_password"]) {
 				isValid = false;
 				errors["password"] = "Passwords don't match.";
+			}
+		}
+
+		if (!input["familyEmail"]) {
+			isValid = false;
+			errors["familyEmail"] = "Please enter your family email Address.";
+		}
+
+		if (typeof input["familyEmail"] !== "undefined") {
+			var pattern = new RegExp(
+				/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+			);
+			if (!pattern.test(input["familyEmail"])) {
+				isValid = false;
+				errors["familyEmail"] = "Please enter a valid email address.";
 			}
 		}
 
@@ -204,13 +222,50 @@ class Register extends Component {
 											{this.state.errors.confirm_password}
 										</div>
 									</FormGroup>
+									<FormGroup>
+										<input
+											type="radio"
+											id="one"
+											name="first_item"
+											value="1"
+											checked
+										/>
+										<label for="one" className="ml-1 mr-5">
+											Join a Family
+										</label>
+
+										<input
+											type="radio"
+											id="two"
+											name="first_item"
+											value="2"
+										/>
+										<label for="two" className="ml-1">
+											Create a Family
+										</label>
+									</FormGroup>
+									<FormGroup>
+										<Input
+											type="text"
+											name="familyEmail"
+											value={this.state.input.familyEmail}
+											onChange={this.handleChange}
+											className="form-control"
+											placeholder="Enter Family's Admin Email"
+											id="familyEmail"
+										/>
+
+										<div className="text-danger">
+											{this.state.errors.familyEmail}
+										</div>
+									</FormGroup>
 
 									<Button
 										type="submit"
 										value="Submit"
 										style={styles.sendBtn}
 									>
-										SEND
+										NEXT
 									</Button>
 								</Form>
 							</Col>
