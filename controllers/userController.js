@@ -1,34 +1,34 @@
-let UserStory = require("../models/userStory.model");
+let User = require("../models/user.model");
 
 module.exports = {
 	findAll: function (req, res) {
-		UserStory.find(req.query)
-			.then((userStory) => res.json(userStory))
+		User.find(req.query)
+			.then((user) => res.json(user))
 			.catch((err) => res.status(422).json(err));
 	},
 	findById: function (req, res) {
-		UserStory.findById(req.params.id)
-			.then((userStory) => res.json(userStory))
+		User.findById(req.params.id)
+			.then((user) => res.json(user))
 			.catch((err) => res.status(422).json(err));
 	},
 	create: function (req, res) {
-		UserStory.create(req.body)
-			.then((userStory) => res.json(userStory))
+		User.create(req.body)
+			.then((user) => res.json(user))
 			.catch((err) => res.status(422).json(err));
 	},
 	update: function (req, res) {
-		UserStory.findOneAndUpdate({ _id: req.params.id }, req.body)
-			.then((userStory) => res.json(userStory))
+		User.findOneAndUpdate({ _id: req.params.id }, req.body)
+			.then((user) => res.json(user))
 			.catch((err) => res.status(422).json(err));
 	},
 	remove: function (req, res) {
-		UserStory.findById({ _id: req.params.id })
-			.then((userStory) => userStory.remove())
-			.then((userStory) => res.json(userStory))
+		User.findById({ _id: req.params.id })
+			.then((user) => user.remove())
+			.then((user) => res.json(user))
 			.catch((err) => res.status(422).json(err));
 	},
 	removeAll: function (req, res) {
-		UserStory.deleteMany({}, function (err) {
+		User.deleteMany({}, function (err) {
 			if (err) {
 				res.status(500).send({ error: "Could not clean database..." });
 			} else {

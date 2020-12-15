@@ -9,6 +9,8 @@ import {
 	Input,
 	Label,
 } from "reactstrap";
+import axios from "axios";
+
 
 class Register extends Component {
 	constructor(props) {
@@ -17,54 +19,54 @@ class Register extends Component {
 			input: {},
 			errors: {},
 		};
-
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(event) {
+	handleChange = (event) => {
 		let input = this.state.input;
 		input[event.target.name] = event.target.value;
 
 		this.setState({
 			input,
 		});
-	}
+	};
 
-	handleSubmit(event) {
+	handleSubmit = (event) => {
 		event.preventDefault();
 		// window.location = "/Feed";
-		if (this.validate()) {
-			console.log(this.state);
+		// if (this.validate()) {
+			// console.log(this.state);
 
 			let input = {};
-			input["username"] = "";
+			input["fullName"] = "";
 			input["email"] = "";
 			input["password"] = "";
 			input["confirm_password"] = "";
-			input["familyEmail"] = "";
+			// input["familyEmail"] = "";
+			input["familyId"] = "";
 
 			this.setState({ input: input });
 
 			alert("Register Form is submitted");
-		}
-	}
+
+			axios.post("/users", this.state.input).then((res) => console.log(res.data));
+		// }
+	};
 
 	validate() {
 		let input = this.state.input;
 		let errors = {};
 		let isValid = true;
 
-		if (!input["username"]) {
+		if (!input["fullName"]) {
 			isValid = false;
-			errors["username"] = "Please enter your username.";
+			errors["fullName"] = "Please enter your fullName.";
 		}
 
-		if (typeof input["username"] !== "undefined") {
+		if (typeof input["fullName"] !== "undefined") {
 			const re = /^\S*$/;
-			if (input["username"].length < 6 || !re.test(input["username"])) {
+			if (input["fullName"].length < 6 || !re.test(input["fullName"])) {
 				isValid = false;
-				errors["username"] = "Please enter valid username.";
+				errors["fullName"] = "Please enter valid fullName.";
 			}
 		}
 
@@ -110,18 +112,18 @@ class Register extends Component {
 			}
 		}
 
-		if (!input["familyEmail"]) {
+		if (!input["familyId"]) {
 			isValid = false;
-			errors["familyEmail"] = "Please enter your family email Address.";
+			errors["familyId"] = "Please enter your family email Address.";
 		}
 
-		if (typeof input["familyEmail"] !== "undefined") {
+		if (typeof input["familyId"] !== "undefined") {
 			var pattern = new RegExp(
 				/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
 			);
-			if (!pattern.test(input["familyEmail"])) {
+			if (!pattern.test(input["familyId"])) {
 				isValid = false;
-				errors["familyEmail"] = "Please enter a valid email address.";
+				errors["familyId"] = "Please enter a valid email address.";
 			}
 		}
 
@@ -162,16 +164,16 @@ class Register extends Component {
 									<FormGroup>
 										<Input
 											type="text"
-											name="username"
-											value={this.state.input.username}
+											name="fullName"
+											value={this.state.input.fullName}
 											onChange={this.handleChange}
 											className="form-control"
-											placeholder="Enter your username"
-											id="username"
+											placeholder="Enter your fullName"
+											id="fullName"
 										/>
 
 										<div className="text-danger">
-											{this.state.errors.username}
+											{this.state.errors.fullName}
 										</div>
 									</FormGroup>
 									<FormGroup>
@@ -247,16 +249,16 @@ class Register extends Component {
 									<FormGroup>
 										<Input
 											type="text"
-											name="familyEmail"
-											value={this.state.input.familyEmail}
+											name="familyId"
+											value={this.state.input.familyId}
 											onChange={this.handleChange}
 											className="form-control"
 											placeholder="Enter Family's Admin Email"
-											id="familyEmail"
+											id="familyId"
 										/>
 
 										<div className="text-danger">
-											{this.state.errors.familyEmail}
+											{this.state.errors.familyId}
 										</div>
 									</FormGroup>
 
