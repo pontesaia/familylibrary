@@ -7,8 +7,8 @@ const userSchema = new Schema(
 		email: { type: String, required: true },
 		password: { type: String, required: true },
 		confirm_password: { type: String, required: true },
-		familyId: { type: String, required: false },
-		familyEmail: {type: String, required: false}
+		// familyId: { type: String, required: false },
+		familyEmail: { type: String, required: false },
 	},
 	{ timestamps: true }
 );
