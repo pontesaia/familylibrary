@@ -125,7 +125,7 @@ const styles = {
 	},
 	horizRule: {
 		width: "calc(100% + 30px)",
-		borderTop: "2px solid rgba(0,0,0,.15)",
+		borderTop: "1px solid rgba(0,0,0,.10)",
 	},
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 
+
 class Story extends Component {
 	constructor(props) {
 		super(props);
@@ -30,7 +31,7 @@ class Story extends Component {
 						<Col
 							xs="12"
 							lg="1"
-							className="pr-2 px-0 text-lg-center"
+							className="pr-3 px-0 text-lg-center "
 						>
 							<img
 								// src="/images/Ellipse2.png"
@@ -41,33 +42,47 @@ class Story extends Component {
 								alt="avatar"
 							/>
 						</Col>
-						<Col className="px-0">
-							{/* <h4>{d.title}</h4> */}
+						<Col className="">
+							<h5>{this.props.currentUserStory.title}</h5>
 							{/* <h6>Posted By: {d.author}</h6> */}
 							<h6>
-								Posted By:{" "}
+								<b>Posted By:</b>{" "}
 								{/* {this.props.profiles[i].name.first}{" "} */}
 								{/* {this.props.profiles[i].name.last} */}
 								{this.props.currentUserStory.author}
 							</h6>
-							<h6>Date posted: {this.getStoryDate()}</h6>
+							<h6><b>Date posted:</b> {this.getStoryDate()}</h6>
 							{/* <h6 className="mb-4">{d.tags}</h6> */}
 						</Col>
 					</Row>
-					<Row className="ml-2 mr-5">
-						<Col xs="12" lg="11" className="px-0 offset-lg-1">
+					<Row className="ml-4 mr-5">
+						<Col xs="12" lg="11" className="px-0 offset-lg-1 mt-2 pl-1">
 							<div
 								dangerouslySetInnerHTML={{
 									__html: this.props.currentUserStory.story,
 								}}
 							></div>
 						</Col>
+						<Button
+										className="rounded-pill mt-4 mb-2"
+										style={styles.readMoreButton}
+										onClick={() => {
+											// this.getCurrentUserStory(
+											// 	DB.mystories[i]
+											// );
+											// this.props.setPersonalPreviewStory(
+											// 	true
+											// );
+										}}
+									>
+										<span>Back To Stories...</span>
+									</Button>
 					</Row>
 				</Container>
-				<hr
+				{/* <hr
 					className="horizRule mb-5 mt-4 px-0 mx-0"
 					style={styles.horizRule}
-				/>
+				/> */}
 			</React.Fragment>
 		);
 	}
@@ -80,7 +95,17 @@ const styles = {
 	},
 	horizRule: {
 		width: "calc(100% + 30px)",
-		borderTop: "2px solid rgba(0,0,0,.15)",
+		borderTop: "1px solid rgba(0,0,0,.10)",
+	},
+	readMoreButton: {
+		fontFamily: "Comfortaa",
+		fontWeight: "400",
+		fontSize: "20px",
+		marginLeft: "5.5rem",
+		width: "14rem",
+		border: "none",
+		backgroundImage:
+			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 };
 

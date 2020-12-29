@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import axios from "axios";
+//import axios from "axios";
 
 import Home from "./components/Home/homeComponent";
 // import About from "./components/aboutComponent";

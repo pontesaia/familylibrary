@@ -10,7 +10,7 @@ class Search extends Component {
         return (
 			<React.Fragment>
 				<Container>
-					<Row className="ml-1">
+					<Row className="ml-0">
 						<Col>
 							<div style={styles.search}>
 								<div style={styles.searchText}>
@@ -36,19 +36,20 @@ const styles = {
 		// paddingBottom: "5px",
 	},
 	searchText: {
-		fontSize: "2rem",
+		fontSize: "1.5rem",
 		fontFamily: "Comfortaa",
 		paddingBottom: "100px",
 	},
 	title: {
 		fontWeight: "bold",
-		fontSize: "1.7rem",
-		fontFamily: "Roboto",
+		fontSize: "1.5rem",
+		fontFamily: "Comfortaa",
+		color:"#058d82",
 	},
 	subject: {
 		// fontWeight: "bold",
 		fontSize: "1.5rem",
-		fontFamily: "Roboto",
+	    fontFamily: "Comfortaa",
 	},
 };
  
