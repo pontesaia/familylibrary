@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import StoryComponent from "./storyComponent";
 
-import DB from "./../../../db.json";
+//import DB from "./../../../db.json";
 
 class MainFeed extends Component {
 	constructor(props) {
@@ -50,7 +50,7 @@ class MainFeed extends Component {
 								<Col
 									xs="12"
 									lg="1"
-									className="pr-2 px-0 text-lg-center"
+									className="pr-3 px-0 text-lg-center"
 								>
 									<img
 										// src="/images/Ellipse2.png"
@@ -62,15 +62,16 @@ class MainFeed extends Component {
 									/>
 								</Col>
 								<Col xs="12" lg="3" className="px-0">
-									<h4>{d.title}</h4>
+									<h5>{d.title}</h5>
 									{/* <h6>Posted By: {d.author}</h6> */}
 									<h6>
-										Posted By:{" "}
-										{this.props.userStories[i].author}
+										<b>Posted By:</b>{" "}</h6>
+										<h6>{this.props.userStories[i].author}</h6>
 										{/* {this.props.profiles[i].name.first}{" "}
 									{this.props.profiles[i].name.last} */}
-									</h6>
-									<h6>Date posted: {this.getStoryDate(i)}</h6>
+									
+									<h6><b>Date posted:{" "}</b></h6> 
+									<h6>{this.getStoryDate(i)}</h6>
 									<h6 className="mb-4">{d.tags}</h6>
 								</Col>
 								<Col xs="12" lg="7" className="pl-0 mb-2 pr-4">
@@ -146,13 +147,14 @@ class MainFeed extends Component {
 }
 
 const styles = {
+
 	avatar: {
 		width: "clamp(10px, 100%, 105px)",
 		borderRadius: "50%",
 	},
 	horizRule: {
 		width: "calc(100% + 30px)",
-		borderTop: "2px solid rgba(0,0,0,.15)",
+		borderTop: ".5px solid rgba(0,0,0,.10)",
 	},
 	icons: {
 		color: "gray",

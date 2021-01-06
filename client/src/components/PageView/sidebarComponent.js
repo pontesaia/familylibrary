@@ -53,7 +53,7 @@ const styles = {
 		backgroundColor: "black",
 		height: "57px",
 		width: "140px",
-		borderRadius: "2.76px",
+		borderRadius: "8px",
 		border: "1px solid #000000",
 		fontFamily: "Roboto",
 		fontSize: "18px",

@@ -52,7 +52,7 @@ class PersonalFeedPreview extends Component {
 								<Col
 									xs="12"
 									lg="1"
-									className="pr-2 px-0 text-lg-center"
+									className="pr-3 px-0 text-lg-center"
 								>
 									<img
 										// src="/images/Ellipse2.png"
@@ -63,24 +63,26 @@ class PersonalFeedPreview extends Component {
 										alt="avatar"
 									/>
 								</Col>
-								<Col className="px-0">
-									<h4>{d.title}</h4>
+								<Col className="px-0 ml-0">
+									<h5>{d.title}</h5>
 									{/* <h6>Posted By: {d.author}</h6> */}
 									<h6>
-										Posted By:{" "}
+										<b>Posted By:</b>{" "}
 										{/* {this.props.profiles[i].name.first}{" "} */}
 										{/* {this.props.profiles[i].name.last} */}
-										{DB.mystories[i].author}
 									</h6>
-									<h6>Date posted: {this.getStoryDate(i)}</h6>
+									<h6>{DB.mystories[i].author}</h6>	
+									
+									<h6><b>Date posted:</b> </h6>
+									<h6>{this.getStoryDate(i)}</h6>
 									<h6 className="mb-4">{d.tags}</h6>
 								</Col>
 							</Row>
-							<Row className="ml-2 mr-5">
+							<Row className="ml-5 mr-1">
 								<Col
 									xs="12"
 									lg="11"
-									className="px-0 offset-lg-1"
+									className="px-0 offset-lg-1 ml-5 mb-2"
 								>
 									{/* <div
 									dangerouslySetInnerHTML={{
@@ -98,7 +100,7 @@ class PersonalFeedPreview extends Component {
 										}}
 									></div>
 									<Button
-										className="rounded-pill m-0"
+										className="rounded-pill mt-4 mb-2"
 										style={styles.readMoreButton}
 										onClick={() => {
 											this.getCurrentUserStory(
@@ -135,7 +137,7 @@ const styles = {
 	},
 	horizRule: {
 		width: "calc(100% + 30px)",
-		borderTop: "2px solid rgba(0,0,0,.15)",
+		borderTop: ".5px solid rgba(0,0,0,.10)",
 	},
 	readMoreButton: {
 		fontFamily: "Comfortaa",
