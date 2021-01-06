@@ -7,136 +7,103 @@ import {
 	Form,
 	FormGroup,
 	Input,
-	Label,
 } from "reactstrap";
-import axios from "axios";
 
 class Register extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userInput: {},
+			input: {},
 			errors: {},
 		};
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange = (event) => {
-		let userInput = this.state.userInput;
-		userInput[event.target.name] = event.target.value;
+	handleChange(event) {
+		let input = this.state.input;
+		input[event.target.name] = event.target.value;
 
 		this.setState({
-			userInput,
+			input,
 		});
-	};
+	}
 
-	handleSubmit = (event) => {
+	handleSubmit(event) {
 		event.preventDefault();
-		// window.location = "/Feed";
+		window.location = "/Feed";
 		// if (this.validate()) {
-		// console.log(this.state);
+		// 	console.log(this.state);
 
-		let userInput = {};
-		userInput["fullName"] = "";
-		userInput["email"] = "";
-		userInput["password"] = "";
-		userInput["confirm_password"] = "";
-		userInput["familyEmail"] = "";
-		userInput["familyHomeBase"] = "";
-		userInput["familyName"] = "";
+		// 	let input = {};
+		// 	input["username"] = "";
+		// 	input["email"] = "";
+		// 	input["password"] = "";
+		// 	input["confirm_password"] = "";
+		// 	this.setState({ input: input });
 
-		this.setState({ userInput: userInput });
-
-		alert("Register Form is submitted");
-
-		axios
-			.post("/users", this.state.userInput)
-			.then((res) => console.log(res.data));
-		
-		
-		let familyGroupInput = {};
-		familyGroupInput["groupName"] = this.state.userInput.familyName;
-		familyGroupInput["groupAdmin"] = this.state.userInput.email;
-		familyGroupInput["groupMembers"] = this.state.userInput.email;
-		familyGroupInput["groupZip"] = this.state.userInput.familyHomeBase;
-		
-		axios
-			.post("/familyGroups", familyGroupInput)
-			.then((res) => console.log(res.data));
+		// 	alert("Register Form is submitted");
 		// }
-	};
+	}
 
 	validate() {
-		let userInput = this.state.userInput;
+		let input = this.state.input;
 		let errors = {};
 		let isValid = true;
 
-		if (!userInput["fullName"]) {
+		if (!input["username"]) {
 			isValid = false;
-			errors["fullName"] = "Please enter your fullName.";
+			errors["username"] = "Please enter your username.";
 		}
 
-		if (typeof userInput["fullName"] !== "undefined") {
+		if (typeof input["username"] !== "undefined") {
 			const re = /^\S*$/;
-			if (userInput["fullName"].length < 6 || !re.test(userInput["fullName"])) {
+			if (input["username"].length < 6 || !re.test(input["username"])) {
 				isValid = false;
-				errors["fullName"] = "Please enter valid fullName.";
+				errors["username"] = "Please enter valid username.";
 			}
 		}
 
-		if (!userInput["email"]) {
+		if (!input["email"]) {
 			isValid = false;
 			errors["email"] = "Please enter your email Address.";
 		}
 
-		if (typeof userInput["email"] !== "undefined") {
+		if (typeof input["email"] !== "undefined") {
 			var pattern = new RegExp(
 				/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
 			);
-			if (!pattern.test(userInput["email"])) {
+			if (!pattern.test(input["email"])) {
 				isValid = false;
 				errors["email"] = "Please enter valid email address.";
 			}
 		}
 
-		if (!userInput["password"]) {
+		if (!input["password"]) {
 			isValid = false;
 			errors["password"] = "Please enter your password.";
 		}
 
-		if (!userInput["confirm_password"]) {
+		if (!input["confirm_password"]) {
 			isValid = false;
 			errors["confirm_password"] = "Please enter your confirm password.";
 		}
 
-		if (typeof userInput["password"] !== "undefined") {
-			if (userInput["password"].length < 6) {
+		if (typeof input["password"] !== "undefined") {
+			if (input["password"].length < 6) {
 				isValid = false;
 				errors["password"] = "Please add at least 6 characters.";
 			}
 		}
 
 		if (
-			typeof userInput["password"] !== "undefined" &&
-			typeof userInput["confirm_password"] !== "undefined"
+			typeof input["password"] !== "undefined" &&
+			typeof input["confirm_password"] !== "undefined"
 		) {
-			if (userInput["password"] !== userInput["confirm_password"]) {
+			if (input["password"] !== input["confirm_password"]) {
 				isValid = false;
 				errors["password"] = "Passwords don't match.";
-			}
-		}
-
-		if (!userInput["familyId"]) {
-			isValid = false;
-			errors["familyId"] = "Please enter your family email Address.";
-		}
-
-		if (typeof userInput["familyId"] !== "undefined") {
-			var pattern = new RegExp(
-				/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
-			);
-			if (!pattern.test(userInput["familyId"])) {
-				isValid = false;
-				errors["familyId"] = "Please enter a valid email address.";
 			}
 		}
 
@@ -177,25 +144,23 @@ class Register extends Component {
 									<FormGroup>
 										<Input
 											type="text"
-											name="fullName"
-											value={
-												this.state.userInput.fullName
-											}
+											name="username"
+											value={this.state.input.username}
 											onChange={this.handleChange}
 											className="form-control"
-											placeholder="Enter your fullName"
-											id="fullName"
+											placeholder="Enter your username"
+											id="username"
 										/>
 
 										<div className="text-danger">
-											{this.state.errors.fullName}
+											{this.state.errors.username}
 										</div>
 									</FormGroup>
 									<FormGroup>
 										<Input
 											type="text"
 											name="email"
-											value={this.state.userInput.email}
+											value={this.state.input.email}
 											onChange={this.handleChange}
 											className="form-control"
 											placeholder="Enter your email"
@@ -210,9 +175,7 @@ class Register extends Component {
 										<Input
 											type="password"
 											name="password"
-											value={
-												this.state.userInput.password
-											}
+											value={this.state.input.password}
 											onChange={this.handleChange}
 											className="form-control"
 											placeholder="Enter your password"
@@ -228,7 +191,7 @@ class Register extends Component {
 											type="password"
 											name="confirm_password"
 											value={
-												this.state.userInput
+												this.state.input
 													.confirm_password
 											}
 											onChange={this.handleChange}
@@ -241,86 +204,13 @@ class Register extends Component {
 											{this.state.errors.confirm_password}
 										</div>
 									</FormGroup>
-									<FormGroup>
-										<input
-											type="radio"
-											id="one"
-											name="first_item"
-											value="1"
-											checked
-										/>
-										<label for="one" className="ml-1 mr-5">
-											Join a Family
-										</label>
-
-										<input
-											type="radio"
-											id="two"
-											name="first_item"
-											value="2"
-										/>
-										<label for="two" className="ml-1">
-											Create a Family
-										</label>
-									</FormGroup>
-									<FormGroup>
-										<Input
-											type="text"
-											name="familyEmail"
-											value={
-												this.state.userInput.familyEmail
-											}
-											onChange={this.handleChange}
-											className="form-control"
-											placeholder="Enter Admin's email"
-											id="familyEmail"
-										/>
-
-										{/* <div className="text-danger">
-											{this.state.errors.familyHomeBase}
-										</div> */}
-									</FormGroup>
-									<FormGroup>
-										<Input
-											type="text"
-											name="familyName"
-											value={
-												this.state.userInput.familyName
-											}
-											onChange={this.handleChange}
-											className="form-control"
-											placeholder="Enter Family Name"
-											id="familyName"
-										/>
-
-										{/* <div className="text-danger">
-											{this.state.errors.familyHomeBase}
-										</div> */}
-									</FormGroup>
-									<FormGroup>
-										<Input
-											type="text"
-											name="familyHomeBase"
-											value={
-												this.state.userInput.familyHomeBase
-											}
-											onChange={this.handleChange}
-											className="form-control"
-											placeholder="Enter Family Home Base Zipcode"
-											id="familyHomeBase"
-										/>
-
-										{/* <div className="text-danger">
-											{this.state.errors.familyHomeBase}
-										</div> */}
-									</FormGroup>
 
 									<Button
 										type="submit"
 										value="Submit"
 										style={styles.sendBtn}
 									>
-										NEXT
+										SEND
 									</Button>
 								</Form>
 							</Col>

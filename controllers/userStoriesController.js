@@ -30,10 +30,10 @@ module.exports = {
 	removeAll: function (req, res) {
 		UserStory.deleteMany({}, function (err) {
 			if (err) {
-				res.status(500).send({ error: "Could not clean database..." });
+				res.status(500).send({ error: "Could not clead database..." });
 			} else {
 				res.status(200).send({
-					message: "All info was deleted succesfully...",
+					message: "All hasp info was deleted succesfully...",
 				});
 			}
 		});

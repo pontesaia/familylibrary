@@ -5,9 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const api = require("./routes/routes");
-const userStoriesRouter = require("./routes/userStoriesRoutes");
-const userRouter = require("./routes/userRoutes");
-const familyGroupRouter = require("./routes/familyGroupRoutes");
+const userStoriesRouter = require("./routes/userStories");
 
 if (process.env.NODE_ENV !== "production") {
 	require("dotenv").config();
@@ -44,8 +42,6 @@ app.use(cors());
 // Configure app to use routes
 app.use("/api/v1/", api);
 app.use("/userStories", userStoriesRouter);
-app.use("/users", userRouter)
-app.use("/familyGroups", familyGroupRouter);
 
 // This middleware informs the express application to serve our compiled React files
 if (
