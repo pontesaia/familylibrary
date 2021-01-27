@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import ReactQuill from "react-quill";
 import axios from "axios";
+import PageViewLayout from "../PageViewLayout";
 
 class ComposeStory extends Component {
 	constructor(props) {
@@ -114,7 +115,7 @@ class ComposeStory extends Component {
 				/>
 			</Container>
 		);
-		return <React.Fragment>{renderData}</React.Fragment>;
+		return <React.Fragment><PageViewLayout body={renderData} /></React.Fragment>;
 	}
 }
 

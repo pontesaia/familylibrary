@@ -13,6 +13,8 @@ import TestDB from "./components/PageView/testDB/TestDB";
 
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import TestLayout from "./components/PageView/TestLayout";
+import ComposeStory from "./components/PageView/writeComponents/ComposeStory";
+import MainFeed from "./components/PageView/readComponents/MainFeed";
 
 function App() {
 	return (
@@ -43,7 +45,8 @@ function App() {
 						path="/Feed"
 						render={() => (
 							// <PageView response={this.state.response} />
-							<PageView />
+							// <PageView />
+							<MainFeed />
 						)}
 					/>
 					<Route
@@ -59,7 +62,8 @@ function App() {
 						path="/ComposeStory"
 						render={() => (
 							// <PageView response={this.state.response} />
-							<PageView />
+							// <PageView />
+							<ComposeStory />
 						)}
 					/>
 					<Route

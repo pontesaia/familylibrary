@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Button } from "reactstrap";
+import { Redirect, Link } from "react-router-dom";
 
 class TopNav extends Component {
 	constructor(props) {
@@ -32,23 +33,25 @@ class TopNav extends Component {
 					</NavbarBrand>
 					<Nav navbar className="nav-fill w-100" style={styles.nav}>
 						<NavItem>
-							<NavLink
-								href="#"
+							<Link
+								to="/Feed"
 								style={styles.navLinks}
 								// onClick={() => {
 								// 	this.props.setMainFeed();
 								// 	this.props.setMainFeedStory(false);
 								// }}
-								onClick={() => { this.props.setMainFeed(); this.props.setMainFeedStory(false); }}
+								// onClick={() => {
+								// 	this.props.setMainFeed();
+								// 	this.props.setMainFeedStory(false);
+								// }}
 							>
 								Stories
-							</NavLink>
+							</Link>
 						</NavItem>
 						<NavItem>
-							<NavLink
-								href="#"
+							<Link
+								to="/ComposeStory"
 								style={styles.navLinks}
-								onClick={this.props.setComposeStory}
 							>
 								Write
 								<span className="d-none d-lg-inline">
@@ -59,7 +62,7 @@ class TopNav extends Component {
 										<span style={styles.plusSign}>+</span>
 									</Button>
 								</span>
-							</NavLink>
+							</Link>
 						</NavItem>
 						<NavItem>
 							<NavLink href="#" style={styles.navLinks}>
