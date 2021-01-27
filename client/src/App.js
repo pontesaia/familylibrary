@@ -2,17 +2,17 @@ import React from "react";
 import "./App.css";
 //import axios from "axios";
 
-import Home from "./components/Home/homeComponent";
+import Home from "./components/Home/Home";
 // import About from "./components/aboutComponent";
 // import Contact from "./components/contactComponent";
 // import Features from "./components/featuresComponent";
-import PageView from "./components/PageView/pageViewComponent";
+import PageView from "./components/PageView/PageView";
 // import MainFeed from "./components/PageView/readComponents/mainFeedComponent";
-import FamilyView from "./components/FamilyView/familyViewComponent";
-import TestDB from "./components/PageView/testDB/testDBComponent";
+import FamilyView from "./components/FamilyView/FamilyView";
+import TestDB from "./components/PageView/testDB/TestDB";
 
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
-import TestLayout from "./components/PageView/testLayout";
+import TestLayout from "./components/PageView/TestLayout";
 
 function App() {
 	return (

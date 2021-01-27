@@ -1,5 +1,5 @@
 import React from "react";
-import PageViewLayout from "./pageViewLayoutComponent";
+import PageViewLayout from "./PageViewLayout";
 
 
 const TestLayout = (props) => {

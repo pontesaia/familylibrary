@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
-import StoryComponent from "./storyComponent";
+import StoryComponent from "./Story";
 
 //import DB from "./../../../db.json";
 

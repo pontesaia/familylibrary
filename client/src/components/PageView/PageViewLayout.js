@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, Row, Col } from "reactstrap";
 
-import TopNav from "./topNavComponent";
-import Sidebar from "./sidebarComponent";
-import BottomNav from "./bottomNavComponent";
-import PageViewBody from "./pageViewBodyComponent";
-import Search from "./searchComponent";
+import TopNav from "./TopNav";
+import Sidebar from "./Sidebar";
+import BottomNav from "./BottomNav";
+import PageViewBody from "./PageViewBody";
+import Search from "./Search";
 
 const PageViewLayout = (props) => {
     return (

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 //import axios from "axios";
 import { Redirect } from "react-router-dom";
 
-import MainFeed from "./readComponents/mainFeedComponent";
-import PersonalFeedPreview from "./readComponents/personalFeedPreviewComponent";
-import ComposeStory from "./writeComponents/composeStoryComponent";
+import MainFeed from "./readComponents/MainFeed";
+import PersonalFeedPreview from "./readComponents/PersonalFeedPreview";
+import ComposeStory from "./writeComponents/ComposeStory";
 
 class PageViewBody extends Component {
 	constructor(props) {

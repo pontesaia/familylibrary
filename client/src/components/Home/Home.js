@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button, Collapse } from "reactstrap";
 import $ from "jquery";
 
-import MainNav from "./mainNavComponent";
-import About from "./aboutComponent";
-import Contact from "./contactComponent";
-import Features from "./featuresComponent";
-import Login from "./loginComponent";
-import Register from "./registerComponent";
+import MainNav from "./MainNav";
+import About from "./About";
+import Contact from "./Contact";
+import Features from "./Features";
+import Login from "./Login";
+import Register from "./Register";
 
 class Home extends Component {
 	constructor(props) {

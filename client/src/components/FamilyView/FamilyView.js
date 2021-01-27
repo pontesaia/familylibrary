@@ -1,12 +1,12 @@
 import { Container, Row, Col } from "reactstrap";
 import React, { Component } from "react";
 
-import TopNav from "../PageView/topNavComponent";
-import BottomNav from "../PageView/bottomNavComponent";
-import FamilyCrest from "../FamilyView/familyCrestComponent";
-import About from "../Home/aboutComponent";
-import Contact from "../Home/contactComponent";
-import Features from "../Home/featuresComponent";
+import TopNav from "../PageView/TopNav";
+import BottomNav from "../PageView/BottomNav";
+import FamilyCrest from "./FamilyCrest";
+import About from "../Home/About";
+import Contact from "../Home/Contact";
+import Features from "../Home/Features";
 
 class FamilyView extends Component {
 	constructor(props) {
