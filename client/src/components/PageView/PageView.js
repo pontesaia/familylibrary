@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar";
 import BottomNav from "./BottomNav";
 import PageViewBody from "./PageViewBody";
 import Search from "./Search";
+import PageViewLayout from "./PageViewLayout";
 
 class PageView extends Component {
 	constructor(props) {
@@ -89,80 +90,28 @@ class PageView extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Container
-					fluid
-					className="d-flex flex-column vh-100 overflow-hidden"
-				>
-					<Row>
-						<Col className="px-0">
-							<TopNav
-								setMainFeed={this.setMainFeed}
-								setComposeStory={this.setComposeStory}
-								setMainFeedStory={this.setMainFeedStory}
-							/>
-						</Col>
-					</Row>
-					<Row className="flex-grow-1 overflow-hidden">
-						<Col xs="0" lg="2" className="mh-100 overflow-auto">
-							<Sidebar />
-						</Col>
-
-						<Col
-							xs="12"
-							lg="10"
-							className="mh-100 px-0"
-							style={styles.mainBody}
-						>
-							<Row className="flex-grow-1">
-								<Col className="mh-100 pt-5">
-									<Row className="m-2">
-										<Col className="offset-lg-1 p-0">
-											<Search />
-										</Col>
-									</Row>
-									<PageViewBody
-										mainFeedStoryFlag={
-											this.state.mainFeedStoryFlag
-										}
-										setMainFeedStory={this.setMainFeedStory}
-										personalPreviewStoryFlag={
-											this.state.personalPreviewStoryFlag
-										}
-										setPersonalPreviewStory={
-											this.setPersonalPreviewStory
-										}
-										mainFeedFlag={this.state.mainFeedFlag}
-										personalFeedPreviewFlag={
-											this.state.personalFeedPreviewFlag
-										}
-										composeStoryFlag={
-											this.state.composeStoryFlag
-										}
-										userStories={this.state.userStories}
-										setMainFeed={this.setMainFeed}
-										redirect={this.state.redirect}
-									/>
-								</Col>
-							</Row>
-						</Col>
-					</Row>
-					<Row className="flex-shrink-0 mt-5 pt-5">
-						<Col
-							xs="12"
-							className="px-0 pt-1"
-							styles={styles.footer}
-						>
-							<BottomNav
-								setPersonalPreviewStory={
-									this.setPersonalPreviewStory
-								}
-								setPersonalFeedPreview={
-									this.setPersonalFeedPreview
-								}
-							/>
-						</Col>
-					</Row>
-				</Container>
+				<PageViewLayout
+					body={
+						<PageViewBody
+							mainFeedStoryFlag={this.state.mainFeedStoryFlag}
+							setMainFeedStory={this.setMainFeedStory}
+							personalPreviewStoryFlag={
+								this.state.personalPreviewStoryFlag
+							}
+							setPersonalPreviewStory={
+								this.setPersonalPreviewStory
+							}
+							mainFeedFlag={this.state.mainFeedFlag}
+							personalFeedPreviewFlag={
+								this.state.personalFeedPreviewFlag
+							}
+							composeStoryFlag={this.state.composeStoryFlag}
+							userStories={this.state.userStories}
+							setMainFeed={this.setMainFeed}
+							redirect={this.state.redirect}
+						/>
+					}
+				/>
 			</React.Fragment>
 		);
 	}
