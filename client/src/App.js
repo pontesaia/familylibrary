@@ -12,6 +12,7 @@ import FamilyView from "./components/FamilyView/familyViewComponent";
 import TestDB from "./components/PageView/testDB/testDBComponent";
 
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
+import TestLayout from "./components/PageView/testLayout";
 
 function App() {
 	return (
@@ -91,6 +92,14 @@ function App() {
 						render={() => (
 							// <PageView response={this.state.response} />
 							<TestDB />
+						)}
+					/>
+					<Route
+						exact
+						path="/TestLayout"
+						render={() => (
+							// <PageView response={this.state.response} />
+							<TestLayout />
 						)}
 					/>
 
