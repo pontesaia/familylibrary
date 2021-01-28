@@ -31,8 +31,8 @@ class BottomNav extends Component {
 					/>
 					{/* <Collapse isOpen={this.state.collapsed} navbar> */}
 					<Nav navbar className="w-100">
-						<NavItem>
-							<NavLink
+						<NavItem style={styles.navItem}>
+							<Link
 								// className="nav-link"
 								style={styles.navLinks}
 								// to="/about"
@@ -41,9 +41,9 @@ class BottomNav extends Component {
 								onClick={this.props.toggleAbout}
 							>
 								About
-							</NavLink>
+							</Link>
 						</NavItem>
-						<NavItem>
+						<NavItem style={styles.navItem}>
 							<Link
 								// className="nav-link"
 								style={styles.navLinks}
@@ -60,8 +60,8 @@ class BottomNav extends Component {
 								My Stories
 							</Link>
 						</NavItem>
-						<NavItem>
-							<NavLink
+						<NavItem style={styles.navItem}>
+							<Link
 								// className="nav-link"
 								style={styles.navLinks}
 								// to="/contact"
@@ -70,10 +70,10 @@ class BottomNav extends Component {
 								onClick={this.props.toggleContact}
 							>
 								Contact
-							</NavLink>
+							</Link>
 						</NavItem>
-						<NavItem>
-							<NavLink
+						<NavItem style={styles.navItem}>
+							<Link
 								// className="nav-link"
 								style={styles.navLinks}
 								// to="/features"
@@ -82,7 +82,7 @@ class BottomNav extends Component {
 								onClick={this.props.toggleFeatures}
 							>
 								Features
-							</NavLink>
+							</Link>
 						</NavItem>
 					</Nav>
 					{/* </Collapse> */}
@@ -93,6 +93,9 @@ class BottomNav extends Component {
 }
 
 const styles = {
+	navItem: {
+		paddingTop: "10px",
+	},
 	navLinks: {
 		fontFamily: "Comfortaa",
 		fontSize: "1.8rem",

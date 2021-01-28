@@ -57,6 +57,14 @@ function App() {
 							<PersonalFeedPreview />
 						)}
 					/>
+					{/* <Route
+						exact
+						path="/MyStories/:id"
+						render={() => (
+							// <PageView response={this.state.response} />
+							<PersonalFeedPreview />
+						)}
+					/> */}
 					<Route
 						exact
 						path="/ComposeStory"

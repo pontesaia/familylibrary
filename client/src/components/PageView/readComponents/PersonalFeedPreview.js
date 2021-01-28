@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
+import { Link } from "react-router-dom";
+
 import StoryComponent from "./Story";
 import PageViewLayout from "../PageViewLayout";
-
 import DB from "../testDB/testDB.json";
 
 function PersonalFeedPreview(props) {
@@ -102,6 +103,8 @@ function PersonalFeedPreview(props) {
 											),
 										}}
 									></div>
+									{/* <Link to={`/MyStories/dc221e31cd784f36bfcb28c813cb6eca`}> */}
+
 									<Button
 										className="rounded-pill mt-4 mb-2"
 										style={styles.readMoreButton}
@@ -114,6 +117,7 @@ function PersonalFeedPreview(props) {
 									>
 										<span>read more...</span>
 									</Button>
+									{/* </Link> */}
 								</Col>
 							</Row>
 						</Container>
