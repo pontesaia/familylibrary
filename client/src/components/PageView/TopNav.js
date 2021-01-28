@@ -32,7 +32,7 @@ class TopNav extends Component {
 						</div>
 					</NavbarBrand>
 					<Nav navbar className="nav-fill w-100" style={styles.nav}>
-						<NavItem>
+						<NavItem style={styles.navItem}>
 							<Link
 								to="/Feed"
 								style={styles.navLinks}
@@ -48,11 +48,8 @@ class TopNav extends Component {
 								Stories
 							</Link>
 						</NavItem>
-						<NavItem>
-							<Link
-								to="/ComposeStory"
-								style={styles.navLinks}
-							>
+						<NavItem style={styles.navItem}>
+							<Link to="/ComposeStory" style={styles.navLinks}>
 								Write
 								<span className="d-none d-lg-inline">
 									<Button
@@ -64,7 +61,7 @@ class TopNav extends Component {
 								</span>
 							</Link>
 						</NavItem>
-						<NavItem>
+						<NavItem style={styles.navItem}>
 							<NavLink href="#" style={styles.navLinks}>
 								Log Out
 							</NavLink>
@@ -79,6 +76,9 @@ class TopNav extends Component {
 const styles = {
 	nav: {
 		paddingLeft: "200px",
+	},
+	navItem: {
+		paddingTop: "15px",
 	},
 	navLinks: {
 		fontFamily: "Comfortaa",

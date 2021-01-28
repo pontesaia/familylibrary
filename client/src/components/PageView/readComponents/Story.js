@@ -1,25 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 
 
-class Story extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+const Story = (props) => {
 
-	getStoryDate() {
+	const getStoryDate = () => {
 		let createdAt;
 		let date;
-		if (this.props.currentUserStory) {
-			createdAt = this.props.currentUserStory.createdAt;
+		if (props.currentUserStory) {
+			createdAt = props.currentUserStory.createdAt;
 			date = JSON.stringify(new Date(createdAt).toDateString());
 			date = date.substring(1, date.length - 1);
 		}
 		return date;
 	}
 
-	render() {
 		return (
 			<React.Fragment>
 				<hr
@@ -34,39 +29,34 @@ class Story extends Component {
 							className="pr-3 px-0 text-lg-center "
 						>
 							<img
-								// src="/images/Ellipse2.png"
-								// src={this.props.profiles[i].picture.large}
-								src={this.props.currentUserStory.avatar}
+								src={props.currentUserStory.avatar}
 								style={styles.avatar}
 								className="mb-2"
 								alt="avatar"
 							/>
 						</Col>
 						<Col className="">
-							<h5>{this.props.currentUserStory.title}</h5>
-							{/* <h6>Posted By: {d.author}</h6> */}
+							<h5>{props.currentUserStory.title}</h5>
 							<h6>
 								<b>Posted By:</b>{" "}
-								{/* {this.props.profiles[i].name.first}{" "} */}
-								{/* {this.props.profiles[i].name.last} */}
-								{this.props.currentUserStory.author}
+								{props.currentUserStory.author}
 							</h6>
-							<h6><b>Date posted:</b> {this.getStoryDate()}</h6>
-							{/* <h6 className="mb-4">{d.tags}</h6> */}
+							<h6><b>Date posted:</b> {getStoryDate()}</h6>
 						</Col>
 					</Row>
 					<Row className="ml-4 mr-5">
 						<Col xs="12" lg="11" className="px-0 offset-lg-1 mt-2 pl-1">
 							<div
 								dangerouslySetInnerHTML={{
-									__html: this.props.currentUserStory.story,
+									__html: props.currentUserStory.story,
 								}}
 							></div>
 						</Col>
 						<Button
 										className="rounded-pill mt-4 mb-2"
 										style={styles.readMoreButton}
-										onClick={() => {
+							onClick={() => {
+											props.setMainFeedStoryFlag(false)
 											// this.getCurrentUserStory(
 											// 	DB.mystories[i]
 											// );
@@ -79,13 +69,9 @@ class Story extends Component {
 									</Button>
 					</Row>
 				</Container>
-				{/* <hr
-					className="horizRule mb-5 mt-4 px-0 mx-0"
-					style={styles.horizRule}
-				/> */}
 			</React.Fragment>
 		);
-	}
+	
 }
 
 const styles = {
