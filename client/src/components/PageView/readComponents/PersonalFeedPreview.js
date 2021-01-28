@@ -1,22 +1,22 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import StoryComponent from "./Story";
+import PageViewLayout from "../PageViewLayout";
 
 import DB from "../testDB/testDB.json";
 
-class PersonalFeedPreview extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { currentUserStory: "", toggleStory: false };
-	}
+function PersonalFeedPreview(props) {
+	const [currentUserStory, setCurrentUserStory] = useState("");
+	const [personalPreviewStoryFlag, setPersonalPreviewStory] = useState(false);
+	const [toggleStory, setToggleStory] = useState(false);
 
-	trimString(str, length) {
+	const trimString = (str, length) => {
 		if (str && str.length > length)
 			return str.substring(0, length) + ".....";
 		else return str;
-	}
+	};
 
-	getStoryDate(i) {
+	const getStoryDate = (i) => {
 		let createdAt;
 		let date;
 		if (DB.mystories) {
@@ -25,22 +25,23 @@ class PersonalFeedPreview extends Component {
 			date = date.substring(1, date.length - 1);
 		}
 		return date;
-	}
+	};
 
-	getCurrentUserStory(story) {
+	const getCurrentUserStory = (story) => {
 		// e.preventDefault();
 		// console.log(story)
-		this.setState({ currentUserStory: story, toggleStory: true });
-	}
+		// this.setState({ currentUserStory: story, toggleStory: true });
+		setCurrentUserStory(story);
+		setToggleStory(true);
+	};
 
-	render() {
-		let renderData = null;
+	let renderData =
 		// if (this.props.userStories)
-		if (DB.mystories)
-			if (!this.props.personalPreviewStoryFlag) {
+		DB.mystories ? (
+			!personalPreviewStoryFlag ? (
 				// if (!this.state.toggleStory) {
 				// renderData = this.props.userStories.map((d, i) => (
-				renderData = DB.mystories.map((d, i) => (
+				DB.mystories.map((d, i) => (
 					// <span key={this.props.userStories[i]._id}>
 					<span key={i}>
 						<hr
@@ -71,10 +72,12 @@ class PersonalFeedPreview extends Component {
 										{/* {this.props.profiles[i].name.first}{" "} */}
 										{/* {this.props.profiles[i].name.last} */}
 									</h6>
-									<h6>{DB.mystories[i].author}</h6>	
-									
-									<h6><b>Date posted:</b> </h6>
-									<h6>{this.getStoryDate(i)}</h6>
+									<h6>{DB.mystories[i].author}</h6>
+
+									<h6>
+										<b>Date posted:</b>{" "}
+									</h6>
+									<h6>{getStoryDate(i)}</h6>
 									<h6 className="mb-4">{d.tags}</h6>
 								</Col>
 							</Row>
@@ -93,7 +96,7 @@ class PersonalFeedPreview extends Component {
 								></div> */}
 									<div
 										dangerouslySetInnerHTML={{
-											__html: this.trimString(
+											__html: trimString(
 												DB.mystories[i].story,
 												450
 											),
@@ -103,12 +106,10 @@ class PersonalFeedPreview extends Component {
 										className="rounded-pill mt-4 mb-2"
 										style={styles.readMoreButton}
 										onClick={() => {
-											this.getCurrentUserStory(
+											getCurrentUserStory(
 												DB.mystories[i]
 											);
-											this.props.setPersonalPreviewStory(
-												true
-											);
+											setPersonalPreviewStory(true);
 										}}
 									>
 										<span>read more...</span>
@@ -117,17 +118,20 @@ class PersonalFeedPreview extends Component {
 							</Row>
 						</Container>
 					</span>
-				));
+				))
+			) : (
 				// } else if (this.state.toggleStory) {
-			} else if (this.props.personalPreviewStoryFlag) {
-				renderData = (
-					<StoryComponent
-						currentUserStory={this.state.currentUserStory}
-					/>
-				);
-			}
-		return <React.Fragment>{renderData}</React.Fragment>;
-	}
+				<StoryComponent
+					currentUserStory={currentUserStory}
+					setPersonalPreviewStory={setPersonalPreviewStory}
+				/>
+			)
+		) : null;
+	return (
+		<React.Fragment>
+			<PageViewLayout body={renderData} />
+		</React.Fragment>
+	);
 }
 
 const styles = {

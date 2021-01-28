@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Button } from "reactstrap";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class TopNav extends Component {
 	constructor(props) {

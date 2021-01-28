@@ -12,9 +12,9 @@ import FamilyView from "./components/FamilyView/FamilyView";
 import TestDB from "./components/PageView/testDB/TestDB";
 
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
-import TestLayout from "./components/PageView/TestLayout";
 import ComposeStory from "./components/PageView/writeComponents/ComposeStory";
 import MainFeed from "./components/PageView/readComponents/MainFeed";
+import PersonalFeedPreview from "./components/PageView/readComponents/PersonalFeedPreview";
 
 function App() {
 	return (
@@ -51,10 +51,10 @@ function App() {
 					/>
 					<Route
 						exact
-						path="/PersonalPreview"
+						path="/MyStories"
 						render={() => (
 							// <PageView response={this.state.response} />
-							<PageView />
+							<PersonalFeedPreview />
 						)}
 					/>
 					<Route
@@ -96,14 +96,6 @@ function App() {
 						render={() => (
 							// <PageView response={this.state.response} />
 							<TestDB />
-						)}
-					/>
-					<Route
-						exact
-						path="/TestLayout"
-						render={() => (
-							// <PageView response={this.state.response} />
-							<TestLayout />
 						)}
 					/>
 

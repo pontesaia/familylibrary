@@ -6,6 +6,8 @@ import {
 	NavLink,
 	NavbarToggler,
 } from "reactstrap";
+import { Link } from "react-router-dom";
+
 
 class BottomNav extends Component {
 	constructor(props) {
@@ -42,21 +44,21 @@ class BottomNav extends Component {
 							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink
+							<Link
 								// className="nav-link"
 								style={styles.navLinks}
 								// to="/about"
-								href="#"
+								to="/MyStories"
 								name="inviteCollapsed"
 								// onClick={this.props.toggleComponent}
 								// onClick={this.props.setPersonalFeedPreview}
-								onClick={() => {
-									this.props.setPersonalFeedPreview();
-									this.props.setPersonalPreviewStory(false);
-								}}
+								// onClick={() => {
+								// 	this.props.setPersonalFeedPreview();
+								// 	this.props.setPersonalPreviewStory(false);
+								// }}
 							>
 								My Stories
-							</NavLink>
+							</Link>
 						</NavItem>
 						<NavItem>
 							<NavLink
