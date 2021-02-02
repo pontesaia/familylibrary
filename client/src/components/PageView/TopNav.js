@@ -1,69 +1,57 @@
-import React, { Component } from "react";
+import React from "react";
 import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
-class TopNav extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
-	render() {
-		return (
-			<React.Fragment>
-				<Navbar
-					expand="md"
-					className="px-0 py-4 flex-shrink-0 footer"
-					id="navItems"
-				>
-					<NavbarBrand href="/" className="d-none d-lg-block">
-						<div>
-							<img
-								src="/images/logoImage.png"
-								style={{ width: "150px" }}
-								id="brandLogo"
-								alt="brandLogo"
-							/>
-							<h1
-								id="brandLogoTitle"
-								style={styles.brandLogoTitle}
-							>
-								family library
-							</h1>
-						</div>
-					</NavbarBrand>
-					<Nav navbar className="nav-fill w-100" style={styles.nav}>
-						<NavItem style={styles.navItem}>
-							<Link
-								to="/Feed"
-								style={styles.navLinks}
-							>
-								Stories
-							</Link>
-						</NavItem>
-						<NavItem style={styles.navItem}>
-							<Link to="/ComposeStory" style={styles.navLinks}>
-								Write
-								<span className="d-none d-lg-inline">
-									<Button
-										className="rounded-pill"
-										style={styles.writeButton}
-									>
-										<span style={styles.plusSign}>+</span>
-									</Button>
-								</span>
-							</Link>
-						</NavItem>
-						<NavItem style={styles.navItem}>
-							<NavLink href="#" style={styles.navLinks}>
-								Log Out
-							</NavLink>
-						</NavItem>
-					</Nav>
-				</Navbar>
-			</React.Fragment>
-		);
-	}
-}
+const TopNav = () => {
+	return (
+		<React.Fragment>
+			<Navbar
+				expand="md"
+				className="px-0 py-4 flex-shrink-0 footer"
+				id="navItems"
+			>
+				<NavbarBrand href="/" className="d-none d-lg-block">
+					<div>
+						<img
+							src="/images/logoImage.png"
+							style={{ width: "150px" }}
+							id="brandLogo"
+							alt="brandLogo"
+						/>
+						<h1 id="brandLogoTitle" style={styles.brandLogoTitle}>
+							family library
+						</h1>
+					</div>
+				</NavbarBrand>
+				<Nav navbar className="nav-fill w-100" style={styles.nav}>
+					<NavItem style={styles.navItem}>
+						<Link to="/Feed" style={styles.navLinks}>
+							Stories
+						</Link>
+					</NavItem>
+					<NavItem style={styles.navItem}>
+						<Link to="/ComposeStory" style={styles.navLinks}>
+							Write
+							<span className="d-none d-lg-inline">
+								<Button
+									className="rounded-pill"
+									style={styles.writeButton}
+								>
+									<span style={styles.plusSign}>+</span>
+								</Button>
+							</span>
+						</Link>
+					</NavItem>
+					<NavItem style={styles.navItem}>
+						<NavLink href="#" style={styles.navLinks}>
+							Log Out
+						</NavLink>
+					</NavItem>
+				</Nav>
+			</Navbar>
+		</React.Fragment>
+	);
+};
 
 const styles = {
 	nav: {
