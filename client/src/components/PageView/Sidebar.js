@@ -1,44 +1,34 @@
-import React, { Component } from "react";
-import {
-	Row,
-	Col,
-	Button,
-} from "reactstrap";
+import React from "react";
+import { Row, Col, Button } from "reactstrap";
 
-class Sidebar extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
-	render() {
-		return (
-			<React.Fragment>
-				<Row className="flex-column sidebar h-100 d-none d-lg-block">
-					<Col className="text-center px-0">
-						<div>
-							<img
-								src="/images/Ellipse2.png"
-								style={styles.avatar}
-								alt="avatar"
-							/>
-							<h1 className="mt-4" style={styles.text}>
-								Maria
-							</h1>
-							<h6>BOSTON, MA</h6>
-							<Button
-								className="mt-3 text-center"
-								style={styles.button}
-							>
-								<p className="mb-0">The </p>
-								<p className="mb-0">McCarthy's</p>
-							</Button>
-						</div>
-					</Col>
-				</Row>
-			</React.Fragment>
-		);
-	}
-}
+const Sidebar = () => {
+	return (
+		<React.Fragment>
+			<Row className="flex-column sidebar h-100 d-none d-lg-block">
+				<Col className="text-center px-0">
+					<div>
+						<img
+							src="/images/Ellipse2.png"
+							style={styles.avatar}
+							alt="avatar"
+						/>
+						<h1 className="mt-4" style={styles.text}>
+							Maria
+						</h1>
+						<h6>BOSTON, MA</h6>
+						<Button
+							className="mt-3 text-center"
+							style={styles.button}
+						>
+							<p className="mb-0">The </p>
+							<p className="mb-0">McCarthy's</p>
+						</Button>
+					</div>
+				</Col>
+			</Row>
+		</React.Fragment>
+	);
+};
 
 const styles = {
 	avatar: {
