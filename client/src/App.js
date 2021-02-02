@@ -1,14 +1,9 @@
 import React from "react";
 import "./App.css";
-//import axios from "axios";
-
 import Home from "./components/Home/Home";
-// import About from "./components/aboutComponent";
-// import Contact from "./components/contactComponent";
-// import Features from "./components/featuresComponent";
-import PageView from "./components/PageView/PageView";
-// import MainFeed from "./components/PageView/readComponents/mainFeedComponent";
-import FamilyView from "./components/FamilyView/FamilyView";
+import FamilyViewAbout from "./components/FamilyView/FamilyViewAbout"
+import FamilyViewContact from "./components/FamilyView/FamilyViewContact";
+import FamilyViewFeatures from "./components/FamilyView/FamilyViewFeatures";
 import TestDB from "./components/PageView/testDB/TestDB";
 
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
@@ -25,27 +20,13 @@ function App() {
 						exact
 						path="/"
 						render={() => (
-							// <Home response={this.state.response} />
 							<Home />
 						)}
 					/>
-					{/* <Route exact path="/about" component={About} /> */}
-					{/* <Route exact path="/contact" component={Contact} /> */}
-					{/* <Route exact path="/features" component={Features} /> */}
-					{/* <Route
-							exact
-							path="/PageView"
-							render={() => (
-								// <PageView response={this.state.response} />
-								<PageView />
-							)}
-						/> */}
 					<Route
 						exact
 						path="/Feed"
 						render={() => (
-							// <PageView response={this.state.response} />
-							// <PageView />
 							<MainFeed />
 						)}
 					/>
@@ -53,24 +34,13 @@ function App() {
 						exact
 						path="/MyStories"
 						render={() => (
-							// <PageView response={this.state.response} />
 							<PersonalFeedPreview />
 						)}
 					/>
-					{/* <Route
-						exact
-						path="/MyStories/:id"
-						render={() => (
-							// <PageView response={this.state.response} />
-							<PersonalFeedPreview />
-						)}
-					/> */}
 					<Route
 						exact
 						path="/ComposeStory"
 						render={() => (
-							// <PageView response={this.state.response} />
-							// <PageView />
 							<ComposeStory />
 						)}
 					/>
@@ -78,35 +48,30 @@ function App() {
 						exact
 						path="/FamilyView/About"
 						render={() => (
-							// <PageView response={this.state.response} />
-							<FamilyView />
+							<FamilyViewAbout />
 						)}
 					/>
 					<Route
 						exact
 						path="/FamilyView/Contact"
 						render={() => (
-							// <PageView response={this.state.response} />
-							<FamilyView />
+							<FamilyViewContact />
 						)}
 					/>
 					<Route
 						exact
 						path="/FamilyView/Features"
 						render={() => (
-							// <PageView response={this.state.response} />
-							<FamilyView />
+							<FamilyViewFeatures />
 						)}
 					/>
 					<Route
 						exact
 						path="/TestDB"
 						render={() => (
-							// <PageView response={this.state.response} />
 							<TestDB />
 						)}
 					/>
-
 					<Redirect to="/" />
 				</Switch>
 			</React.Fragment>
