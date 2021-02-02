@@ -1,123 +1,118 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import ReactQuill from "react-quill";
 import axios from "axios";
 import PageViewLayout from "../PageViewLayout";
+import { Redirect } from "react-router-dom";
 
-class ComposeStory extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			title: "",
-			story: "",
-		};
-	}
+const ComposeStory = (props) => {
+	const [title, setTitle] = useState("");
+	const [story, setStory] = useState("");
+	const [redirect, setRedirect] = useState(false);
 
-	onChangeTitle = (e) => {
-		this.setState({
-			title: e.target.value,
-		});
+	const onChangeTitle = (e) => {
+		setTitle(e.target.value);
 	};
-	onChangeStory = (html) => {
-		this.setState({
-			story: html,
-		});
+	const onChangeStory = (html) => {
+		setStory(html);
 	};
 
-	onSubmit = (e) => {
+	const onSubmit = (e) => {
 		e.preventDefault();
 		const userStory = {
-			title: this.state.title,
-			story: this.state.story,
+			title: title,
+			story: story,
 		};
-		// console.log(userStory);
-		// window.location = "/PageView";
-		if (this.state.title && this.state.story) {
+		if (title && story) {
 			axios
 				.post("/userStories", userStory)
 				.then((res) => console.log(res.data));
 			setTimeout(() => {
-				this.props.setMainFeed();
+				setRedirect(true);
 			}, 500);
 		}
 	};
 
-	render() {
-		let renderData = (
-			<Container>
-				<hr
-					className="horizRule mb-5 mt-4 px-0 mx-0"
-					style={styles.horizRule}
-				/>
-				<form onSubmit={this.onSubmit}>
-					<Row>
-						<Col
-							xs="12"
-							lg="1"
-							className="pr-2 px-0 text-lg-center"
-						>
-							<img
-								src="/images/Ellipse2.png"
-								style={styles.avatar}
-								className="mb-2 ml-3"
-								alt="avatar"
+	const renderRedirect = () => {
+		if (redirect) {
+			return <Redirect to="/Feed" />;
+		}
+	};
+
+	let renderData = (
+		<Container>
+			<hr
+				className="horizRule mb-5 mt-4 px-0 mx-0"
+				style={styles.horizRule}
+			/>
+			<form onSubmit={onSubmit}>
+				<Row>
+					<Col xs="12" lg="1" className="pr-2 px-0 text-lg-center">
+						<img
+							src="/images/Ellipse2.png"
+							style={styles.avatar}
+							className="mb-2 ml-3"
+							alt="avatar"
+						/>
+					</Col>
+					<Col xs="12" lg="11" className="pl-lg-4">
+						<div className="form-group">
+							<label style={{ fontWeight: "700" }}>
+								Title of Story
+							</label>
+							<input
+								required
+								className="form-control"
+								value={title || ""}
+								onChange={onChangeTitle}
+								placeholder={
+									"Enter Title of Family Story Here..."
+								}
+							></input>
+						</div>
+					</Col>
+				</Row>
+				<Row className="offset-lg-1">
+					<Col xs="12">
+						<div className="form-group">
+							<label style={{ fontWeight: "700" }}>
+								Family Story
+							</label>
+							<ReactQuill
+								className="quillApp"
+								theme="snow"
+								onChange={onChangeStory}
+								placeholder={"Write your story..."}
+								modules={ComposeStory.modules}
+								formats={ComposeStory.formats}
 							/>
-						</Col>
-						<Col xs="12" lg="11" className="pl-lg-4">
-							<div className="form-group">
-								<label style={{ fontWeight: "700" }}>
-									Title of Story
-								</label>
-								<input
-									required
-									className="form-control"
-									value={this.state.title || ""}
-									onChange={this.onChangeTitle}
-									placeholder={
-										"Enter Title of Family Story Here..."
-									}
-								></input>
-							</div>
-						</Col>
-					</Row>
-					<Row className="offset-lg-1">
-						<Col xs="12">
-							<div className="form-group">
-								<label style={{ fontWeight: "700" }}>
-									Family Story
-								</label>
-								<ReactQuill
-									className="quillApp"
-									theme="snow"
-									onChange={this.onChangeStory}
-									placeholder={"Write your story..."}
-									// value={this.state.editorHtml}
-									modules={ComposeStory.modules}
-									formats={ComposeStory.formats}
-								/>
-							</div>
-							<div className="form-group">
-								{/* <input type="submit" className="btn btn-primary" /> */}
-								<Button
-									onClick={this.onSubmit}
-									type="button"
-									className="btn btn-primary"
-								>
-									Submit
-								</Button>
-							</div>
-						</Col>
-					</Row>
-				</form>
-				<hr
-					className="horizRule mb-5 mt-4 px-0 mx-0"
-					style={styles.horizRule}
-				/>
-			</Container>
-		);
-		return <React.Fragment><PageViewLayout body={renderData} /></React.Fragment>;
-	}
-}
+						</div>
+						<div className="form-group">
+							{/* <input type="submit" className="btn btn-primary" /> */}
+							<Button
+								onClick={onSubmit}
+								type="button"
+								className="btn btn-primary"
+							>
+								Submit
+							</Button>
+						</div>
+					</Col>
+				</Row>
+			</form>
+			<hr
+				className="horizRule mb-5 mt-4 px-0 mx-0"
+				style={styles.horizRule}
+			/>
+		</Container>
+	);
+	return (
+		<React.Fragment>
+			{renderRedirect()}
+			<PageViewLayout body={renderData} />
+		</React.Fragment>
+	);
+};
 
 const styles = {
 	avatar: {
