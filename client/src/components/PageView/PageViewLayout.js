@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
 import TopNav from "./TopNav";
 import Sidebar from "./Sidebar";
 import BottomNav from "./BottomNav";
-import PageViewBody from "./PageViewBody";
 import Search from "./Search";
 
 const PageViewLayout = (props) => {
-    return (
+	return (
 		<React.Fragment>
 			<React.Fragment>
 				<Container
@@ -17,11 +16,7 @@ const PageViewLayout = (props) => {
 				>
 					<Row>
 						<Col className="px-0">
-							<TopNav
-								// setMainFeed={this.setMainFeed}
-								// setComposeStory={this.setComposeStory}
-								// setMainFeedStory={this.setMainFeedStory}
-							/>
+							<TopNav />
 						</Col>
 					</Row>
 					<Row className="flex-grow-1 overflow-hidden">
@@ -53,14 +48,7 @@ const PageViewLayout = (props) => {
 							className="px-0 pt-1"
 							styles={styles.footer}
 						>
-							<BottomNav
-								// setPersonalPreviewStory={
-								// 	this.setPersonalPreviewStory
-								// }
-								// setPersonalFeedPreview={
-								// 	this.setPersonalFeedPreview
-								// }
-							/>
+							<BottomNav />
 						</Col>
 					</Row>
 				</Container>
@@ -68,7 +56,7 @@ const PageViewLayout = (props) => {
 			);
 		</React.Fragment>
 	);
-}
+};
 
 const styles = {
 	footer: { position: "fixed", left: "0", bottom: "0", width: "100%" },
