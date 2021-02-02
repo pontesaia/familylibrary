@@ -1,6 +1,5 @@
 import { Container, Row, Col } from "reactstrap";
 import React from "react";
-import Fade from "react-reveal/Fade";
 
 import TopNav from "../PageView/TopNav";
 import BottomNav from "../PageView/BottomNav";
@@ -24,9 +23,7 @@ const FamilyView = (props) => {
 					</Col>
 				</Row>
 				<Row>
-					<Col className="p-0">
-						<Fade bottom>{props.body}</Fade>
-					</Col>
+					<Col className="p-0">{props.body}</Col>
 				</Row>
 				<Row className="flex-shrink-0 mt-5 pt-5">
 					<Col xs="12" className="px-0 pt-1" styles={styles.footer}>

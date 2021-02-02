@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
+import Fade from "react-reveal/Fade";
 
 import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
@@ -119,15 +120,17 @@ function MainFeed() {
 			</span>
 		))
 	) : (
-		<Story
-			currentUserStory={currentUserStory}
-			setMainFeedStoryFlag={setMainFeedStoryFlag}
-		/>
+		<Fade right duration={500}>
+			<Story
+				currentUserStory={currentUserStory}
+				setMainFeedStoryFlag={setMainFeedStoryFlag}
+			/>
+		</Fade>
 	);
 
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData}/>
+			<PageViewLayout body={renderData} />
 		</React.Fragment>
 	);
 }
