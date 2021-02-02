@@ -73,6 +73,7 @@ const styles = {
 		height: "100px",
 		bottom: "0",
 		width: "100%",
+		boxSizing: "border-box",
 		borderTop: "white 3px solid",
 	},
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
+import Fade from "react-reveal/Fade";
 
 import TopNav from "./TopNav";
 import Sidebar from "./Sidebar";
@@ -16,12 +17,21 @@ const PageViewLayout = (props) => {
 				>
 					<Row>
 						<Col className="px-0">
+							{/* <Fade down> */}
 							<TopNav />
+							{/* </Fade> */}
 						</Col>
 					</Row>
 					<Row className="flex-grow-1 overflow-hidden">
-						<Col xs="0" lg="2" className="mh-100 overflow-auto">
-							<Sidebar />
+						<Col
+							xs="0"
+							lg="2"
+							className="mh-100 overflow-auto"
+							style={styles.sidebar}
+						>
+							<Fade left>
+								<Sidebar />
+							</Fade>
 						</Col>
 
 						<Col
@@ -37,6 +47,7 @@ const PageViewLayout = (props) => {
 											<Search />
 										</Col>
 									</Row>
+									{/* <Fade right>{props.body}</Fade> */}
 									{props.body}
 								</Col>
 							</Row>
@@ -61,6 +72,7 @@ const PageViewLayout = (props) => {
 const styles = {
 	footer: { position: "fixed", left: "0", bottom: "0", width: "100%" },
 	mainBody: { overflowY: "auto", overflowX: "hidden" },
+	sidebar: { borderRight: "1px solid rgba(0, 0, 0, 0.1)" },
 };
 
 export default PageViewLayout;

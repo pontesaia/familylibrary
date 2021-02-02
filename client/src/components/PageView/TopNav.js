@@ -9,6 +9,7 @@ const TopNav = () => {
 				expand="md"
 				className="px-0 py-4 flex-shrink-0 footer"
 				id="navItems"
+				style={styles.navbar}
 			>
 				<NavbarBrand href="/" className="d-none d-lg-block">
 					<div>
@@ -54,6 +55,9 @@ const TopNav = () => {
 };
 
 const styles = {
+	navbar: {
+		zIndex: "9999",
+	},
 	nav: {
 		paddingLeft: "200px",
 	},

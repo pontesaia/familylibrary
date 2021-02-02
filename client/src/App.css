@@ -212,7 +212,7 @@ p {
   /* box-shadow: inset -4px 0 0 #9efdf5; */
   overflow-x: hidden;
   /*border-right: solid #9efdf5 1px;*/
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  /* border-right: 1px solid rgba(0, 0, 0, 0.1); */
   background-color: #fdfdfd;
 }
 
