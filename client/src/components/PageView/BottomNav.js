@@ -80,6 +80,7 @@ const styles = {
 		height: "100px",
 		bottom: "0",
 		width: "100%",
+		borderTop: "white 3px solid",
 	},
 };
 
