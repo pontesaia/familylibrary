@@ -9,13 +9,7 @@ import {
 import { Link } from "react-router-dom";
 
 
-class BottomNav extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
-
-	render() {
+const BottomNav = () => {
 		return (
 			<React.Fragment>
 				<Navbar
@@ -24,73 +18,52 @@ class BottomNav extends Component {
 					id="navItems"
 					style={styles.footer}
 				>
-					{/* <NavbarBrand href="/" className="mr-auto" /> */}
 					<NavbarToggler
-						onClick={this.toggleNavbar}
+						// onClick={this.toggleNavbar}
 						className="mr-2"
 					/>
-					{/* <Collapse isOpen={this.state.collapsed} navbar> */}
 					<Nav navbar className="w-100">
 						<NavItem style={styles.navItem}>
 							<Link
-								// className="nav-link"
 								style={styles.navLinks}
-								// to="/about"
-								href="#"
+								to="/FamilyView/About"
 								name="aboutCollapsed"
-								onClick={this.props.toggleAbout}
 							>
 								About
 							</Link>
 						</NavItem>
 						<NavItem style={styles.navItem}>
 							<Link
-								// className="nav-link"
 								style={styles.navLinks}
-								// to="/about"
 								to="/MyStories"
 								name="inviteCollapsed"
-								// onClick={this.props.toggleComponent}
-								// onClick={this.props.setPersonalFeedPreview}
-								// onClick={() => {
-								// 	this.props.setPersonalFeedPreview();
-								// 	this.props.setPersonalPreviewStory(false);
-								// }}
 							>
 								My Stories
 							</Link>
 						</NavItem>
 						<NavItem style={styles.navItem}>
 							<Link
-								// className="nav-link"
 								style={styles.navLinks}
-								// to="/contact"
-								href="#"
+								to="/FamilyView/Contact"
 								name="contactCollapsed"
-								onClick={this.props.toggleContact}
 							>
 								Contact
 							</Link>
 						</NavItem>
 						<NavItem style={styles.navItem}>
 							<Link
-								// className="nav-link"
 								style={styles.navLinks}
-								// to="/features"
-								href="#"
+								to="/FamilyView/Features"
 								name="featuresCollapsed"
-								onClick={this.props.toggleFeatures}
 							>
 								Features
 							</Link>
 						</NavItem>
 					</Nav>
-					{/* </Collapse> */}
 				</Navbar>
 			</React.Fragment>
 		);
 	}
-}
 
 const styles = {
 	navItem: {
