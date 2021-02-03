@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Button } from "reactstrap";
 import axios from "axios";
 import DB from "./testDB.json";

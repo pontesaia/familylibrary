@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 import Fade from "react-reveal/Fade";
@@ -54,7 +54,7 @@ function MainFeed() {
 
 	useEffect(() => {
 		getUserStories();
-	});
+	}, []);
 
 	let renderData = !mainFeedStoryFlag ? (
 		userStories.map((d, i) => (
