@@ -44,9 +44,9 @@ const TopNav = () => {
 						</Link>
 					</NavItem>
 					<NavItem style={styles.navItem}>
-						<NavLink href="#" style={styles.navLinks}>
+						<Link to="Logout" style={styles.navLinks}>
 							Log Out
-						</NavLink>
+						</Link>
 					</NavItem>
 				</Nav>
 			</Navbar>
