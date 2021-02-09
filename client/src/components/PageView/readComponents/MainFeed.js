@@ -5,8 +5,9 @@ import Fade from "react-reveal/Fade";
 
 import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
+import { PromiseProvider } from "mongoose";
 
-function MainFeed() {
+function MainFeed({state}) {
 	const [currentUserStory, setCurrentUserStory] = useState("");
 	const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
 	const [userStories, setUserStories] = useState([]);
@@ -130,7 +131,7 @@ function MainFeed() {
 
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData} />
+			<PageViewLayout body={renderData} state={state}/>
 		</React.Fragment>
 	);
 }

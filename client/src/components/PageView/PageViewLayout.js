@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import BottomNav from "./BottomNav";
 import Search from "./Search";
 
-const PageViewLayout = (props) => {
+const PageViewLayout = ({body, state}) => {
 	return (
 		<React.Fragment>
 			<Container
@@ -15,7 +15,7 @@ const PageViewLayout = (props) => {
 			>
 				<Row>
 					<Col className="px-0">
-						<TopNav />
+						<TopNav state={state}/>
 					</Col>
 				</Row>
 				<Row className="flex-grow-1 overflow-hidden">
@@ -25,7 +25,7 @@ const PageViewLayout = (props) => {
 						className="mh-100 overflow-auto"
 						style={styles.sidebar}
 					>
-						<Sidebar />
+						<Sidebar state={state}/>
 					</Col>
 
 					<Col
@@ -41,7 +41,7 @@ const PageViewLayout = (props) => {
 										<Search />
 									</Col>
 								</Row>
-								{props.body}
+								{body}
 							</Col>
 						</Row>
 					</Col>

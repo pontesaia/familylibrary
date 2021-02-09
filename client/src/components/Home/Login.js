@@ -29,7 +29,8 @@ class Login extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		window.location = "/Feed";
+		// window.location = "/Feed";
+		window.location = "/Login";
 		// if (this.validate()) {
 		// 	console.log(this.state);
 

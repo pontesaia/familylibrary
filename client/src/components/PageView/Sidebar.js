@@ -1,19 +1,20 @@
 import React from "react";
 import { Row, Col, Button } from "reactstrap";
 
-const Sidebar = () => {
+const Sidebar = ({state}) => {
 	return (
 		<React.Fragment>
 			<Row className="flex-column sidebar h-100 d-none d-lg-block">
 				<Col className="text-center px-0">
 					<div>
 						<img
-							src="/images/Ellipse2.png"
+							// src="/images/Ellipse2.png"
+							src={state.avatar}
 							style={styles.avatar}
 							alt="avatar"
 						/>
 						<h1 className="mt-4" style={styles.text}>
-							Maria
+							{state.name}
 						</h1>
 						<h6>BOSTON, MA</h6>
 						<Button
@@ -34,6 +35,7 @@ const styles = {
 	avatar: {
 		width: "150px",
 		marginTop: "100px",
+		borderRadius: "50%"
 	},
 	text: {
 		fontFamily: "Comfortaa",
