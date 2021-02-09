@@ -21,6 +21,8 @@ const initialAuthContext = {
 	userId: sessionStorage.getItem("userId") || null,
 	avatar: sessionStorage.getItem("avatar") || null,
 	name: sessionStorage.getItem("name") || null,
+	givenName: sessionStorage.getItem("givenName") || null,
+	familyName: sessionStorage.getItem("familyName") || null,
 };
 
 const reducer = (state, action) => {
@@ -31,6 +33,8 @@ const reducer = (state, action) => {
 			sessionStorage.setItem("userId", action.payload.id);
 			sessionStorage.setItem("name", action.payload.name);
 			sessionStorage.setItem("avatar", action.payload.avatar);
+			sessionStorage.setItem("givenName", action.payload.givenName);
+			sessionStorage.setItem("familyName", action.payload.familyName);
 			return {
 				...state,
 				isAuthenticated: action.payload.isAuthenticated,
@@ -38,6 +42,8 @@ const reducer = (state, action) => {
 				userId: action.payload.id,
 				name: action.payload.name,
 				avatar: action.payload.avatar,
+				givenName: action.payload.givenName,
+				familyName: action.payload.familyName,
 			};
 		case "LOGOUT":
 			sessionStorage.clear();
@@ -48,6 +54,8 @@ const reducer = (state, action) => {
 				userId: null,
 				name: null,
 				avatar: null,
+				givenName: null,
+				familyName: null,
 			};
 		default:
 			return state;
@@ -83,12 +91,14 @@ function App() {
 							<Route
 								exact
 								path="/MyStories"
-								render={() => <PersonalFeedPreview />}
+								render={() => (
+									<PersonalFeedPreview state={state} />
+								)}
 							/>
 							<Route
 								exact
 								path="/ComposeStory"
-								render={() => <ComposeStory />}
+								render={() => <ComposeStory state={state} />}
 							/>
 							<Route
 								exact

@@ -5,7 +5,7 @@ import axios from "axios";
 import PageViewLayout from "../PageViewLayout";
 import { Redirect } from "react-router-dom";
 
-const ComposeStory = (props) => {
+const ComposeStory = ({state}) => {
 	const [title, setTitle] = useState("");
 	const [story, setStory] = useState("");
 	const [redirect, setRedirect] = useState(false);
@@ -109,7 +109,7 @@ const ComposeStory = (props) => {
 	return (
 		<React.Fragment>
 			{renderRedirect()}
-			<PageViewLayout body={renderData} />
+			<PageViewLayout body={renderData} state={state} />
 		</React.Fragment>
 	);
 };

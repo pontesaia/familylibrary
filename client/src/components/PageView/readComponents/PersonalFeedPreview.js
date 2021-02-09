@@ -5,7 +5,7 @@ import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
 import DB from "../testDB/testDB.json";
 
-const PersonalFeedPreview = (props) => {
+const PersonalFeedPreview = ({state}) => {
 	const [currentUserStory, setCurrentUserStory] = useState("");
 	const [personalPreviewStoryFlag, setPersonalPreviewStory] = useState(false);
 	// const [toggleStory, setToggleStory] = useState(false);
@@ -106,7 +106,7 @@ const PersonalFeedPreview = (props) => {
 	) : null;
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData} />
+			<PageViewLayout body={renderData} state={state}/>
 		</React.Fragment>
 	);
 };

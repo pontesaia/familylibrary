@@ -29,6 +29,8 @@ const OAuthLogin = () => {
 					id: res.googleId,
 					name: res.profileObj.name,
 					avatar: res.profileObj.imageUrl,
+					givenName: res.profileObj.givenName,
+					familyName: res.profileObj.familyName,
 				},
 			});
 			history.push("/Feed");

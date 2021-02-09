@@ -14,7 +14,7 @@ const Sidebar = ({state}) => {
 							alt="avatar"
 						/>
 						<h1 className="mt-4" style={styles.text}>
-							{state.name}
+							{state.givenName}
 						</h1>
 						<h6>BOSTON, MA</h6>
 						<Button
