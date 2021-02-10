@@ -8,6 +8,7 @@ module.exports = {
 	},
 	findById: function (req, res) {
 		User.findById(req.params.id)
+		// User.find({ userId: req.params.id })
 			.then((user) => res.json(user))
 			.catch((err) => res.status(422).json(err));
 	},

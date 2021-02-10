@@ -7,7 +7,8 @@ module.exports = {
 			.catch((err) => res.status(422).json(err));
 	},
 	findById: function (req, res) {
-		UserStory.findById(req.params.id)
+		// UserStory.findById(req.params.id)
+		UserStory.find({ userId: req.params.id })
 			.then((userStory) => res.json(userStory))
 			.catch((err) => res.status(422).json(err));
 	},

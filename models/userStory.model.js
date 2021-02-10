@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const userStorySchema = new Schema(
 	{
+		userId: { type: String, required: true },
 		title: { type: String, required: true },
 		author: { type: String, required: false },
 		avatar: { type: String, required: false },
