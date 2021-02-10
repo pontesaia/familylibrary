@@ -3,6 +3,7 @@ import { GoogleLogin } from "react-google-login";
 import { refreshTokenSetup } from "./refreshTokenSetup";
 import { AuthContext } from "../../App";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const path = require("path");
 
@@ -33,6 +34,19 @@ const OAuthLogin = () => {
 					familyName: res.profileObj.familyName,
 				},
 			});
+
+			const data = {
+				_id: res.googleId,
+				name: res.profileObj.name,
+				givenName: res.profileObj.givenName,
+				familyName: res.profileObj.familyName,
+				avatar: res.profileObj.imageUrl,
+			};
+			setUser(data);
+			// getUser(res.googleId, data)
+			// if (!getUser(res.googleId)) setUser(data);
+			// let data2 = getUser(res.googleId);
+			// console.log("This is the data!!!" , data2)
 			history.push("/Feed");
 		}
 
@@ -41,6 +55,26 @@ const OAuthLogin = () => {
 
 	const onFailure = (res) => {
 		console.log("[Login failed] res: ", res);
+	};
+
+	const setUser = (data) => {
+		axios
+			.post("/user", data)
+			.then((res) => console.log("THIS IS IT!!!", res.data));
+	};
+
+	const getUser = async (userId, data) => {
+		axios
+			.get(`/user/${userId}`)
+			.then((response) => {
+				console.log(response);
+				// return response;
+				// if(!response.userId) setUser(data)
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+		
 	};
 
 	return (

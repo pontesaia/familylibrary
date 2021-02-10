@@ -89,7 +89,8 @@ class Home extends Component {
 						</Col>
 					</Row>
 					<Row className="text-center mt-4">
-						<Col xs="12" md="6">
+						{/* <Col xs="12" md="6"> */}
+						<Col xs="12" md="12">
 							<Button
 								className="btn-block mb-2"
 								style={styles.buttonLogin}
@@ -100,7 +101,7 @@ class Home extends Component {
 								LOG IN
 							</Button>
 						</Col>
-						<Col xs="12" md="6">
+						{/* <Col xs="12" md="6">
 							<Button
 								className="btn-block mb-2"
 								style={styles.buttonRegister}
@@ -110,7 +111,7 @@ class Home extends Component {
 							>
 								REGISTER
 							</Button>
-						</Col>
+						</Col> */}
 					</Row>
 				</Container>
 			</React.Fragment>

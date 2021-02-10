@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 
 import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
 import DB from "../testDB/testDB.json";
+import axios from "axios";
 
-const PersonalFeedPreview = ({state}) => {
+const PersonalFeedPreview = ({ state }) => {
 	const [currentUserStory, setCurrentUserStory] = useState("");
+	const [myStories, setMyStories] = useState([]);
 	const [personalPreviewStoryFlag, setPersonalPreviewStory] = useState(false);
 	// const [toggleStory, setToggleStory] = useState(false);
 
@@ -16,25 +18,41 @@ const PersonalFeedPreview = ({state}) => {
 		else return str;
 	};
 
-	const getStoryDate = (i) => {
+	const getStoryDate = (d) => {
 		let createdAt;
 		let date;
-		if (DB.mystories) {
-			createdAt = DB.mystories[i].createdAt;
+			createdAt = d.createdAt;
 			date = JSON.stringify(new Date(createdAt).toDateString());
 			date = date.substring(1, date.length - 1);
-		}
 		return date;
 	};
+
+	const getMyStories = (userId) => {
+		return axios
+			.get(`/userStories/${userId}`)
+			.then((response) => {
+				return response.data;
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	useEffect(() => {
+		getMyStories(state.userId).then((data) => {
+			console.log(data);
+			setMyStories(data);
+		});
+	}, []);
 
 	const getCurrentUserStory = (story) => {
 		setCurrentUserStory(story);
 		// setToggleStory(true);
 	};
 
-	let renderData = DB.mystories ? (
+	let renderData = myStories ? (
 		!personalPreviewStoryFlag ? (
-			DB.mystories.map((d, i) => (
+			myStories.map((d, i) => (
 				<span key={i}>
 					<hr
 						className="horizRule mb-5 mt-4 px-0 mx-0"
@@ -48,7 +66,7 @@ const PersonalFeedPreview = ({state}) => {
 								className="pr-3 px-0 text-lg-center"
 							>
 								<img
-									src={DB.mystories[i].avatar}
+									src={state.avatar}
 									style={styles.avatar}
 									className="mb-2"
 									alt="avatar"
@@ -59,12 +77,12 @@ const PersonalFeedPreview = ({state}) => {
 								<h6>
 									<b>Posted By:</b>{" "}
 								</h6>
-								<h6>{DB.mystories[i].author}</h6>
+								<h6>{state.name}</h6>
 
 								<h6>
 									<b>Date posted:</b>{" "}
 								</h6>
-								<h6>{getStoryDate(i)}</h6>
+								<h6>{getStoryDate(d)}</h6>
 								<h6 className="mb-4">{d.tags}</h6>
 							</Col>
 						</Row>
@@ -77,7 +95,7 @@ const PersonalFeedPreview = ({state}) => {
 								<div
 									dangerouslySetInnerHTML={{
 										__html: trimString(
-											DB.mystories[i].story,
+											d.story,
 											450
 										),
 									}}
@@ -106,7 +124,7 @@ const PersonalFeedPreview = ({state}) => {
 	) : null;
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData} state={state}/>
+			<PageViewLayout body={renderData} state={state} />
 		</React.Fragment>
 	);
 };

@@ -20,6 +20,7 @@ const ComposeStory = ({state}) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const userStory = {
+			userId: state.userId,
 			title: title,
 			story: story,
 		};
