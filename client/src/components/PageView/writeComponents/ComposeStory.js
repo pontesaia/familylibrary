@@ -49,7 +49,8 @@ const ComposeStory = ({state}) => {
 				<Row>
 					<Col xs="12" lg="1" className="pr-2 px-0 text-lg-center">
 						<img
-							src="/images/Ellipse2.png"
+							// src="/images/Ellipse2.png"
+							src={state.avatar}
 							style={styles.avatar}
 							className="mb-2 ml-3"
 							alt="avatar"

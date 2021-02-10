@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import {
-	Container,
-	Row,
-	Col,
-	Button,
-} from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
+import OAuthLogin from "./OAuthLogin";
 
 class Login extends Component {
 	constructor(props) {
@@ -110,7 +106,7 @@ class Login extends Component {
 										<h1 style={styles.header}>Login</h1>
 									</Col>
 								</Row>
-								<form onSubmit={this.handleSubmit}>
+								{/* <form onSubmit={this.handleSubmit}>
 									<div className="form-group">
 										<input
 											type="text"
@@ -150,7 +146,8 @@ class Login extends Component {
 									>
 										SEND
 									</Button>
-								</form>
+								</form> */}
+								<OAuthLogin />
 							</Col>
 						</Row>
 						<hr></hr>
