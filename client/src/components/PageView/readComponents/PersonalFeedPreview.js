@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
+import axios from "axios";
+import Fade from "react-reveal/Fade";
 
 import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
 import DB from "../testDB/testDB.json";
-import axios from "axios";
 
 const PersonalFeedPreview = ({ state }) => {
 	const [currentUserStory, setCurrentUserStory] = useState("");
@@ -31,7 +32,9 @@ const PersonalFeedPreview = ({ state }) => {
 		return axios
 			.get(`/userStories/${userId}`)
 			.then((response) => {
-				return response.data;
+				if (response.data.length > 0) {
+					setMyStories(response.data);
+				}
 			})
 			.catch((error) => {
 				console.log(error);
@@ -39,10 +42,7 @@ const PersonalFeedPreview = ({ state }) => {
 	};
 
 	useEffect(() => {
-		getMyStories(state.userId).then((data) => {
-			console.log(data);
-			setMyStories(data);
-		});
+		getMyStories(state.userId);
 	}, []);
 
 	const getCurrentUserStory = (story) => {
@@ -114,11 +114,13 @@ const PersonalFeedPreview = ({ state }) => {
 				</span>
 			))
 		) : (
-			<Story
-				currentUserStory={currentUserStory}
-				setPersonalPreviewStory={setPersonalPreviewStory}
-				state={state}
-			/>
+			<Fade right duration={500}>
+				<Story
+					currentUserStory={currentUserStory}
+					setPersonalPreviewStory={setPersonalPreviewStory}
+					state={state}
+				/>
+			</Fade>
 		)
 	) : null;
 	return (

@@ -41,12 +41,6 @@ function MainFeed({ state }) {
 			.then((response) => {
 				if (response.data.length > 0) {
 					setUserStories(response.data);
-					// setTitles(
-					// 	response.data.map((userStory) => userStory.title)
-					// );
-					// setStories(
-					// 	response.data.map((userStory) => userStory.story)
-					// );
 				}
 			})
 			.catch((error) => {
