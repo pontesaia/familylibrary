@@ -21,9 +21,9 @@ const PersonalFeedPreview = ({ state }) => {
 	const getStoryDate = (d) => {
 		let createdAt;
 		let date;
-			createdAt = d.createdAt;
-			date = JSON.stringify(new Date(createdAt).toDateString());
-			date = date.substring(1, date.length - 1);
+		createdAt = d.createdAt;
+		date = JSON.stringify(new Date(createdAt).toDateString());
+		date = date.substring(1, date.length - 1);
 		return date;
 	};
 
@@ -94,17 +94,15 @@ const PersonalFeedPreview = ({ state }) => {
 							>
 								<div
 									dangerouslySetInnerHTML={{
-										__html: trimString(
-											d.story,
-											450
-										),
+										__html: trimString(d.story, 450),
 									}}
 								></div>
 								<Button
 									className="rounded-pill mt-4 mb-2"
 									style={styles.readMoreButton}
 									onClick={() => {
-										getCurrentUserStory(DB.mystories[i]);
+										// getCurrentUserStory(DB.mystories[i]);
+										getCurrentUserStory(myStories[i]);
 										setPersonalPreviewStory(true);
 									}}
 								>
@@ -119,6 +117,7 @@ const PersonalFeedPreview = ({ state }) => {
 			<Story
 				currentUserStory={currentUserStory}
 				setPersonalPreviewStory={setPersonalPreviewStory}
+				state={state}
 			/>
 		)
 	) : null;

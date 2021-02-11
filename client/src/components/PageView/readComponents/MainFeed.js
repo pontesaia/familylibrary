@@ -7,7 +7,8 @@ import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
 import { PromiseProvider } from "mongoose";
 
-function MainFeed({state}) {
+function MainFeed({ state }) {
+	const { avatar, name } = state;
 	const [currentUserStory, setCurrentUserStory] = useState("");
 	const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
 	const [userStories, setUserStories] = useState([]);
@@ -72,7 +73,7 @@ function MainFeed({state}) {
 							className="pr-3 px-0 text-lg-center"
 						>
 							<img
-								src={userStories[i].avatar}
+								src={userStories[i].avatar || avatar}
 								style={styles.avatar}
 								className="mb-2"
 								alt="avatar"
@@ -83,7 +84,7 @@ function MainFeed({state}) {
 							<h6>
 								<b>Posted By:</b>{" "}
 							</h6>
-							<h6>{userStories[i].author}</h6>
+							<h6>{userStories[i].author || name}</h6>
 							<h6>
 								<b>Date posted: </b>
 							</h6>
@@ -124,7 +125,8 @@ function MainFeed({state}) {
 		<Fade right duration={500}>
 			<Story
 				currentUserStory={currentUserStory}
-				setMainFeedStoryFlag={setMainFeedStoryFlag}
+					setMainFeedStoryFlag={setMainFeedStoryFlag}
+					state={state}
 			/>
 		</Fade>
 	);

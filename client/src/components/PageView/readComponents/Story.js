@@ -1,12 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 
-const Story = (props) => {
+const Story = ({currentUserStory, setMainFeedStoryFlag, setPersonalPreviewStory, state}) => {
+	const { avatar, name } = state;
 	const getStoryDate = () => {
 		let createdAt;
 		let date;
-		if (props.currentUserStory) {
-			createdAt = props.currentUserStory.createdAt;
+		if (currentUserStory) {
+			createdAt = currentUserStory.createdAt;
 			date = JSON.stringify(new Date(createdAt).toDateString());
 			date = date.substring(1, date.length - 1);
 		}
@@ -23,16 +24,16 @@ const Story = (props) => {
 				<Row className="ml-2">
 					<Col xs="12" lg="1" className="pr-3 px-0 text-lg-center ">
 						<img
-							src={props.currentUserStory.avatar}
+							src={currentUserStory.avatar || avatar}
 							style={styles.avatar}
 							className="mb-2"
 							alt="avatar"
 						/>
 					</Col>
 					<Col className="">
-						<h5>{props.currentUserStory.title}</h5>
+						<h5>{currentUserStory.title}</h5>
 						<h6>
-							<b>Posted By:</b> {props.currentUserStory.author}
+							<b>Posted By:</b> {currentUserStory.author || name}
 						</h6>
 						<h6>
 							<b>Date posted:</b> {getStoryDate()}
@@ -43,7 +44,7 @@ const Story = (props) => {
 					<Col xs="12" lg="11" className="px-0 offset-lg-1 mt-2 pl-1">
 						<div
 							dangerouslySetInnerHTML={{
-								__html: props.currentUserStory.story,
+								__html: currentUserStory.story,
 							}}
 						></div>
 					</Col>
@@ -51,15 +52,15 @@ const Story = (props) => {
 						className="rounded-pill mt-4 mb-2"
 						style={styles.readMoreButton}
 						onClick={() => {
-							if (props.setMainFeedStoryFlag)
-								props.setMainFeedStoryFlag(false);
-							else if (props.setPersonalPreviewStory)
-								props.setPersonalPreviewStory(false);
+							if (setMainFeedStoryFlag)
+								setMainFeedStoryFlag(false);
+							else if (setPersonalPreviewStory)
+								setPersonalPreviewStory(false);
 
 							// this.getCurrentUserStory(
 							// 	DB.mystories[i]
 							// );
-							// this.props.setPersonalPreviewStory(
+							// this.setPersonalPreviewStory(
 							// 	true
 							// );
 						}}
