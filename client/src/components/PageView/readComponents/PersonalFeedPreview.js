@@ -11,6 +11,7 @@ const PersonalFeedPreview = ({ state }) => {
 	const [currentUserStory, setCurrentUserStory] = useState("");
 	const [myStories, setMyStories] = useState([]);
 	const [personalPreviewStoryFlag, setPersonalPreviewStory] = useState(false);
+	const [loading, setLoading] = useState(true);
 	// const [toggleStory, setToggleStory] = useState(false);
 
 	const trimString = (str, length) => {
@@ -36,6 +37,7 @@ const PersonalFeedPreview = ({ state }) => {
 					setMyStories(response.data);
 				}
 			})
+			.then((response) => setLoading(false))
 			.catch((error) => {
 				console.log(error);
 			});
@@ -125,7 +127,7 @@ const PersonalFeedPreview = ({ state }) => {
 	) : null;
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData} state={state} />
+			<PageViewLayout body={renderData} state={state} loading={loading} />
 		</React.Fragment>
 	);
 };
