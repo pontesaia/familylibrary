@@ -151,12 +151,24 @@ function MainFeed({ state }) {
 									<span>read more...</span>
 								</Button>
 							</Col>
-							<Col xs="12" lg="1" className="pl-0">
+							{/* <Col xs="12" lg="1" className="pl-0">
 								<Row className="pl-3">
-									<span type="button" title="Edit"></span>
-									<span type="button" title="Delete"></span>
+									<span type="button" title="Edit">
+										<i
+											class="fa fa-pencil-square-o"
+											aria-hidden="true"
+											style={styles.icon}
+										></i>
+									</span>
+									<span type="button" title="Delete">
+										<i
+											class="fa fa-trash-o"
+											aria-hidden="true"
+											style={styles.icon}
+										></i>
+									</span>
 								</Row>
-							</Col>
+							</Col> */}
 						</Row>
 					</Container>
 				</span>
@@ -188,9 +200,11 @@ const styles = {
 		width: "calc(100% + 30px)",
 		borderTop: ".5px solid rgba(0,0,0,.10)",
 	},
-	icons: {
-		color: "gray",
-	},
+	// icon: {
+	// 	color: "gray",
+	// 	fontSize: "2rem",
+	// 	marginRight: "1rem"
+	// },
 	readMoreButton: {
 		fontFamily: "Comfortaa",
 		fontWeight: "400",

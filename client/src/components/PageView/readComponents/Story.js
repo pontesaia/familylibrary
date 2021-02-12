@@ -1,8 +1,16 @@
 import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Story = ({currentUserStory, setMainFeedStoryFlag, setPersonalPreviewStory, state}) => {
+const Story = ({
+	currentUserStory,
+	setMainFeedStoryFlag,
+	setPersonalPreviewStory,
+	state,
+}) => {
 	const { avatar, name } = state;
+	const history = useHistory();
 	const getStoryDate = () => {
 		let createdAt;
 		let date;
@@ -12,6 +20,16 @@ const Story = ({currentUserStory, setMainFeedStoryFlag, setPersonalPreviewStory,
 			date = date.substring(1, date.length - 1);
 		}
 		return date;
+	};
+
+	const deleteStory = (id) => {
+		console.log("DELETING!!!!!!!!");
+		axios.delete(`/userStories/${id}`).then((res) => {
+			console.log(res.data);
+			if (setMainFeedStoryFlag) history.push("/Feed");
+			else if (setPersonalPreviewStory) history.push("/MyStories");
+			
+		});
 	};
 
 	return (
@@ -30,7 +48,7 @@ const Story = ({currentUserStory, setMainFeedStoryFlag, setPersonalPreviewStory,
 							alt="avatar"
 						/>
 					</Col>
-					<Col className="">
+					<Col xs="9" className="">
 						<h5>{currentUserStory.title}</h5>
 						<h6>
 							<b>Posted By:</b> {currentUserStory.author || name}
@@ -38,6 +56,30 @@ const Story = ({currentUserStory, setMainFeedStoryFlag, setPersonalPreviewStory,
 						<h6>
 							<b>Date posted:</b> {getStoryDate()}
 						</h6>
+					</Col>
+					<Col xs="3" lg="2" className="pl-0">
+						<Row className="pl-3">
+							<span type="button" title="Edit">
+								<i
+									class="fa fa-pencil-square-o"
+									aria-hidden="true"
+									style={styles.icon}
+								></i>
+							</span>
+							<span
+								type="button"
+								title="Delete"
+								onClick={() =>
+									deleteStory(currentUserStory._id)
+								}
+							>
+								<i
+									class="fa fa-trash-o"
+									aria-hidden="true"
+									style={styles.icon}
+								></i>
+							</span>
+						</Row>
 					</Col>
 				</Row>
 				<Row className="ml-4 mr-5">
@@ -74,6 +116,11 @@ const Story = ({currentUserStory, setMainFeedStoryFlag, setPersonalPreviewStory,
 };
 
 const styles = {
+	icon: {
+		color: "gray",
+		fontSize: "2rem",
+		marginRight: "1rem",
+	},
 	avatar: {
 		width: "clamp(10px, 100%, 105px)",
 		borderRadius: "50%",
