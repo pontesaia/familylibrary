@@ -8,7 +8,7 @@ const userSchema = new Schema(
 		givenName: { type: String, required: true },
 		familyName: { type: String, required: true },
 		avatar: { type: String, required: true },
-		stories: { type: [], required: false }
+		// stories: { type: [], required: false }
 		// email: { type: String, required: true },
 		// password: { type: String, required: true },
 		// confirm_password: { type: String, required: true },
