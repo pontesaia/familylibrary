@@ -12,6 +12,7 @@ import ComposeStory from "./components/PageView/writeComponents/ComposeStory";
 import MainFeed from "./components/PageView/readComponents/MainFeed";
 import PersonalFeedPreview from "./components/PageView/readComponents/PersonalFeedPreview";
 import Logout from "./components/Home/Logout";
+import Story from "./components/PageView/readComponents/Story"
 
 export const AuthContext = React.createContext();
 
@@ -93,6 +94,13 @@ function App() {
 								path="/MyStories"
 								render={() => (
 									<PersonalFeedPreview state={state} />
+								)}
+							/>
+							<Route
+								exact
+								path="/MyStories/userStory/:id"
+								render={() => (
+									<Story state={state} />
 								)}
 							/>
 							<Route

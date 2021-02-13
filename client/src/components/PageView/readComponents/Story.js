@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const Story = ({
-	currentUserStory,
+	// currentUserStory,
 	setMainFeedStoryFlag,
 	setPersonalPreviewStory,
 	state,
 }) => {
 	const { avatar, name } = state;
+	const [currentUserStory, setCurrentUserStory] = useState("");
 	const history = useHistory();
 	const getStoryDate = () => {
 		let createdAt;
@@ -22,13 +23,58 @@ const Story = ({
 		return date;
 	};
 
+	useEffect(() => {
+		getStory();
+	}, []);
+
+	let { id } = useParams();
+
+	const getStory = () => {
+		console.log("Getting a story!");
+		console.log(id);
+		axios
+			.get(`/userStories/userStory/${id}`)
+			.then((response) => {
+				getAuthor(response.data).then((response) => {
+					setCurrentUserStory(response);
+				});
+				// return response;
+				// if(!response.userId) setUser(data)
+			})
+			.catch((error) => {
+				console.log("Error");
+				console.log(error);
+			});
+	};
+
+	const getAuthor = async (story) => {
+		const res = await axios
+			.get(`/user/${story.userId}`)
+			.then((response) => {
+				const { name, givenName, familyName, avatar } = response.data;
+				const merge = {
+					...story,
+					name,
+					givenName,
+					familyName,
+					avatar,
+				};
+				console.log("THis is the merge", merge);
+				return merge;
+			})
+
+			.catch((error) => {
+				console.log(error);
+			});
+		return res;
+	};
+
 	const deleteStory = (id) => {
 		console.log("DELETING!!!!!!!!");
 		axios.delete(`/userStories/${id}`).then((res) => {
 			console.log(res.data);
 			if (setMainFeedStoryFlag) history.push("/Feed");
 			else if (setPersonalPreviewStory) history.push("/MyStories");
-			
 		});
 	};
 
@@ -42,16 +88,18 @@ const Story = ({
 				<Row className="ml-2">
 					<Col xs="12" lg="1" className="pr-3 px-0 text-lg-center ">
 						<img
-							src={currentUserStory.avatar || avatar}
+							// src={currentUserStory?.avatar || avatar}
+							src={currentUserStory?.avatar}
 							style={styles.avatar}
 							className="mb-2"
 							alt="avatar"
 						/>
 					</Col>
 					<Col xs="9" className="">
-						<h5>{currentUserStory.title}</h5>
+						<h5>{currentUserStory?.title}</h5>
 						<h6>
-							<b>Posted By:</b> {currentUserStory.author || name}
+							{/* <b>Posted By:</b> {currentUserStory?.author || name} */}
+							<b>Posted By:</b> {currentUserStory?.name}
 						</h6>
 						<h6>
 							<b>Date posted:</b> {getStoryDate()}
@@ -70,7 +118,7 @@ const Story = ({
 								type="button"
 								title="Delete"
 								onClick={() =>
-									deleteStory(currentUserStory._id)
+									deleteStory(currentUserStory?._id)
 								}
 							>
 								<i
@@ -86,7 +134,7 @@ const Story = ({
 					<Col xs="12" lg="11" className="px-0 offset-lg-1 mt-2 pl-1">
 						<div
 							dangerouslySetInnerHTML={{
-								__html: currentUserStory.story,
+								__html: currentUserStory?.story,
 							}}
 						></div>
 					</Col>

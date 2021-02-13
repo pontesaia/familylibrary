@@ -6,10 +6,16 @@ module.exports = {
 			.then((userStory) => res.json(userStory))
 			.catch((err) => res.status(422).json(err));
 	},
-	findById: function (req, res) {
+	findByStoryId: function (req, res) {
+		UserStory.findOne({ _id: req.params.id })
+		// UserStory.find({ userId: req.params.id })
+			.then((userStory) => res.json(userStory))
+			.catch((err) => res.status(422).json(err));
+	},
+	findAllUserId: function (req, res) {
 		// UserStory.findById(req.params.id)
 		UserStory.find({ userId: req.params.id })
-			.then((userStory) => res.json(userStory))
+			.then((users) => res.json(users))
 			.catch((err) => res.status(422).json(err));
 	},
 	create: function (req, res) {
