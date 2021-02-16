@@ -10,7 +10,7 @@ import Login from "./components/Home/OAuthLogin";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import ComposeStory from "./components/PageView/writeComponents/ComposeStory";
 import MainFeed from "./components/PageView/readComponents/MainFeed";
-import PersonalFeedPreview from "./components/PageView/readComponents/PersonalFeedPreview";
+import PersonalFeedPreview from "./components/PageView/readComponents/PersonalFeed";
 import Logout from "./components/Home/Logout";
 import Story from "./components/PageView/readComponents/Story"
 
