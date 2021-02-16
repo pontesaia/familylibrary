@@ -13,6 +13,8 @@ router
 	.put(userStoriesController.update)
 	.delete(userStoriesController.remove);
 
-router.route("/userStory/:id").get(userStoriesController.findByStoryId);
+router.route("/story/:id").get(userStoriesController.findByStoryId);
+
+router.route("/story/edit/:id").put(userStoriesController.update);
 
 module.exports = router;
