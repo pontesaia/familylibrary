@@ -98,7 +98,7 @@ function App() {
 							/>
 							<Route
 								exact
-								path="/MyStories/userStory/:id"
+								path="/story/:id"
 								render={() => (
 									<Story state={state} />
 								)}

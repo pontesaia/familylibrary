@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 import Fade from "react-reveal/Fade";
+import { useHistory } from "react-router-dom";
 
 import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
@@ -12,6 +13,7 @@ function MainFeed({ state }) {
 	const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
 	const [userStories, setUserStories] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const history = useHistory();
 	// const [authorInfo, setAuthorInfo] = useState([]);
 	// const [titles, setTitles] = useState("");
 	// const [stories, setStories] = useState("");
@@ -144,8 +146,9 @@ function MainFeed({ state }) {
 									className="rounded-pill m-0"
 									style={styles.readMoreButton}
 									onClick={() => {
-										getCurrentUserStory(userStories[i]);
-										setMainFeedStoryFlag(true);
+										// getCurrentUserStory(userStories[i]);
+										// setMainFeedStoryFlag(true);
+										history.push(`/story/${userStories[i]._id}`);
 									}}
 								>
 									<span>read more...</span>
