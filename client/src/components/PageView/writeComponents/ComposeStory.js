@@ -106,7 +106,7 @@ const ComposeStory = ({ state }) => {
 
 	const renderRedirect = () => {
 		if (redirect) {
-			return <Redirect to="/Feed" />;
+			return <Redirect to="/MyStories" />;
 		}
 	};
 

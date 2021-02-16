@@ -76,7 +76,7 @@ const Story = ({
 			console.log(res.data);
 			// if (setMainFeedStoryFlag) history.push("/Feed");
 			// else if (setPersonalPreviewStory) history.push("/MyStories");
-			history.push("/MyStories");
+			history.push("/Feed");
 		});
 	};
 
