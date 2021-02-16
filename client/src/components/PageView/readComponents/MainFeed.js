@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 import Fade from "react-reveal/Fade";
+import { useHistory } from "react-router-dom";
 
 import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
@@ -9,9 +10,10 @@ import PageViewLayout from "../PageViewLayout";
 function MainFeed({ state }) {
 	const { avatar, name } = state;
 	const [currentUserStory, setCurrentUserStory] = useState("");
-	const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
+	// const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
 	const [userStories, setUserStories] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const history = useHistory();
 	// const [authorInfo, setAuthorInfo] = useState([]);
 	// const [titles, setTitles] = useState("");
 	// const [stories, setStories] = useState("");
@@ -96,7 +98,7 @@ function MainFeed({ state }) {
 		);
 	};
 
-	let renderData = !mainFeedStoryFlag ? (
+	let renderData =
 		userStories?.map((d, i) =>
 			d?.userId ? (
 				<span key={i}>
@@ -144,33 +146,46 @@ function MainFeed({ state }) {
 									className="rounded-pill m-0"
 									style={styles.readMoreButton}
 									onClick={() => {
-										getCurrentUserStory(userStories[i]);
-										setMainFeedStoryFlag(true);
+										// getCurrentUserStory(userStories[i]);
+										// setMainFeedStoryFlag(true);
+										history.push(`/story/${userStories[i]._id}`);
 									}}
 								>
 									<span>read more...</span>
 								</Button>
 							</Col>
-							<Col xs="12" lg="1" className="pl-0">
+							{/* <Col xs="12" lg="1" className="pl-0">
 								<Row className="pl-3">
-									<span type="button" title="Edit"></span>
-									<span type="button" title="Delete"></span>
+									<span type="button" title="Edit">
+										<i
+											class="fa fa-pencil-square-o"
+											aria-hidden="true"
+											style={styles.icon}
+										></i>
+									</span>
+									<span type="button" title="Delete">
+										<i
+											class="fa fa-trash-o"
+											aria-hidden="true"
+											style={styles.icon}
+										></i>
+									</span>
 								</Row>
-							</Col>
+							</Col> */}
 						</Row>
 					</Container>
 				</span>
 			) : null
 		)
-	) : (
-		<Fade right duration={500}>
-			<Story
-				currentUserStory={currentUserStory}
-				setMainFeedStoryFlag={setMainFeedStoryFlag}
-				state={state}
-			/>
-		</Fade>
-	);
+	//  : (
+	// 	<Fade right duration={500}>
+	// 		<Story
+	// 			currentUserStory={currentUserStory}
+	// 			// setMainFeedStoryFlag={setMainFeedStoryFlag}
+	// 			state={state}
+	// 		/>
+	// 	</Fade>
+	// );
 
 	return (
 		<React.Fragment>
@@ -188,9 +203,11 @@ const styles = {
 		width: "calc(100% + 30px)",
 		borderTop: ".5px solid rgba(0,0,0,.10)",
 	},
-	icons: {
-		color: "gray",
-	},
+	// icon: {
+	// 	color: "gray",
+	// 	fontSize: "2rem",
+	// 	marginRight: "1rem"
+	// },
 	readMoreButton: {
 		fontFamily: "Comfortaa",
 		fontWeight: "400",

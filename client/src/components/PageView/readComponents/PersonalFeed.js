@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 import Fade from "react-reveal/Fade";
+import { useHistory } from "react-router-dom";
 
 import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
@@ -10,13 +11,13 @@ import DB from "../testDB/testDB.json";
 const PersonalFeedPreview = ({ state }) => {
 	const [currentUserStory, setCurrentUserStory] = useState("");
 	const [myStories, setMyStories] = useState([]);
-	const [personalPreviewStoryFlag, setPersonalPreviewStory] = useState(false);
+	// const [personalPreviewStoryFlag, setPersonalPreviewStory] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const history = useHistory();
 	// const [toggleStory, setToggleStory] = useState(false);
 
 	const trimString = (str, length) => {
-		if (str && str.length > length)
-			return str.substring(0, length) + ".....";
+		if (str && str.length > length) return str.substring(0, length) + ".....";
 		else return str;
 	};
 
@@ -52,21 +53,14 @@ const PersonalFeedPreview = ({ state }) => {
 		// setToggleStory(true);
 	};
 
-	let renderData = myStories ? (
-		!personalPreviewStoryFlag ? (
-			myStories.map((d, i) => (
+	let renderData = 
+		// !personalPreviewStoryFlag ? (
+			myStories?.map((d, i) => (
 				<span key={i}>
-					<hr
-						className="horizRule mb-5 mt-4 px-0 mx-0"
-						style={styles.horizRule}
-					/>
+					<hr className="horizRule mb-5 mt-4 px-0 mx-0" style={styles.horizRule} />
 					<Container>
 						<Row className="ml-2">
-							<Col
-								xs="12"
-								lg="1"
-								className="pr-3 px-0 text-lg-center"
-							>
+							<Col xs="12" lg="1" className="pr-3 px-0 text-lg-center">
 								<img
 									src={state.avatar}
 									style={styles.avatar}
@@ -89,11 +83,7 @@ const PersonalFeedPreview = ({ state }) => {
 							</Col>
 						</Row>
 						<Row className="ml-5 mr-1">
-							<Col
-								xs="12"
-								lg="11"
-								className="px-0 offset-lg-1 ml-5 mb-2"
-							>
+							<Col xs="12" lg="11" className="px-0 offset-lg-1 ml-5 mb-2">
 								<div
 									dangerouslySetInnerHTML={{
 										__html: trimString(d.story, 450),
@@ -105,7 +95,9 @@ const PersonalFeedPreview = ({ state }) => {
 									onClick={() => {
 										// getCurrentUserStory(DB.mystories[i]);
 										getCurrentUserStory(myStories[i]);
-										setPersonalPreviewStory(true);
+										// setPersonalPreviewStory(true);
+										history.push(`/story/${myStories[i]._id}`);
+										// console.log(`/MyStories/userStory/${myStories[i]._id}`);
 									}}
 								>
 									<span>read more...</span>
@@ -115,16 +107,17 @@ const PersonalFeedPreview = ({ state }) => {
 					</Container>
 				</span>
 			))
-		) : (
-			<Fade right duration={500}>
-				<Story
-					currentUserStory={currentUserStory}
-					setPersonalPreviewStory={setPersonalPreviewStory}
-					state={state}
-				/>
-			</Fade>
-		)
-	) : null;
+	
+	// 	) : (
+	// 		<Fade right duration={500}>
+	// 			<Story
+	// 				currentUserStory={currentUserStory}
+	// 				setPersonalPreviewStory={setPersonalPreviewStory}
+	// 				state={state}
+	// 			/>
+	// 		</Fade>
+	// 	)
+	// ) : null;
 	return (
 		<React.Fragment>
 			<PageViewLayout body={renderData} state={state} loading={loading} />
@@ -148,8 +141,7 @@ const styles = {
 		marginLeft: "8px",
 		width: "152px",
 		border: "none",
-		backgroundImage:
-			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
+		backgroundImage: "linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 };
 

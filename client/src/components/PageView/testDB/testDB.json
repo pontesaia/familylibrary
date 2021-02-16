@@ -1,6 +1,7 @@
 {
     "mystories":[        
         {
+            "userId": "103302541097753007111",
             "title": "A Collector of Things",
             "author": "Maria McCarthy",
             "avatar": "/images/Ellipse.png",
@@ -19,6 +20,7 @@
     ],
     "userstories": [
         {
+            "userId": "103302541097753007111",
             "title": "A Collector of Things",
             "author": "Sandra Hernandez",
             "avatar": "https://randomuser.me/api/portraits/women/49.jpg",
@@ -27,6 +29,7 @@
 
         },
         {
+            "userId": "110901130963326666565",
             "title": "My Great Grandma May Have Taken Home the Wrong Baby!",
             "author": "Brandie Chavez",
             "avatar": "https://randomuser.me/api/portraits/women/96.jpg",
@@ -35,6 +38,7 @@
 
         },
         {
+            "userId": "103302541097753007111",
             "title": "Grandma's Secrets",
             "author": "Otto Lammi",
             "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
@@ -43,6 +47,7 @@
 
         },
         {
+            "userId": "23",
             "title": "That Time I was Nearly Kidnapped",
             "author": "Blanca Mora",
             "avatar": "https://randomuser.me/api/portraits/women/75.jpg",
@@ -51,6 +56,7 @@
 
         },
         {
+            "userId": "103302541097753007111",
             "title": "My Tough Situation",
             "author": "Romane Henry",
             "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
@@ -59,6 +65,7 @@
 
         },
         {
+            "userId": "110901130963326666565",
             "title": "My Great Great Grandpa",
             "author": "Isabella Hill",
             "avatar": "https://randomuser.me/api/portraits/women/82.jpg",
@@ -67,6 +74,7 @@
 
         },
         {
+            "userId": "109339815796196472341",
             "title": "The Vacation",
             "author": "Colleen Powell",
             "avatar": "https://randomuser.me/api/portraits/women/76.jpg",
@@ -75,6 +83,7 @@
 
         },
         {
+            "userId": "109339815796196472341",
             "title": "The Doctor",
             "author": "Julia Korpela",
             "avatar": "https://randomuser.me/api/portraits/women/43.jpg",
@@ -83,6 +92,7 @@
 
         },
         {
+            "userId": "103302541097753007111",
             "title": "Pictures",
             "author": "Hannah Brewer",
             "avatar": "https://randomuser.me/api/portraits/women/41.jpg",
@@ -91,6 +101,7 @@
 
         },
         {
+            "userId": "103302541097753007111",
             "title": "Pooped Out",
             "author": "Heinz-Dieter Lehnert",
             "avatar": "https://randomuser.me/api/portraits/men/11.jpg",

@@ -9,12 +9,12 @@ const Sidebar = ({state}) => {
 					<div>
 						<img
 							// src="/images/Ellipse2.png"
-							src={state.avatar}
+							src={state?.avatar}
 							style={styles.avatar}
 							alt="avatar"
 						/>
 						<h1 className="mt-4" style={styles.text}>
-							{state.givenName}
+							{state?.givenName}
 						</h1>
 						<h6>BOSTON, MA</h6>
 						<Button
