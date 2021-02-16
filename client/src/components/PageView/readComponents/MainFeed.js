@@ -10,7 +10,7 @@ import PageViewLayout from "../PageViewLayout";
 function MainFeed({ state }) {
 	const { avatar, name } = state;
 	const [currentUserStory, setCurrentUserStory] = useState("");
-	const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
+	// const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
 	const [userStories, setUserStories] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const history = useHistory();
@@ -98,7 +98,7 @@ function MainFeed({ state }) {
 		);
 	};
 
-	let renderData = !mainFeedStoryFlag ? (
+	let renderData =
 		userStories?.map((d, i) =>
 			d?.userId ? (
 				<span key={i}>
@@ -177,15 +177,15 @@ function MainFeed({ state }) {
 				</span>
 			) : null
 		)
-	) : (
-		<Fade right duration={500}>
-			<Story
-				currentUserStory={currentUserStory}
-				setMainFeedStoryFlag={setMainFeedStoryFlag}
-				state={state}
-			/>
-		</Fade>
-	);
+	//  : (
+	// 	<Fade right duration={500}>
+	// 		<Story
+	// 			currentUserStory={currentUserStory}
+	// 			// setMainFeedStoryFlag={setMainFeedStoryFlag}
+	// 			state={state}
+	// 		/>
+	// 	</Fade>
+	// );
 
 	return (
 		<React.Fragment>

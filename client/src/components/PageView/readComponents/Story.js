@@ -6,8 +6,8 @@ import PageViewLayout from "../PageViewLayout";
 
 const Story = ({
 	// currentUserStory,
-	setMainFeedStoryFlag,
-	setPersonalPreviewStory,
+	// setMainFeedStoryFlag,
+	// setPersonalPreviewStory,
 	state,
 }) => {
 	const { avatar, name } = state;
@@ -71,11 +71,12 @@ const Story = ({
 	};
 
 	const deleteStory = (id) => {
-		console.log("DELETING!!!!!!!!");
+		// console.log("DELETING!!!!!!!!");
 		axios.delete(`/userStories/${id}`).then((res) => {
 			console.log(res.data);
-			if (setMainFeedStoryFlag) history.push("/Feed");
-			else if (setPersonalPreviewStory) history.push("/MyStories");
+			// if (setMainFeedStoryFlag) history.push("/Feed");
+			// else if (setPersonalPreviewStory) history.push("/MyStories");
+			history.push("/MyStories");
 		});
 	};
 
@@ -134,8 +135,9 @@ const Story = ({
 						className="rounded-pill mt-4 mb-2"
 						style={styles.readMoreButton}
 						onClick={() => {
-							if (setMainFeedStoryFlag) setMainFeedStoryFlag(false);
-							else if (setPersonalPreviewStory) setPersonalPreviewStory(false);
+							history.goBack()
+							// if (setMainFeedStoryFlag) setMainFeedStoryFlag(false);
+							// else if (setPersonalPreviewStory) setPersonalPreviewStory(false);
 
 							// this.getCurrentUserStory(
 							// 	DB.mystories[i]

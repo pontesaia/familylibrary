@@ -11,7 +11,7 @@ import DB from "../testDB/testDB.json";
 const PersonalFeedPreview = ({ state }) => {
 	const [currentUserStory, setCurrentUserStory] = useState("");
 	const [myStories, setMyStories] = useState([]);
-	const [personalPreviewStoryFlag, setPersonalPreviewStory] = useState(false);
+	// const [personalPreviewStoryFlag, setPersonalPreviewStory] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const history = useHistory();
 	// const [toggleStory, setToggleStory] = useState(false);
@@ -53,9 +53,9 @@ const PersonalFeedPreview = ({ state }) => {
 		// setToggleStory(true);
 	};
 
-	let renderData = myStories ? (
-		!personalPreviewStoryFlag ? (
-			myStories.map((d, i) => (
+	let renderData = 
+		// !personalPreviewStoryFlag ? (
+			myStories?.map((d, i) => (
 				<span key={i}>
 					<hr className="horizRule mb-5 mt-4 px-0 mx-0" style={styles.horizRule} />
 					<Container>
@@ -107,16 +107,17 @@ const PersonalFeedPreview = ({ state }) => {
 					</Container>
 				</span>
 			))
-		) : (
-			<Fade right duration={500}>
-				<Story
-					currentUserStory={currentUserStory}
-					setPersonalPreviewStory={setPersonalPreviewStory}
-					state={state}
-				/>
-			</Fade>
-		)
-	) : null;
+	
+	// 	) : (
+	// 		<Fade right duration={500}>
+	// 			<Story
+	// 				currentUserStory={currentUserStory}
+	// 				setPersonalPreviewStory={setPersonalPreviewStory}
+	// 				state={state}
+	// 			/>
+	// 		</Fade>
+	// 	)
+	// ) : null;
 	return (
 		<React.Fragment>
 			<PageViewLayout body={renderData} state={state} loading={loading} />
