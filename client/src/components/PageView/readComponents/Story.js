@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
+import PageViewLayout from "../PageViewLayout";
 
 const Story = ({
 	// currentUserStory,
@@ -12,6 +13,7 @@ const Story = ({
 	const { avatar, name } = state;
 	const [currentUserStory, setCurrentUserStory] = useState("");
 	const history = useHistory();
+	const [loading, setLoading] = useState(true);
 	const getStoryDate = () => {
 		let createdAt;
 		let date;
@@ -35,9 +37,11 @@ const Story = ({
 		axios
 			.get(`/userStories/userStory/${id}`)
 			.then((response) => {
-				getAuthor(response.data).then((response) => {
-					setCurrentUserStory(response);
-				});
+				getAuthor(response.data)
+					.then((response) => {
+						setCurrentUserStory(response);
+					})
+					.then((response) => setLoading(false));
 				// return response;
 				// if(!response.userId) setUser(data)
 			})
@@ -59,7 +63,7 @@ const Story = ({
 					familyName,
 					avatar,
 				};
-				console.log("THis is the merge", merge);
+				// console.log("THis is the merge", merge);
 				return merge;
 			})
 
@@ -78,12 +82,9 @@ const Story = ({
 		});
 	};
 
-	return (
+	let renderData = (
 		<React.Fragment>
-			<hr
-				className="horizRule mb-5 mt-4 px-0 mx-0"
-				style={styles.horizRule}
-			/>
+			<hr className="horizRule mb-5 mt-4 px-0 mx-0" style={styles.horizRule} />
 			<Container>
 				<Row className="ml-2">
 					<Col xs="12" lg="1" className="pr-3 px-0 text-lg-center ">
@@ -117,15 +118,9 @@ const Story = ({
 							<span
 								type="button"
 								title="Delete"
-								onClick={() =>
-									deleteStory(currentUserStory?._id)
-								}
+								onClick={() => deleteStory(currentUserStory?._id)}
 							>
-								<i
-									class="fa fa-trash-o"
-									aria-hidden="true"
-									style={styles.icon}
-								></i>
+								<i class="fa fa-trash-o" aria-hidden="true" style={styles.icon}></i>
 							</span>
 						</Row>
 					</Col>
@@ -142,10 +137,8 @@ const Story = ({
 						className="rounded-pill mt-4 mb-2"
 						style={styles.readMoreButton}
 						onClick={() => {
-							if (setMainFeedStoryFlag)
-								setMainFeedStoryFlag(false);
-							else if (setPersonalPreviewStory)
-								setPersonalPreviewStory(false);
+							if (setMainFeedStoryFlag) setMainFeedStoryFlag(false);
+							else if (setPersonalPreviewStory) setPersonalPreviewStory(false);
 
 							// this.getCurrentUserStory(
 							// 	DB.mystories[i]
@@ -159,6 +152,11 @@ const Story = ({
 					</Button>
 				</Row>
 			</Container>
+		</React.Fragment>
+	);
+	return (
+		<React.Fragment>
+			<PageViewLayout body={renderData} state={state} loading={loading} />
 		</React.Fragment>
 	);
 };
@@ -184,8 +182,7 @@ const styles = {
 		marginLeft: "5.5rem",
 		width: "14rem",
 		border: "none",
-		backgroundImage:
-			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
+		backgroundImage: "linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 };
 
