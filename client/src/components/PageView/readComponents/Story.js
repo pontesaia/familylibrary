@@ -32,8 +32,6 @@ const Story = ({
 	let { id } = useParams();
 
 	const getStory = () => {
-		console.log("Getting a story!");
-		console.log(id);
 		axios
 			.get(`/userStories/userStory/${id}`)
 			.then((response) => {
@@ -63,7 +61,6 @@ const Story = ({
 					familyName,
 					avatar,
 				};
-				// console.log("THis is the merge", merge);
 				return merge;
 			})
 
@@ -81,6 +78,23 @@ const Story = ({
 			else if (setPersonalPreviewStory) history.push("/MyStories");
 		});
 	};
+
+	let editDeleteBtns = currentUserStory.userId === state.userId ? (
+		<Col xs="3" lg="2" className="pl-0">
+			<Row className="pl-3">
+				<span type="button" title="Edit">
+					<i className="fa fa-pencil-square-o" aria-hidden="true" style={styles.icon}></i>
+				</span>
+				<span
+					type="button"
+					title="Delete"
+					onClick={() => deleteStory(currentUserStory?._id)}
+				>
+					<i className="fa fa-trash-o" aria-hidden="true" style={styles.icon}></i>
+				</span>
+			</Row>
+		</Col>
+	) : <div></div>
 
 	let renderData = (
 		<React.Fragment>
@@ -106,24 +120,7 @@ const Story = ({
 							<b>Date posted:</b> {getStoryDate()}
 						</h6>
 					</Col>
-					<Col xs="3" lg="2" className="pl-0">
-						<Row className="pl-3">
-							<span type="button" title="Edit">
-								<i
-									class="fa fa-pencil-square-o"
-									aria-hidden="true"
-									style={styles.icon}
-								></i>
-							</span>
-							<span
-								type="button"
-								title="Delete"
-								onClick={() => deleteStory(currentUserStory?._id)}
-							>
-								<i class="fa fa-trash-o" aria-hidden="true" style={styles.icon}></i>
-							</span>
-						</Row>
-					</Col>
+					{editDeleteBtns}
 				</Row>
 				<Row className="ml-4 mr-5">
 					<Col xs="12" lg="11" className="px-0 offset-lg-1 mt-2 pl-1">
