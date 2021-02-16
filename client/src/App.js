@@ -12,7 +12,7 @@ import ComposeStory from "./components/PageView/writeComponents/ComposeStory";
 import MainFeed from "./components/PageView/readComponents/MainFeed";
 import PersonalFeedPreview from "./components/PageView/readComponents/PersonalFeed";
 import Logout from "./components/Home/Logout";
-import Story from "./components/PageView/readComponents/Story"
+import Story from "./components/PageView/readComponents/Story";
 
 export const AuthContext = React.createContext();
 
@@ -74,34 +74,19 @@ function App() {
 					{state.isAuthenticated ? (
 						<Switch>
 							<Route exact path="/" render={() => <Home />} />
-							<Route
-								exact
-								path="/Login"
-								render={() => <Login />}
-							/>
-							<Route
-								exact
-								path="/Logout"
-								render={() => <Logout />}
-							/>
-							<Route
-								exact
-								path="/Feed"
-								render={() => <MainFeed state={state} />}
-							/>
+							<Route exact path="/Login" render={() => <Login />} />
+							<Route exact path="/Logout" render={() => <Logout />} />
+							<Route exact path="/Feed" render={() => <MainFeed state={state} />} />
 							<Route
 								exact
 								path="/MyStories"
-								render={() => (
-									<PersonalFeedPreview state={state} />
-								)}
+								render={() => <PersonalFeedPreview state={state} />}
 							/>
+							<Route exact path="/story/:id" render={() => <Story state={state} />} />
 							<Route
 								exact
-								path="/story/:id"
-								render={() => (
-									<Story state={state} />
-								)}
+								path="/story/edit/:id"
+								render={() => <ComposeStory state={state} />}
 							/>
 							<Route
 								exact
@@ -123,21 +108,13 @@ function App() {
 								path="/FamilyView/Features"
 								render={() => <FamilyViewFeatures />}
 							/>
-							<Route
-								exact
-								path="/TestDB"
-								render={() => <TestDB />}
-							/>
+							<Route exact path="/TestDB" render={() => <TestDB />} />
 							<Redirect to="/" />
 						</Switch>
 					) : (
 						<Switch>
 							<Route exact path="/" render={() => <Home />} />
-							<Route
-								exact
-								path="/Login"
-								render={() => <Login />}
-							/>
+							<Route exact path="/Login" render={() => <Login />} />
 							<Redirect to="/" />
 						</Switch>
 					)}

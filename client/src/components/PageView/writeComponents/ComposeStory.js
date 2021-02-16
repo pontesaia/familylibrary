@@ -1,14 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import ReactQuill from "react-quill";
 import axios from "axios";
 import PageViewLayout from "../PageViewLayout";
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 
-const ComposeStory = ({state}) => {
+const ComposeStory = ({ state }) => {
 	const [title, setTitle] = useState("");
 	const [story, setStory] = useState("");
 	const [redirect, setRedirect] = useState(false);
+	const [currentUserStory, setCurrentUserStory] = useState(null);
+
+	useEffect(() => {
+		setTitle(currentUserStory?.title);
+		setStory(currentUserStory?.story);
+	}, [currentUserStory]);
+
+	useEffect(() => {
+		// setTitle("")
+		// setStory("")
+		if (id) getStory();
+	}, []);
+
+	let { id } = useParams();
+
+	const getStory = () => {
+		axios
+			.get(`/userStories/story/${id}`)
+			.then((response) => {
+				getAuthor(response.data).then((response) => {
+					const userId = sessionStorage.getItem("userId");
+					if (userId === response.userId) setCurrentUserStory(response);
+				});
+				// .then((response) => setLoading(false));
+				// return response;
+				// if(!response.userId) setUser(data)
+			})
+			.catch((error) => {
+				console.log("Error");
+				console.log(error);
+			});
+	};
+
+	const getAuthor = async (story) => {
+		const res = await axios
+			.get(`/user/${story.userId}`)
+			.then((response) => {
+				const { name, givenName, familyName, avatar } = response.data;
+				const merge = {
+					...story,
+					name,
+					givenName,
+					familyName,
+					avatar,
+				};
+				return merge;
+			})
+
+			.catch((error) => {
+				console.log(error);
+			});
+		return res;
+	};
 
 	const onChangeTitle = (e) => {
 		setTitle(e.target.value);
@@ -24,13 +77,30 @@ const ComposeStory = ({state}) => {
 			title: title,
 			story: story,
 		};
-		if (title && story) {
+		if (id && state.userId === currentUserStory?.userId) {
+			axios
+				.put(`/userStories/story/edit/${id}`, userStory)
+				.then((res) => {
+					console.log(res.data);
+					setTimeout(() => {
+						setRedirect(true);
+					}, 500);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		} else if (title && story) {
 			axios
 				.post("/userStories", userStory)
-				.then((res) => console.log(res.data));
-			setTimeout(() => {
-				setRedirect(true);
-			}, 500);
+				.then((res) => {
+					console.log(res.data);
+					setTimeout(() => {
+						setRedirect(true);
+					}, 500);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 		}
 	};
 
@@ -42,10 +112,7 @@ const ComposeStory = ({state}) => {
 
 	let renderData = (
 		<Container>
-			<hr
-				className="horizRule mb-5 mt-4 px-0 mx-0"
-				style={styles.horizRule}
-			/>
+			<hr className="horizRule mb-5 mt-4 px-0 mx-0" style={styles.horizRule} />
 			<form onSubmit={onSubmit}>
 				<Row>
 					<Col xs="12" lg="1" className="pr-2 px-0 text-lg-center">
@@ -59,17 +126,13 @@ const ComposeStory = ({state}) => {
 					</Col>
 					<Col xs="12" lg="11" className="pl-lg-4">
 						<div className="form-group">
-							<label style={{ fontWeight: "700" }}>
-								Title of Story
-							</label>
+							<label style={{ fontWeight: "700" }}>Title of Story</label>
 							<input
 								required
 								className="form-control"
 								value={title || ""}
 								onChange={onChangeTitle}
-								placeholder={
-									"Enter Title of Family Story Here..."
-								}
+								placeholder={"Enter Title of Family Story Here..."}
 							></input>
 						</div>
 					</Col>
@@ -77,9 +140,7 @@ const ComposeStory = ({state}) => {
 				<Row className="offset-lg-1">
 					<Col xs="12">
 						<div className="form-group">
-							<label style={{ fontWeight: "700" }}>
-								Family Story
-							</label>
+							<label style={{ fontWeight: "700" }}>Family Story</label>
 							<ReactQuill
 								className="quillApp"
 								theme="snow"
@@ -87,25 +148,19 @@ const ComposeStory = ({state}) => {
 								placeholder={"Write your story..."}
 								modules={ComposeStory.modules}
 								formats={ComposeStory.formats}
+								value={story || ""}
 							/>
 						</div>
 						<div className="form-group">
 							{/* <input type="submit" className="btn btn-primary" /> */}
-							<Button
-								onClick={onSubmit}
-								type="button"
-								className="btn btn-primary"
-							>
+							<Button onClick={onSubmit} type="button" className="btn btn-primary">
 								Submit
 							</Button>
 						</div>
 					</Col>
 				</Row>
 			</form>
-			<hr
-				className="horizRule mb-5 mt-4 px-0 mx-0"
-				style={styles.horizRule}
-			/>
+			<hr className="horizRule mb-5 mt-4 px-0 mx-0" style={styles.horizRule} />
 		</Container>
 	);
 	return (
@@ -135,12 +190,7 @@ ComposeStory.modules = {
 		[{ size: [] }],
 		// ["bold", "italic", "underline", "strike", "blockquote"],
 		["bold", "italic", "underline", "strike"],
-		[
-			{ list: "ordered" },
-			{ list: "bullet" },
-			{ indent: "-1" },
-			{ indent: "+1" },
-		],
+		[{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
 		["link", "image", "video"],
 		["clean"],
 	],

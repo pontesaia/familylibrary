@@ -33,7 +33,7 @@ const Story = ({
 
 	const getStory = () => {
 		axios
-			.get(`/userStories/userStory/${id}`)
+			.get(`/userStories/story/${id}`)
 			.then((response) => {
 				getAuthor(response.data)
 					.then((response) => {
@@ -80,22 +80,37 @@ const Story = ({
 		});
 	};
 
-	let editDeleteBtns = currentUserStory.userId === state.userId ? (
-		<Col xs="3" lg="2" className="pl-0">
-			<Row className="pl-3">
-				<span type="button" title="Edit">
-					<i className="fa fa-pencil-square-o" aria-hidden="true" style={styles.icon}></i>
-				</span>
-				<span
-					type="button"
-					title="Delete"
-					onClick={() => deleteStory(currentUserStory?._id)}
-				>
-					<i className="fa fa-trash-o" aria-hidden="true" style={styles.icon}></i>
-				</span>
-			</Row>
-		</Col>
-	) : <div></div>
+	const editStory = (storyId) => {
+		history.push(`/story/edit/${storyId}`);
+	};
+
+	let editDeleteBtns =
+		currentUserStory.userId === state.userId ? (
+			<Col xs="3" lg="2" className="pl-0">
+				<Row className="pl-3">
+					<span
+						type="button"
+						title="Edit"
+						onClick={() => editStory(currentUserStory?._id)}
+					>
+						<i
+							className="fa fa-pencil-square-o"
+							aria-hidden="true"
+							style={styles.icon}
+						></i>
+					</span>
+					<span
+						type="button"
+						title="Delete"
+						onClick={() => deleteStory(currentUserStory?._id)}
+					>
+						<i className="fa fa-trash-o" aria-hidden="true" style={styles.icon}></i>
+					</span>
+				</Row>
+			</Col>
+		) : (
+			<div></div>
+		);
 
 	let renderData = (
 		<React.Fragment>
@@ -135,7 +150,7 @@ const Story = ({
 						className="rounded-pill mt-4 mb-2"
 						style={styles.readMoreButton}
 						onClick={() => {
-							history.goBack()
+							history.goBack();
 							// if (setMainFeedStoryFlag) setMainFeedStoryFlag(false);
 							// else if (setPersonalPreviewStory) setPersonalPreviewStory(false);
 
