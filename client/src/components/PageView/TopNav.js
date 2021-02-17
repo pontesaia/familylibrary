@@ -10,13 +10,19 @@ import {
 	DropdownToggle,
 	DropdownMenu,
 	DropdownItem,
+	Modal,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Logout from "../Home/Logout";
 
 const TopNav = ({ state }) => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const toggle = () => setDropdownOpen((prevState) => !prevState);
+	const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
+	const [modal, setModal] = useState(false);
+	const toggleModal = () => setModal(!modal);
 
 	return (
 		<React.Fragment>
@@ -56,7 +62,7 @@ const TopNav = ({ state }) => {
 						</Link>
 					</NavItem>
 					<NavItem style={styles.navItem}>
-						<Dropdown isOpen={dropdownOpen} toggle={toggle}>
+						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
 							{/* <Link to="Logout" style={styles.navLinks}> */}
 							<DropdownToggle style={{ borderRadius: "50%" }}>
 								<i class="fa fa-user fa-2x" aria-hidden="true" />
@@ -64,8 +70,13 @@ const TopNav = ({ state }) => {
 
 							{/* </Link> */}
 							<DropdownMenu>
-								<DropdownItem header>{state.givenName}</DropdownItem>
-								<DropdownItem>My Account</DropdownItem>
+								<DropdownItem header>{state?.givenName}</DropdownItem>
+								<DropdownItem onClick={toggleModal}>My Account</DropdownItem>
+								<DropdownItem>
+									<Link to="/MyStories" style={{ textDecoration: "none" }}>
+										My Stories
+									</Link>
+								</DropdownItem>
 								<DropdownItem divider />
 								<DropdownItem>
 									<Link to="Logout" style={{ textDecoration: "none" }}>
@@ -77,6 +88,25 @@ const TopNav = ({ state }) => {
 					</NavItem>
 				</Nav>
 			</Navbar>
+			<Modal isOpen={modal} toggle={toggleModal} centered>
+				<ModalHeader toggle={toggleModal}>Modal title</ModalHeader>
+				<ModalBody>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+					incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+					nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+					culpa qui officia deserunt mollit anim id est laborum.
+				</ModalBody>
+				<ModalFooter>
+					<Button color="primary" onClick={toggleModal}>
+						Do Something
+					</Button>{" "}
+					<Button color="secondary" onClick={toggleModal}>
+						Cancel
+					</Button>
+				</ModalFooter>
+			</Modal>
 		</React.Fragment>
 	);
 };
