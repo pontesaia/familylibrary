@@ -11,22 +11,43 @@ const Logout = () => {
 	const history = useHistory();
 
 	const onSuccess = () => {
-		alert("Logout made successfully");
+		// alert("Logout made successfully");
 		dispatch({
 			type: "LOGOUT",
 		});
-		history.push("/Feed");
+		// history.push("/");
 	};
 
 	return (
 		<div>
 			<GoogleLogout
 				clientId={clientId}
-				buttonText="Logout"
+				render={(renderProps) => (
+					<button
+						onClick={renderProps.onClick}
+						disabled={renderProps.disabled}
+						style={styles.btn}
+					>
+						Logout
+					</button>
+				)}
+				// buttonText="Logout"
 				onLogoutSuccess={onSuccess}
 			></GoogleLogout>
 		</div>
 	);
+};
+
+const styles = {
+	btn: {
+		background: "none",
+		color: "inherit",
+		border: "none",
+		padding: 0,
+		font: "inherit",
+		cursor: "pointer",
+		outline: "inherit",
+	},
 };
 
 export default Logout;

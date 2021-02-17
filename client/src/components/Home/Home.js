@@ -8,6 +8,7 @@ import Contact from "./Contact";
 import Features from "./Features";
 import Login from "./Login";
 import Register from "./Register";
+import OAuthLogin from "./OAuthLogin";
 
 class Home extends Component {
 	constructor(props) {
@@ -96,9 +97,9 @@ class Home extends Component {
 								style={styles.buttonLogin}
 								id="loginBtn"
 								name="loginCollapsed"
-								onClick={this.toggleComponent}
+								// onClick={this.toggleComponent}
 							>
-								LOG IN
+								<OAuthLogin />
 							</Button>
 						</Col>
 						{/* <Col xs="12" md="6">

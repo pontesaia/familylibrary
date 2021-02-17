@@ -1,8 +1,23 @@
-import React from "react";
-import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Button } from "reactstrap";
+import React, { useState } from "react";
+import {
+	Navbar,
+	Nav,
+	NavbarBrand,
+	NavItem,
+	NavLink,
+	Button,
+	Dropdown,
+	DropdownToggle,
+	DropdownMenu,
+	DropdownItem,
+} from "reactstrap";
 import { Link } from "react-router-dom";
+import Logout from "../Home/Logout";
 
-const TopNav = () => {
+const TopNav = ({ state }) => {
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const toggle = () => setDropdownOpen((prevState) => !prevState);
+
 	return (
 		<React.Fragment>
 			<Navbar
@@ -34,19 +49,31 @@ const TopNav = () => {
 						<Link to="/ComposeStory" style={styles.navLinks}>
 							Write
 							<span className="d-none d-lg-inline">
-								<Button
-									className="rounded-pill"
-									style={styles.writeButton}
-								>
+								<Button className="rounded-pill" style={styles.writeButton}>
 									<span style={styles.plusSign}>+</span>
 								</Button>
 							</span>
 						</Link>
 					</NavItem>
 					<NavItem style={styles.navItem}>
-						<Link to="Logout" style={styles.navLinks}>
-							Log Out
-						</Link>
+						<Dropdown isOpen={dropdownOpen} toggle={toggle}>
+							{/* <Link to="Logout" style={styles.navLinks}> */}
+							<DropdownToggle style={{ borderRadius: "50%" }}>
+								<i class="fa fa-user fa-2x" aria-hidden="true" />
+							</DropdownToggle>
+
+							{/* </Link> */}
+							<DropdownMenu>
+								<DropdownItem header>{state.givenName}</DropdownItem>
+								<DropdownItem>My Account</DropdownItem>
+								<DropdownItem divider />
+								<DropdownItem>
+									<Link to="Logout" style={{ textDecoration: "none" }}>
+										<Logout />
+									</Link>
+								</DropdownItem>
+							</DropdownMenu>
+						</Dropdown>
 					</NavItem>
 				</Nav>
 			</Navbar>
@@ -67,6 +94,7 @@ const styles = {
 	navLinks: {
 		fontFamily: "Comfortaa",
 		fontSize: "1.8rem",
+		textDecoration: "none",
 	},
 	writeButton: {
 		marginLeft: "8px",
@@ -75,8 +103,7 @@ const styles = {
 		border: "none",
 		backgroundColor: "hotpink",
 		fontSize: "3.5rem",
-		backgroundImage:
-			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
+		backgroundImage: "linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 	plusSign: {
 		position: "relative",
