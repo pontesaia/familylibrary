@@ -64,13 +64,21 @@ const TopNav = ({ state }) => {
 					<NavItem style={styles.navItem}>
 						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
 							{/* <Link to="Logout" style={styles.navLinks}> */}
-							<DropdownToggle style={{ borderRadius: "50%" }}>
-								<i class="fa fa-user fa-2x" aria-hidden="true" />
+							<DropdownToggle
+								style={{ backgroundColor: "transparent", border: "none" }}
+							>
+								{(
+									<img
+										src={state?.avatar}
+										style={{ borderRadius: "50%", width: "4rem" }}
+									/>
+								) || <i class="fa fa-user fa-2x" aria-hidden="true" />}
 							</DropdownToggle>
+							<span style={{ fontSize: "1.4rem" }}>{state?.givenName || ""}</span>
 
 							{/* </Link> */}
 							<DropdownMenu>
-								<DropdownItem header>{state?.givenName}</DropdownItem>
+								{/* <DropdownItem header>{state?.givenName}</DropdownItem> */}
 								<DropdownItem onClick={toggleModal}>My Account</DropdownItem>
 								<DropdownItem>
 									<Link to="/MyStories" style={{ textDecoration: "none" }}>
