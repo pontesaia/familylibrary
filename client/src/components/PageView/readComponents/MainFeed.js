@@ -39,9 +39,9 @@ function MainFeed({ state }) {
 		return time;
 	};
 
-	const getCurrentUserStory = (story) => {
-		setCurrentUserStory(story);
-	};
+	// const getCurrentUserStory = (story) => {
+	// 	setCurrentUserStory(story);
+	// };
 
 	useEffect(() => {
 		getUserStories();
@@ -52,19 +52,26 @@ function MainFeed({ state }) {
 	// }, [userStories]);
 
 	const getUserStories = () => {
-		axios
-			.get("/userStories/")
-			.then((response) => {
-				// if (response.data.length > 0) {
-				getAuthorInfo(response.data)
-					.then((response) => {
-						setUserStories((prev) => [...prev, ...response]);
-					})
-					.then((response) => setLoading(false));
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		//check my family and get my members
+		// axios.
+		//save members in a state variable
+		//map through that members array
+		//for each member get their stories
+		//concat everyones stories into a storyFeed state variable
+
+		// axios
+		// 	.get("/userStories/")
+		// 	.then((response) => {
+		// 		// if (response.data.length > 0) {
+		// 		getAuthorInfo(response.data)
+		// 			.then((response) => {
+		// 				setUserStories((prev) => [...prev, ...response]);
+		// 			})
+		// 			.then((response) => setLoading(false));
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 	});
 	};
 
 	const getAuthorInfo = async (stories) => {
