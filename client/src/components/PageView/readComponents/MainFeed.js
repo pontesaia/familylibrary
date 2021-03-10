@@ -8,19 +8,19 @@ import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
 
 function MainFeed({ state }) {
-	const { avatar, name } = state;
+	const { avatar, userId, name } = state;
 	const [currentUserStory, setCurrentUserStory] = useState("");
 	// const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
 	const [userStories, setUserStories] = useState([]);
 	const [loading, setLoading] = useState(true);
+	// const [familyId, setFamilyId] = useState("");
 	const history = useHistory();
 	// const [authorInfo, setAuthorInfo] = useState([]);
 	// const [titles, setTitles] = useState("");
 	// const [stories, setStories] = useState("");
 
 	const trimString = (str, length) => {
-		if (str && str.length > length)
-			return str.substring(0, length) + ".....";
+		if (str && str.length > length) return str.substring(0, length) + ".....";
 		else return str;
 	};
 
@@ -52,8 +52,19 @@ function MainFeed({ state }) {
 	// }, [userStories]);
 
 	const getUserStories = () => {
+		//get my user profile
+		axios
+			.get(`user/${userId}`)
+			// .then((response) => {
+			// 	// setFamilyId(response.data.familyId)
+			// })
+			.then((response) => {
+				axios.get(`familyGroup/${response.data.familyId}`).then((response) => {
+					console.log(response.data);
+				});
+			});
+
 		//check my family and get my members
-		// axios.
 		//save members in a state variable
 		//map through that members array
 		//for each member get their stories
@@ -81,12 +92,7 @@ function MainFeed({ state }) {
 					return axios
 						.get(`/user/${story.userId}`)
 						.then((response) => {
-							const {
-								name,
-								givenName,
-								familyName,
-								avatar,
-							} = response.data;
+							const { name, givenName, familyName, avatar } = response.data;
 							const merge = {
 								...story,
 								name,
@@ -105,63 +111,52 @@ function MainFeed({ state }) {
 		);
 	};
 
-	let renderData =
-		userStories?.map((d, i) =>
-			d?.userId ? (
-				<span key={i}>
-					<hr
-						className="horizRule mb-5 mt-4 px-0 mx-0"
-						style={styles.horizRule}
-					/>
-					<Container>
-						<Row className="ml-2">
-							<Col
-								xs="12"
-								lg="1"
-								className="pr-3 px-0 text-lg-center"
+	let renderData = userStories?.map((d, i) =>
+		d?.userId ? (
+			<span key={i}>
+				<hr className="horizRule mb-5 mt-4 px-0 mx-0" style={styles.horizRule} />
+				<Container>
+					<Row className="ml-2">
+						<Col xs="12" lg="1" className="pr-3 px-0 text-lg-center">
+							<img
+								src={userStories[i]?.avatar}
+								style={styles.avatar}
+								className="mb-2"
+								alt="avatar"
+							/>
+						</Col>
+						<Col xs="12" lg="3" className="px-0">
+							<h5>{d?.title}</h5>
+							<h6>
+								<b>Posted By:</b>{" "}
+							</h6>
+							<h6>{userStories[i]?.name}</h6>
+							<h6>
+								<b>Date posted: </b>
+							</h6>
+							<h6>{getStoryDate(i)}</h6>
+							<h6>{getStoryTime(i)}</h6>
+							<h6 className="mb-4">{d?.tags}</h6>
+						</Col>
+						<Col xs="12" lg="7" className="pl-0 mb-2 pr-4">
+							<div
+								dangerouslySetInnerHTML={{
+									__html: trimString(userStories[i]?.story, 450),
+								}}
+							></div>
+							<Button
+								className="rounded-pill m-0"
+								style={styles.readMoreButton}
+								onClick={() => {
+									// getCurrentUserStory(userStories[i]);
+									// setMainFeedStoryFlag(true);
+									history.push(`/story/${userStories[i]._id}`);
+								}}
 							>
-								<img
-									src={userStories[i]?.avatar}
-									style={styles.avatar}
-									className="mb-2"
-									alt="avatar"
-								/>
-							</Col>
-							<Col xs="12" lg="3" className="px-0">
-								<h5>{d?.title}</h5>
-								<h6>
-									<b>Posted By:</b>{" "}
-								</h6>
-								<h6>{userStories[i]?.name}</h6>
-								<h6>
-									<b>Date posted: </b>
-								</h6>
-								<h6>{getStoryDate(i)}</h6>
-								<h6>{getStoryTime(i)}</h6>
-								<h6 className="mb-4">{d?.tags}</h6>
-							</Col>
-							<Col xs="12" lg="7" className="pl-0 mb-2 pr-4">
-								<div
-									dangerouslySetInnerHTML={{
-										__html: trimString(
-											userStories[i]?.story,
-											450
-										),
-									}}
-								></div>
-								<Button
-									className="rounded-pill m-0"
-									style={styles.readMoreButton}
-									onClick={() => {
-										// getCurrentUserStory(userStories[i]);
-										// setMainFeedStoryFlag(true);
-										history.push(`/story/${userStories[i]._id}`);
-									}}
-								>
-									<span>read more...</span>
-								</Button>
-							</Col>
-							{/* <Col xs="12" lg="1" className="pl-0">
+								<span>read more...</span>
+							</Button>
+						</Col>
+						{/* <Col xs="12" lg="1" className="pl-0">
 								<Row className="pl-3">
 									<span type="button" title="Edit">
 										<i
@@ -179,11 +174,11 @@ function MainFeed({ state }) {
 									</span>
 								</Row>
 							</Col> */}
-						</Row>
-					</Container>
-				</span>
-			) : null
-		)
+					</Row>
+				</Container>
+			</span>
+		) : null
+	);
 	//  : (
 	// 	<Fade right duration={500}>
 	// 		<Story
@@ -196,7 +191,7 @@ function MainFeed({ state }) {
 
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData} state={state} loading={loading}/>
+			<PageViewLayout body={renderData} state={state} loading={loading} />
 		</React.Fragment>
 	);
 }
@@ -222,8 +217,7 @@ const styles = {
 		marginLeft: "8px",
 		width: "152px",
 		border: "none",
-		backgroundImage:
-			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
+		backgroundImage: "linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 };
 
