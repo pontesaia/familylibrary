@@ -75,7 +75,7 @@ function App() {
 						<Switch>
 							<Route exact path="/" render={() => <Home />} />
 							<Route exact path="/Login" render={() => <Login />} />
-							<Route exact path="/Logout" render={() => <Logout />} />
+							{/* <Route exact path="/Logout" render={() => <Logout />} /> */}
 							<Route exact path="/Feed" render={() => <MainFeed state={state} />} />
 							<Route
 								exact

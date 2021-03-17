@@ -7,6 +7,7 @@ const path = require("path");
 const api = require("./routes/routes");
 const userStoriesRouter = require("./routes/userStoriesRoutes");
 const userRouter = require("./routes/userRoutes");
+const familyGroupRouter = require("./routes/familyGroupRoutes");
 
 if (process.env.NODE_ENV !== "production") {
 	require("dotenv").config();
@@ -44,6 +45,7 @@ app.use(cors());
 app.use("/api/v1/", api);
 app.use("/userStories", userStoriesRouter);
 app.use("/user", userRouter)
+app.use("/familyGroup", familyGroupRouter);
 
 // This middleware informs the express application to serve our compiled React files
 if (

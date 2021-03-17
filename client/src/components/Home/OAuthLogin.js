@@ -10,8 +10,7 @@ const path = require("path");
 require("dotenv").config();
 
 // const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-const clientId =
-	"787562465084-gjkts9646p9ivqfic0knovp6135p355c.apps.googleusercontent.com";
+const clientId = "787562465084-gjkts9646p9ivqfic0knovp6135p355c.apps.googleusercontent.com";
 
 const OAuthLogin = () => {
 	const { dispatch } = useContext(AuthContext);
@@ -57,10 +56,14 @@ const OAuthLogin = () => {
 		console.log("[Login failed] res: ", res);
 	};
 
+	//if user already exists error will be thrown so this only adds new users. Is this okay?
 	const setUser = (data) => {
 		axios
 			.post("/user", data)
-			.then((res) => console.log("THIS IS IT!!!", res.data));
+			.then((res) => console.log("User Posted!", res.data))
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	const getUser = async (userId, data) => {
@@ -74,13 +77,17 @@ const OAuthLogin = () => {
 			.catch((error) => {
 				console.log(error);
 			});
-		
 	};
 
 	return (
 		<div>
 			<GoogleLogin
 				clientId={clientId}
+				render={(renderProps) => (
+					<button onClick={renderProps.onClick} disabled={renderProps.disabled} style={styles.btn}>
+						LOG IN
+					</button>
+				)}
 				buttonText="Log in with Google"
 				onSuccess={onSuccess}
 				onFailure={onFailure}
@@ -90,6 +97,18 @@ const OAuthLogin = () => {
 			/>
 		</div>
 	);
+};
+
+const styles = {
+	btn: {
+		background: "none",
+		color: "inherit",
+		border: "none",
+		padding: 0,
+		font: "inherit",
+		cursor: "pointer",
+		outline: "inherit",
+	},
 };
 
 export default OAuthLogin;

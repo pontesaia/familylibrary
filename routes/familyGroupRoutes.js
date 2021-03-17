@@ -4,8 +4,8 @@ const familyGroupController = require("../controllers/familyGroupController.js")
 router
 	.route("/")
 	.get(familyGroupController.findAll)
-	.post(familyGroupController.create);
-	// .delete(userController.removeAll);
+	.post(familyGroupController.create)
+	.delete(familyGroupController.removeAll);
 
 router
 	.route("/:id")

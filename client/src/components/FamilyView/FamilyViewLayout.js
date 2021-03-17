@@ -5,7 +5,7 @@ import TopNav from "../PageView/TopNav";
 import BottomNav from "../PageView/BottomNav";
 import FamilyCrest from "./FamilyCrest";
 
-const FamilyView = (props) => {
+const FamilyViewLayout = (props) => {
 	return (
 		<React.Fragment>
 			<Container
@@ -40,4 +40,4 @@ const styles = {
 	mainBody: { overflowY: "auto", overflowX: "hidden" },
 };
 
-export default FamilyView;
+export default FamilyViewLayout;

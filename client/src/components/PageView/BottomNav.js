@@ -25,7 +25,7 @@ const BottomNav = () => {
 							About
 						</Link>
 					</NavItem>
-					<NavItem style={styles.navItem}>
+					{/* <NavItem style={styles.navItem}>
 						<Link
 							style={styles.navLinks}
 							to="/MyStories"
@@ -33,7 +33,7 @@ const BottomNav = () => {
 						>
 							My Stories
 						</Link>
-					</NavItem>
+					</NavItem> */}
 					<NavItem style={styles.navItem}>
 						<Link
 							style={styles.navLinks}

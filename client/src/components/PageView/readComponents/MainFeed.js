@@ -8,153 +8,137 @@ import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
 
 function MainFeed({ state }) {
-	const { avatar, name } = state;
-	const [currentUserStory, setCurrentUserStory] = useState("");
-	// const [mainFeedStoryFlag, setMainFeedStoryFlag] = useState(false);
-	const [userStories, setUserStories] = useState([]);
+	const { avatar, userId, name } = state;
 	const [loading, setLoading] = useState(true);
 	const history = useHistory();
-	// const [authorInfo, setAuthorInfo] = useState([]);
-	// const [titles, setTitles] = useState("");
-	// const [stories, setStories] = useState("");
+	const [stories, setStories] = useState([]);
+	const [sortedStories, setSortedStories] = useState([]);
 
 	const trimString = (str, length) => {
-		if (str && str.length > length)
-			return str.substring(0, length) + ".....";
+		if (str && str.length > length) return str.substring(0, length) + ".....";
 		else return str;
 	};
 
-	const getStoryDate = (i) => {
+	const getStoryDate = (story) => {
 		let createdAt;
 		let date;
-		createdAt = userStories[i]?.createdAt;
+		createdAt = story?.createdAt;
 		date = JSON.stringify(new Date(createdAt).toDateString());
 		date = date.substring(1, date.length - 1);
 		return date;
 	};
-	const getStoryTime = (i) => {
-		let createdAt = new Date(userStories[i]?.createdAt);
+	const getStoryTime = (story) => {
+		let createdAt = new Date(story?.createdAt);
 		let time = JSON.stringify(createdAt.toLocaleTimeString());
 		time = time.substring(1, time.length - 1);
 		return time;
-	};
-
-	const getCurrentUserStory = (story) => {
-		setCurrentUserStory(story);
 	};
 
 	useEffect(() => {
 		getUserStories();
 	}, []);
 
-	// useEffect(() => {
-	// 	setLoading(false);
-	// }, [userStories]);
+	useEffect(() => {
+		setLoading(false);
+		let sortedStories = [...stories];
+		console.log("going to sort: ", sortedStories);
+		sortedStories.sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1));
+		setSortedStories(sortedStories);
+		console.log("sorted", sortedStories);
+	}, [stories]);
+
+	const sortStories = (a, b) => {
+		console.log("actual sorting");
+		return b.createdAt - a.createdAt;
+	};
 
 	const getUserStories = () => {
+		//get my user profile
 		axios
-			.get("/userStories/")
+			.get(`user/${userId}`)
+			//get my family
 			.then((response) => {
-				// if (response.data.length > 0) {
-				getAuthorInfo(response.data)
-					.then((response) => {
-						setUserStories((prev) => [...prev, ...response]);
-					})
-					.then((response) => setLoading(false));
-			})
-			.catch((error) => {
-				console.log(error);
+				axios.get(`familyGroup/${response.data.familyId}`).then((response) => {
+					//check my family and get my members
+					const familyMembers = response.data.groupMembers;
+					//get stories from each member and save in usestate
+					familyMembers.map((member) => {
+						let storyData = {};
+						let userData = {};
+						axios
+							.get(`user/${member}`)
+							.then((response) => {
+								userData = response.data;
+							})
+							.then((response) => {
+								axios.get(`userStories/${member}`).then((response) => {
+									storyData = response.data;
+									storyData.map((storyD) => {
+										storyD.userData = userData;
+									});
+
+									setStories((prev) => [...prev, ...storyData]);
+								});
+							});
+					});
+				});
 			});
 	};
 
-	const getAuthorInfo = async (stories) => {
-		return Promise.all(
-			stories.map((story, i) => {
-				if (story.userId) {
-					return axios
-						.get(`/user/${story.userId}`)
-						.then((response) => {
-							const {
-								name,
-								givenName,
-								familyName,
-								avatar,
-							} = response.data;
-							const merge = {
-								...story,
-								name,
-								givenName,
-								familyName,
-								avatar,
-							};
-							return merge;
-						})
-
-						.catch((error) => {
-							console.log(error);
-						});
-				}
-			})
-		);
-	};
-
-	let renderData =
-		userStories?.map((d, i) =>
-			d?.userId ? (
-				<span key={i}>
-					<hr
-						className="horizRule mb-5 mt-4 px-0 mx-0"
-						style={styles.horizRule}
-					/>
-					<Container>
-						<Row className="ml-2">
-							<Col
-								xs="12"
-								lg="1"
-								className="pr-3 px-0 text-lg-center"
+	// let renderData = userStories?.map((d, i) =>
+	let renderData = sortedStories?.map(
+		(story, i) => (
+			// story?.userId ? (
+			<span key={i}>
+				<hr className="horizRule mb-5 mt-4 px-0 mx-0" style={styles.horizRule} />
+				<Container>
+					<Row className="ml-2">
+						<Col xs="12" lg="1" className="pr-3 px-0 text-lg-center">
+							<img
+								// src={userStories[i]?.avatar}
+								src={story?.userData?.avatar}
+								style={styles.avatar}
+								className="mb-2"
+								alt="avatar"
+							/>
+						</Col>
+						<Col xs="12" lg="3" className="px-0">
+							<h5>{story?.title}</h5>
+							<h6>
+								<b>Posted By:</b>{" "}
+							</h6>
+							{/* <h6>{userStories[i]?.name}</h6> */}
+							<h6>{story?.userData?.name}</h6>
+							<h6>
+								<b>Date posted: </b>
+							</h6>
+							{/* <h6>{getStoryDate(i)}</h6>
+							<h6>{getStoryTime(i)}</h6> */}
+							<h6>{getStoryDate(story)}</h6>
+							<h6>{getStoryTime(story)}</h6>
+							<h6 className="mb-4">{story?.tags}</h6>
+						</Col>
+						<Col xs="12" lg="7" className="pl-0 mb-2 pr-4">
+							<div
+								dangerouslySetInnerHTML={{
+									// __html: trimString(userStories[i]?.story, 450),
+									__html: trimString(story?.story, 450),
+								}}
+							></div>
+							<Button
+								className="rounded-pill m-0"
+								style={styles.readMoreButton}
+								onClick={() => {
+									// getCurrentUserStory(userStories[i]);
+									// setMainFeedStoryFlag(true);
+									// history.push(`/story/${userStories[i]._id}`);
+									history.push(`/story/${story._id}`);
+								}}
 							>
-								<img
-									src={userStories[i]?.avatar}
-									style={styles.avatar}
-									className="mb-2"
-									alt="avatar"
-								/>
-							</Col>
-							<Col xs="12" lg="3" className="px-0">
-								<h5>{d?.title}</h5>
-								<h6>
-									<b>Posted By:</b>{" "}
-								</h6>
-								<h6>{userStories[i]?.name}</h6>
-								<h6>
-									<b>Date posted: </b>
-								</h6>
-								<h6>{getStoryDate(i)}</h6>
-								<h6>{getStoryTime(i)}</h6>
-								<h6 className="mb-4">{d?.tags}</h6>
-							</Col>
-							<Col xs="12" lg="7" className="pl-0 mb-2 pr-4">
-								<div
-									dangerouslySetInnerHTML={{
-										__html: trimString(
-											userStories[i]?.story,
-											450
-										),
-									}}
-								></div>
-								<Button
-									className="rounded-pill m-0"
-									style={styles.readMoreButton}
-									onClick={() => {
-										// getCurrentUserStory(userStories[i]);
-										// setMainFeedStoryFlag(true);
-										history.push(`/story/${userStories[i]._id}`);
-									}}
-								>
-									<span>read more...</span>
-								</Button>
-							</Col>
-							{/* <Col xs="12" lg="1" className="pl-0">
+								<span>read more...</span>
+							</Button>
+						</Col>
+						{/* <Col xs="12" lg="1" className="pl-0">
 								<Row className="pl-3">
 									<span type="button" title="Edit">
 										<i
@@ -172,11 +156,12 @@ function MainFeed({ state }) {
 									</span>
 								</Row>
 							</Col> */}
-						</Row>
-					</Container>
-				</span>
-			) : null
+					</Row>
+				</Container>
+			</span>
 		)
+		// ) : null
+	);
 	//  : (
 	// 	<Fade right duration={500}>
 	// 		<Story
@@ -189,7 +174,7 @@ function MainFeed({ state }) {
 
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData} state={state} loading={loading}/>
+			<PageViewLayout body={renderData} state={state} loading={loading} />
 		</React.Fragment>
 	);
 }
@@ -215,8 +200,7 @@ const styles = {
 		marginLeft: "8px",
 		width: "152px",
 		border: "none",
-		backgroundImage:
-			"linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
+		backgroundImage: "linear-gradient(202.17deg, #FF00D6 8.58%, #FF4D00 91.42%)",
 	},
 };
 
