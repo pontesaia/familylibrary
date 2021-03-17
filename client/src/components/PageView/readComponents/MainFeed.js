@@ -17,7 +17,8 @@ function MainFeed({ state }) {
 	const history = useHistory();
 	// const [authorInfo, setAuthorInfo] = useState([]);
 	// const [titles, setTitles] = useState("");
-	// const [stories, setStories] = useState("");
+	const [stories, setStories] = useState([]);
+	
 
 	const trimString = (str, length) => {
 		if (str && str.length > length) return str.substring(0, length) + ".....";
@@ -55,17 +56,27 @@ function MainFeed({ state }) {
 		//get my user profile
 		axios
 			.get(`user/${userId}`)
-			// .then((response) => {
-			// 	// setFamilyId(response.data.familyId)
-			// })
+			//get my family
 			.then((response) => {
 				axios.get(`familyGroup/${response.data.familyId}`).then((response) => {
-					console.log(response.data);
+					//check my family and get my members
+					// console.log(response.data.groupMembers);
+					const familyMembers = response.data.groupMembers;
+					// console.log(familyMembers)
+					familyMembers.map((member) => {
+						axios.get(`userStories/${member}`).then((response) => {
+							setStories((prev) => [...prev, ...response.data ]);
+						})
+						// axios.get(`user/${member}`)
+						// 	.then((response) => {
+						// 		console.log(response.data)
+						// 		//axios.get(userStories/author)
+						// 	})
+					})
 				});
 			});
 
-		//check my family and get my members
-		//save members in a state variable
+		
 		//map through that members array
 		//for each member get their stories
 		//concat everyones stories into a storyFeed state variable
@@ -111,8 +122,9 @@ function MainFeed({ state }) {
 		);
 	};
 
-	let renderData = userStories?.map((d, i) =>
-		d?.userId ? (
+	// let renderData = userStories?.map((d, i) =>
+	let renderData = stories?.map((story, i) =>
+		// story?.userId ? (
 			<span key={i}>
 				<hr className="horizRule mb-5 mt-4 px-0 mx-0" style={styles.horizRule} />
 				<Container>
@@ -126,7 +138,7 @@ function MainFeed({ state }) {
 							/>
 						</Col>
 						<Col xs="12" lg="3" className="px-0">
-							<h5>{d?.title}</h5>
+							<h5>{story?.title}</h5>
 							<h6>
 								<b>Posted By:</b>{" "}
 							</h6>
@@ -136,12 +148,13 @@ function MainFeed({ state }) {
 							</h6>
 							<h6>{getStoryDate(i)}</h6>
 							<h6>{getStoryTime(i)}</h6>
-							<h6 className="mb-4">{d?.tags}</h6>
+							<h6 className="mb-4">{story?.tags}</h6>
 						</Col>
 						<Col xs="12" lg="7" className="pl-0 mb-2 pr-4">
 							<div
 								dangerouslySetInnerHTML={{
-									__html: trimString(userStories[i]?.story, 450),
+									// __html: trimString(userStories[i]?.story, 450),
+									__html: trimString(story.story, 450),
 								}}
 							></div>
 							<Button
@@ -177,7 +190,7 @@ function MainFeed({ state }) {
 					</Row>
 				</Container>
 			</span>
-		) : null
+		// ) : null
 	);
 	//  : (
 	// 	<Fade right duration={500}>
@@ -191,7 +204,8 @@ function MainFeed({ state }) {
 
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData} state={state} loading={loading} />
+			{/* <PageViewLayout body={renderData} state={state} loading={loading} /> */}
+			<PageViewLayout body={renderData} state={state} />
 		</React.Fragment>
 	);
 }
