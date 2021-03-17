@@ -41,16 +41,9 @@ function MainFeed({ state }) {
 	useEffect(() => {
 		setLoading(false);
 		let sortedStories = [...stories];
-		console.log("going to sort: ", sortedStories);
 		sortedStories.sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1));
 		setSortedStories(sortedStories);
-		console.log("sorted", sortedStories);
 	}, [stories]);
-
-	const sortStories = (a, b) => {
-		console.log("actual sorting");
-		return b.createdAt - a.createdAt;
-	};
 
 	const getUserStories = () => {
 		//get my user profile
@@ -129,9 +122,6 @@ function MainFeed({ state }) {
 								className="rounded-pill m-0"
 								style={styles.readMoreButton}
 								onClick={() => {
-									// getCurrentUserStory(userStories[i]);
-									// setMainFeedStoryFlag(true);
-									// history.push(`/story/${userStories[i]._id}`);
 									history.push(`/story/${story._id}`);
 								}}
 							>
