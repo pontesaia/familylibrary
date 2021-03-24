@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Button } from "reactstrap";
+import {
+	Container,
+	Row,
+	Col,
+	Button,
+	Modal,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
+	Form,
+	FormGroup,
+	Label,
+	Input,
+} from "reactstrap";
 import axios from "axios";
 import Fade from "react-reveal/Fade";
 import { useHistory } from "react-router-dom";
 
 import Story from "./Story";
 import PageViewLayout from "../PageViewLayout";
+import mongoose from "mongoose";
 
 function MainFeed({ state }) {
 	const { avatar, userId, name } = state;
@@ -13,6 +27,9 @@ function MainFeed({ state }) {
 	const history = useHistory();
 	const [stories, setStories] = useState([]);
 	const [sortedStories, setSortedStories] = useState([]);
+	const [modal, setModal] = useState(false);
+	const [familyName, setFamilyName] = useState("");
+	const toggleModal = () => setModal(!modal);
 
 	const trimString = (str, length) => {
 		if (str && str.length > length) return str.substring(0, length) + ".....";
@@ -41,9 +58,55 @@ function MainFeed({ state }) {
 	useEffect(() => {
 		setLoading(false);
 		let sortedStories = [...stories];
-		sortedStories.sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1));
+		sortedStories.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 		setSortedStories(sortedStories);
 	}, [stories]);
+
+	useEffect(() => {
+		createFamily(testFamily);
+	}, []);
+
+	const testFamily = {
+		_id: "45678",
+		groupName: "The Frontend Testing Family",
+		groupAdmin: ["testingEmail"],
+		groupMembers: ["testingEmail1", "testingEmail2"],
+	};
+
+	const createFamily = (data) => {
+		axios
+			.post("/familyGroup", data)
+			.then((res) => console.log("familyGroup Posted!", res.data))
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	const updateUser = (data) => {
+
+		axios
+			.put(`/user/${userId}`, data)
+			.then((res) => console.log("user Updated!", res.data))
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const newId = mongoose.Types.ObjectId();
+		const familyObj = {
+			_id: newId,
+			groupName: familyName,
+			groupAdmin: [userId],
+			groupMembers: [userId],
+		};
+		createFamily(familyObj);
+		updateUser({familyId: newId})
+	};
+	const handleChange = (event) => {
+		setFamilyName(event.target.value);
+	};
 
 	const getUserStories = () => {
 		//get my user profile
@@ -51,30 +114,34 @@ function MainFeed({ state }) {
 			.get(`user/${userId}`)
 			//get my family
 			.then((response) => {
-				axios.get(`familyGroup/${response.data.familyId}`).then((response) => {
-					//check my family and get my members
-					const familyMembers = response.data.groupMembers;
-					//get stories from each member and save in usestate
-					familyMembers.map((member) => {
-						let storyData = {};
-						let userData = {};
-						axios
-							.get(`user/${member}`)
-							.then((response) => {
-								userData = response.data;
-							})
-							.then((response) => {
-								axios.get(`userStories/${member}`).then((response) => {
-									storyData = response.data;
-									storyData.map((storyD) => {
-										storyD.userData = userData;
-									});
+				if (response.data.familyId) {
+					axios.get(`familyGroup/${response.data.familyId}`).then((response) => {
+						//check my family and get my members
+						const familyMembers = response.data?.groupMembers;
+						//get stories from each member and save in usestate
+						if (familyMembers) {
+							familyMembers.map((member) => {
+								let storyData = {};
+								let userData = {};
+								axios
+									.get(`user/${member}`)
+									.then((response) => {
+										userData = response.data;
+									})
+									.then((response) => {
+										axios.get(`userStories/${member}`).then((response) => {
+											storyData = response.data;
+											storyData.map((storyD) => {
+												storyD.userData = userData;
+											});
 
-									setStories((prev) => [...prev, ...storyData]);
-								});
+											setStories((prev) => [...prev, ...storyData]);
+										});
+									});
 							});
+						}
 					});
-				});
+				}
 			});
 	};
 
@@ -162,9 +229,49 @@ function MainFeed({ state }) {
 	// 	</Fade>
 	// );
 
+	let addFamily = (
+		<div style={{ textAlign: "center" }}>
+			<h2>Do You Want to Create or Join a Family Group?</h2>
+			<Button onClick={toggleModal} style={{ marginRight: "1rem" }}>
+				Create
+			</Button>
+			<Button>Join</Button>
+		</div>
+	);
+
 	return (
 		<React.Fragment>
-			<PageViewLayout body={renderData} state={state} loading={loading} />
+			<PageViewLayout
+				body={renderData.length ? renderData : addFamily}
+				state={state}
+				loading={loading}
+			/>
+			<Modal isOpen={modal} toggle={toggleModal} centered>
+				<ModalHeader toggle={toggleModal}>Create a Family</ModalHeader>
+				<Form onSubmit={handleSubmit}>
+					<ModalBody>
+						<FormGroup>
+							<Label for="familyName">Family Name</Label>
+							<Input
+								type="text"
+								name="FamilyName"
+								id="familyName"
+								placeholder="Enter your family name"
+								onChange={handleChange}
+							/>
+						</FormGroup>
+					</ModalBody>
+
+					<ModalFooter>
+						<Button color="secondary" onClick={toggleModal}>
+							Cancel
+						</Button>
+						<Button type="submit" color="primary" onClick={toggleModal}>
+							Submit
+						</Button>
+					</ModalFooter>
+				</Form>
+			</Modal>
 		</React.Fragment>
 	);
 }
