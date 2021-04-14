@@ -11,6 +11,18 @@ module.exports = {
 			.then((familyGroup) => res.json(familyGroup))
 			.catch((err) => res.status(422).json(err));
 	},
+	// findByEmail: function (req, res) {
+	// 	// FamilyGroup.find({ groupAdmin: req.params.email })
+	// 	FamilyGroup.find(req.query)
+	// 		.then((familyGroup) => res.json(familyGroup))
+	// 		.catch((err) => res.status(422).json(err));
+	// },
+	findByEmail: function (req, res) {
+		FamilyGroup.find({ groupAdmin: req.params.email })
+		// FamilyGroup.find(req.query)
+			.then((familyGroup) => res.json(familyGroup))
+			.catch((err) => res.status(422).json(err));
+	},
 	create: function (req, res) {
 		FamilyGroup.create(req.body)
 			.then((familyGroup) => res.json(familyGroup))
