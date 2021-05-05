@@ -244,18 +244,41 @@ function MainFeed({ state }) {
 	const handleJoinSubmit = (event) => {
 		event.preventDefault();
 		console.log(myEmail);
+		const memberRequest = {
+			requests: userId,
+		};
+		const groupMember = {
+			groupMembers: userId,
+		};
 		//****************************************************************************************************** */
 		//find the family with the admin email to verify theyre an admin
-		axios.get(`familyGroup/groupAdmin/${myEmail}`).then((response) => {
-			console.log(response.data);
-		});
+		axios
+			.get(`familyGroup/groupAdmin/${myEmail}`)
+			.then((response) => {
+				console.log(response.data);
+			})
+			//find the person that the email belongs to
+			//add the request to the admins request array
+			.then(
+				axios.put(`user/email/${myEmail}`, memberRequest).then((response) => {
+					console.log(response.data);
+				})
+			)
+			.then(() => {
+				console.log("adding my id!!!!!");
+				//*********add users to family group automatically for now
+				axios.put(`familyGroup/groupAdmin/${myEmail}`, groupMember).then((response) => {
+					console.log(response.data);
+				});
+			});
 
-		//find the person that the email belongs to
-		//****modify the schema to include a request array of users
-		//add the request to the admins request array
+		//****************************************************NOTE find a way to spread the requests array to add multiple requests */
+
+		//**SKIP FOR NOW */
 		//when the admin logs in....
 		//display the array of requests with yes/no selections
 		//if yes is clicked go to that user and add your familyid to their document
+		//**SKIP FOR NOW */
 	};
 
 	let addFamily = (

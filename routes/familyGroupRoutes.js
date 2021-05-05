@@ -15,5 +15,6 @@ router
 	.delete(familyGroupController.remove);
 
 router.route("/groupAdmin/:email").get(familyGroupController.findByEmail);
+router.route("/groupAdmin/:email").put(familyGroupController.updateByEmail);
 
 module.exports = router;

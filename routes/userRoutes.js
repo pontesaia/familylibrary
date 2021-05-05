@@ -13,4 +13,7 @@ router
 	.put(userController.update)
 	.delete(userController.remove);
 
+	router.route("/email/:email").get(userController.findByEmail);
+	router.route("/email/:email").put(userController.updateByEmail);
+
 module.exports = router;
