@@ -81,7 +81,10 @@ function MainFeed({ state }) {
 	const createFamily = (data) => {
 		axios
 			.post("/familyGroup", data)
-			.then((res) => console.log("familyGroup Posted!", res.data))
+			.then((res) => {
+				// console.log(data._id);
+				console.log("familyGroup Posted!", res.data);
+			})
 			.catch((error) => {
 				console.log(error);
 			});
@@ -250,12 +253,36 @@ function MainFeed({ state }) {
 		const groupMember = {
 			groupMembers: userId,
 		};
+
+		const myFamilyId = {
+			familyId: familyId,
+			// familyId: "43242425235235",
+		};
 		//****************************************************************************************************** */
+
+//DO THIS NEXT TIME IDIOT!!!!
+		
+		//the join button needs to make the familyId code below
+		//currently family id is saved in state but state is out of sync with the axios fetches so
+		//need to find a way to get the above myFamilyId into the DB
+
+
+
+
+
+
+
+
+//********************************************************************************************** */
+
+
+
 		//find the family with the admin email to verify theyre an admin
 		axios
 			.get(`familyGroup/groupAdmin/${myEmail}`)
 			.then((response) => {
 				console.log(response.data);
+				setFamilyId(response.data[0]._id);
 			})
 			//find the person that the email belongs to
 			//add the request to the admins request array
@@ -270,7 +297,12 @@ function MainFeed({ state }) {
 				axios.put(`familyGroup/groupAdmin/${myEmail}`, groupMember).then((response) => {
 					console.log(response.data);
 				});
-			});
+			})
+			.then(
+				axios.put(`user/${userId}`, myFamilyId).then((response) => {
+					console.log(response.data);
+				})
+			);
 
 		//****************************************************NOTE find a way to spread the requests array to add multiple requests */
 
