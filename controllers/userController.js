@@ -8,7 +8,18 @@ module.exports = {
 	},
 	findById: function (req, res) {
 		User.findById(req.params.id)
-		// User.find({ userId: req.params.id })
+			// User.find({ userId: req.params.id })
+			.then((user) => res.json(user))
+			.catch((err) => res.status(422).json(err));
+	},
+	findByEmail: function (req, res) {
+		User.find({ email: req.params.email })
+			// FamilyGroup.find(req.query)
+			.then((user) => res.json(user))
+			.catch((err) => res.status(422).json(err));
+	},
+	updateByEmail: function (req, res) {
+		User.findOneAndUpdate(req.body)
 			.then((user) => res.json(user))
 			.catch((err) => res.status(422).json(err));
 	},

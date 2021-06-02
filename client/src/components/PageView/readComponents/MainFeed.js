@@ -27,9 +27,14 @@ function MainFeed({ state }) {
 	const history = useHistory();
 	const [stories, setStories] = useState([]);
 	const [sortedStories, setSortedStories] = useState([]);
-	const [modal, setModal] = useState(false);
+	const [modalCreate, setModalCreate] = useState(false);
+	const [modalJoin, setModalJoin] = useState(false);
 	const [familyName, setFamilyName] = useState("");
-	const toggleModal = () => setModal(!modal);
+	const [myEmail, setMyEmail] = useState("");
+	const [familyId, setFamilyId] = useState("");
+	const [modalCreateFamily, setModalCreateFamily] = useState("");
+	const toggleModalCreate = () => setModalCreate(!modalCreate);
+	const toggleModalJoin = () => setModalJoin(!modalJoin);
 
 	const trimString = (str, length) => {
 		if (str && str.length > length) return str.substring(0, length) + ".....";
@@ -62,50 +67,36 @@ function MainFeed({ state }) {
 		setSortedStories(sortedStories);
 	}, [stories]);
 
-	useEffect(() => {
-		createFamily(testFamily);
-	}, []);
+	// useEffect(() => {
+	// 	createFamily(testFamily);
+	// }, []);
 
-	const testFamily = {
-		_id: "45678",
-		groupName: "The Frontend Testing Family",
-		groupAdmin: ["testingEmail"],
-		groupMembers: ["testingEmail1", "testingEmail2"],
-	};
+	// const testFamily = {
+	// 	_id: "45678",
+	// 	groupName: "The Frontend Testing Family",
+	// 	groupAdmin: ["testingEmail"],
+	// 	groupMembers: ["testingEmail1", "testingEmail2"],
+	// };
 
 	const createFamily = (data) => {
 		axios
 			.post("/familyGroup", data)
-			.then((res) => console.log("familyGroup Posted!", res.data))
+			.then((res) => {
+				// console.log(data._id);
+				console.log("familyGroup Posted!", res.data);
+			})
 			.catch((error) => {
 				console.log(error);
 			});
 	};
 
 	const updateUser = (data) => {
-
 		axios
 			.put(`/user/${userId}`, data)
 			.then((res) => console.log("user Updated!", res.data))
 			.catch((error) => {
 				console.log(error);
 			});
-	};
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const newId = mongoose.Types.ObjectId();
-		const familyObj = {
-			_id: newId,
-			groupName: familyName,
-			groupAdmin: [userId],
-			groupMembers: [userId],
-		};
-		createFamily(familyObj);
-		updateUser({familyId: newId})
-	};
-	const handleChange = (event) => {
-		setFamilyName(event.target.value);
 	};
 
 	const getUserStories = () => {
@@ -115,6 +106,7 @@ function MainFeed({ state }) {
 			//get my family
 			.then((response) => {
 				if (response.data.familyId) {
+					setFamilyId(response.data.familyId);
 					axios.get(`familyGroup/${response.data.familyId}`).then((response) => {
 						//check my family and get my members
 						const familyMembers = response.data?.groupMembers;
@@ -229,26 +221,132 @@ function MainFeed({ state }) {
 	// 	</Fade>
 	// );
 
+	const handleFamilyNameChange = (event) => {
+		setFamilyName(event.target.value);
+	};
+	const handleEmailChange = (event) => {
+		setMyEmail(event.target.value);
+	};
+
+	const handleCreateSubmit = (event) => {
+		console.log(event);
+		event.preventDefault();
+		const newId = mongoose.Types.ObjectId();
+		const familyObj = {
+			_id: newId,
+			groupName: familyName,
+			// groupAdmin: [userId],
+			groupAdmin: [myEmail],
+			groupMembers: [userId],
+		};
+		createFamily(familyObj);
+		updateUser({ familyId: newId, email: myEmail });
+		getUserStories();
+	};
+
+	const handleJoinSubmit = (event) => {
+		event.preventDefault();
+		console.log(myEmail);
+		const memberRequest = {
+			requests: userId,
+		};
+		const groupMember = {
+			groupMembers: userId,
+		};
+
+		const myFamilyId = {
+			familyId: familyId,
+			// familyId: "43242425235235",
+		};
+		//****************************************************************************************************** */
+
+//DO THIS NEXT TIME IDIOT!!!!
+		
+		//the join button needs to make the familyId code below
+		//currently family id is saved in state but state is out of sync with the axios fetches so
+		//need to find a way to get the above myFamilyId into the DB
+
+
+
+
+
+
+
+
+//********************************************************************************************** */
+
+
+
+		//find the family with the admin email to verify theyre an admin
+		axios
+			.get(`familyGroup/groupAdmin/${myEmail}`)
+			.then((response) => {
+				console.log(response.data);
+				setFamilyId(response.data[0]._id);
+			})
+			//find the person that the email belongs to
+			//add the request to the admins request array
+			.then(
+				axios.put(`user/email/${myEmail}`, memberRequest).then((response) => {
+					console.log(response.data);
+				})
+			)
+			.then(() => {
+				console.log("adding my id!!!!!");
+				//*********add users to family group automatically for now
+				axios.put(`familyGroup/groupAdmin/${myEmail}`, groupMember).then((response) => {
+					console.log(response.data);
+				});
+			})
+			.then(
+				axios.put(`user/${userId}`, myFamilyId).then((response) => {
+					console.log(response.data);
+				})
+			);
+
+		//****************************************************NOTE find a way to spread the requests array to add multiple requests */
+
+		//**SKIP FOR NOW */
+		//when the admin logs in....
+		//display the array of requests with yes/no selections
+		//if yes is clicked go to that user and add your familyid to their document
+		//**SKIP FOR NOW */
+	};
+
 	let addFamily = (
 		<div style={{ textAlign: "center" }}>
 			<h2>Do You Want to Create or Join a Family Group?</h2>
-			<Button onClick={toggleModal} style={{ marginRight: "1rem" }}>
+			<Button
+				onClick={() => {
+					toggleModalCreate();
+					// createJoinContent("create");
+				}}
+				style={{ marginRight: "1rem" }}
+			>
 				Create
 			</Button>
-			<Button>Join</Button>
+			<Button
+				onClick={() => {
+					toggleModalJoin();
+					// createJoinContent("join");
+				}}
+			>
+				Join
+			</Button>
 		</div>
 	);
 
 	return (
 		<React.Fragment>
 			<PageViewLayout
-				body={renderData.length ? renderData : addFamily}
+				// body={renderData.length ? renderData : addFamily}
+				body={familyId ? renderData : addFamily}
 				state={state}
 				loading={loading}
 			/>
-			<Modal isOpen={modal} toggle={toggleModal} centered>
-				<ModalHeader toggle={toggleModal}>Create a Family</ModalHeader>
-				<Form onSubmit={handleSubmit}>
+			<Modal isOpen={modalCreate} toggle={toggleModalCreate} centered>
+				<ModalHeader toggle={toggleModalCreate}>Create a Family</ModalHeader>
+				<Form onSubmit={handleCreateSubmit}>
 					<ModalBody>
 						<FormGroup>
 							<Label for="familyName">Family Name</Label>
@@ -257,16 +355,54 @@ function MainFeed({ state }) {
 								name="FamilyName"
 								id="familyName"
 								placeholder="Enter your family name"
-								onChange={handleChange}
+								onChange={handleFamilyNameChange}
+							/>
+						</FormGroup>
+						<FormGroup>
+							<Label for="email">Your Email</Label>
+							<Input
+								type="text"
+								name="Email"
+								id="email"
+								placeholder="Enter your email"
+								onChange={handleEmailChange}
 							/>
 						</FormGroup>
 					</ModalBody>
 
 					<ModalFooter>
-						<Button color="secondary" onClick={toggleModal}>
+						<Button color="secondary" onClick={toggleModalCreate}>
 							Cancel
 						</Button>
-						<Button type="submit" color="primary" onClick={toggleModal}>
+						<Button type="submit" color="primary" onClick={toggleModalCreate}>
+							Submit
+						</Button>
+					</ModalFooter>
+				</Form>
+			</Modal>
+			<Modal isOpen={modalJoin} toggle={toggleModalJoin} centered>
+				<ModalHeader toggle={toggleModalJoin}>Join a Family</ModalHeader>
+				<Form onSubmit={handleJoinSubmit}>
+					<ModalBody>
+						<FormGroup>
+							<Label for="familyName">
+								First you'll need your family admin's email
+							</Label>
+							<Input
+								type="text"
+								name="FamilyName"
+								id="familyName"
+								placeholder="Enter your family admin's email"
+								onChange={handleEmailChange}
+							/>
+						</FormGroup>
+					</ModalBody>
+
+					<ModalFooter>
+						<Button color="secondary" onClick={toggleModalJoin}>
+							Cancel
+						</Button>
+						<Button type="submit" color="primary" onClick={toggleModalJoin}>
 							Submit
 						</Button>
 					</ModalFooter>
