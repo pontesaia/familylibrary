@@ -225,7 +225,7 @@ class Register extends Component {
 const styles = {
 	header: {
 		color: "black",
-		fontSize: "2rem",
+		fontSize: "1.2rem",
 		// marginLeft: "1rem",
 		fontFamily: "Comfortaa",
 	},
@@ -237,7 +237,7 @@ const styles = {
 		width: "100%",
 		marginBottom: "80px",
 		backgroundColor: "black",
-		fontSize: "1.5rem",
+		fontSize: "1.2rem",
 	},
 	backLink: {
 		textDecoration: "none",

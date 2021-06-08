@@ -178,7 +178,7 @@ const Story = ({
 const styles = {
 	icon: {
 		color: "gray",
-		fontSize: "2rem",
+		fontSize: "1.2rem",
 		marginRight: "1rem",
 	},
 	avatar: {

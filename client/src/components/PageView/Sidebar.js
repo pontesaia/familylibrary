@@ -13,9 +13,9 @@ const Sidebar = ({state}) => {
 							style={styles.avatar}
 							alt="avatar"
 						/>
-						<h1 className="mt-4" style={styles.text}>
+						<h3 className="mt-4" style={styles.text}>
 							{state?.givenName}
-						</h1>
+						</h3>
 						<h6>BOSTON, MA</h6>
 						<Button
 							className="mt-3 text-center"
@@ -33,7 +33,7 @@ const Sidebar = ({state}) => {
 
 const styles = {
 	avatar: {
-		width: "150px",
+		width: "100px",
 		marginTop: "100px",
 		borderRadius: "50%"
 	},

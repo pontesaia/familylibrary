@@ -126,21 +126,21 @@ const styles = {
 		backgroundColor: "white",
 		border: "solid black 3px",
 		color: "black",
-		fontSize: "2rem",
-		width: "60%",
+		fontSize: "1.2rem",
+		width: "50%",
 		padding: "15px",
 	},
 	buttonRegister: {
 		borderRadius: "8px",
 		backgroundColor: "black",
 		border: "solid black 3px",
-		fontSize: "2rem",
+		fontSize: "1.2rem",
 		width: "60%",
 		padding: "15px",
 	},
 	logoType: {
 		fontFamily: "Comfortaa",
-		fontSize: "clamp(40px, 8vw, 100px)",
+		fontSize: "clamp(40px, 6vw, 80px)",
 	},
 };
 

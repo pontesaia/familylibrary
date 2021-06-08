@@ -91,7 +91,8 @@ class MainNav extends Component {
 const styles = {
   navLinks: {
     fontFamily: "Comfortaa",
-    fontSize: "1.8rem",
+	fontWeight: 500,
+    fontSize: "1.2rem",
     paddingLeft: "52px",
     paddingRight: "52px",
   },

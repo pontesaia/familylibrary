@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   /* overflow-x: hidden; */
   overflow-y: hidden;
 }
@@ -17,7 +18,7 @@ html, body {
 }
 
 h5 {
-  color: #058d82
+  color: #058d82;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -60,12 +61,12 @@ h5 {
   #loginBtn {
     margin-left: auto;
     margin-right: auto;
-    padding: "15px 0 15x 0";
+    padding: '15px 0 15x 0';
   }
   #registerBtn {
     margin-left: auto;
     margin-right: auto;
-    padding: "15px 0 15px 0";
+    padding: '15px 0 15px 0';
   }
   #logoImage {
     width: 90vw;
@@ -187,16 +188,16 @@ h5 {
 
 p {
   font-size: 1rem;
-  line-height: "30px";
+  line-height: '30px';
 }
 
 .footer {
-  background-color: #9efdf5;
+  background-color: #b2d8d5;
 }
 
 #brandLogo {
   position: absolute;
-  left: 8.1%;
+  left: 8.5%;
   top: 20%;
   transform: translate(-50%, 0%);
   z-index: 999;
@@ -207,7 +208,7 @@ p {
   left: 8.1%;
   transform: translate(-50%, 0);
   top: 165%;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   word-wrap: none;
   z-index: 999;
 }

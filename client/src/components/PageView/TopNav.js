@@ -41,7 +41,7 @@ const TopNav = ({ state }) => {
 							alt="brandLogo"
 						/>
 						<h1 id="brandLogoTitle" style={styles.brandLogoTitle}>
-							family library
+							family <br/>library
 						</h1>
 					</div>
 				</NavbarBrand>
@@ -53,7 +53,7 @@ const TopNav = ({ state }) => {
 					</NavItem>
 					<NavItem style={styles.navItem}>
 						<Link to="/ComposeStory" style={styles.navLinks}>
-							Write
+							
 							<span className="d-none d-lg-inline">
 								<Button className="rounded-pill" style={styles.writeButton}>
 									<span style={styles.plusSign}>+</span>
@@ -62,7 +62,7 @@ const TopNav = ({ state }) => {
 						</Link>
 					</NavItem>
 					<NavItem style={styles.navItem}>
-						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} >
 							{/* <Link to="Logout" style={styles.navLinks}> */}
 							<DropdownToggle
 								style={{ backgroundColor: "transparent", border: "none" }}
@@ -74,7 +74,7 @@ const TopNav = ({ state }) => {
 									/>
 								) || <i class="fa fa-user fa-2x" aria-hidden="true" />}
 							</DropdownToggle>
-							<span style={{ fontSize: "1.4rem" }}>{state?.givenName || ""}</span>
+							<span style={{ fontSize: "1.2rem", fontFamily: "Comfortaa" }}>{state?.givenName || ""}</span>
 
 							{/* </Link> */}
 							<DropdownMenu>
@@ -125,19 +125,21 @@ const styles = {
 	},
 	nav: {
 		paddingLeft: "200px",
+		
 	},
 	navItem: {
-		paddingTop: "15px",
+		paddingTop: "35px",
 	},
 	navLinks: {
 		fontFamily: "Comfortaa",
-		fontSize: "1.8rem",
-		textDecoration: "none",
+		fontSize: "1.2rem",
+		// textDecoration: "none",
+		
 	},
 	writeButton: {
 		marginLeft: "8px",
 		height: "2.75rem",
-		width: "5rem",
+		width: "3.5rem",
 		border: "none",
 		backgroundColor: "hotpink",
 		fontSize: "3.5rem",
@@ -149,10 +151,10 @@ const styles = {
 	},
 	brandLogoTitle: {
 		fontFamily: "Comfortaa",
-		fontSize: "clamp(1.5rem, 2vw, 2rem)",
-		marginTop: "20px",
+		fontSize: "clamp(2rem, 2vw, 3rem)",
+		/*marginTop: "20px",*/
 		letterSpacing: "-1.1px",
-		lineHeight: "2.5rem",
+		lineHeight: "2rem",
 		textAlign: "center",
 	},
 };

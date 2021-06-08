@@ -64,7 +64,7 @@ const styles = {
 	},
 	navLinks: {
 		fontFamily: "Comfortaa",
-		fontSize: "1.8rem",
+		fontSize: "1.2rem",
 		// marginLeft: "auto"
 		// marginLeft: "100px"
 	},
