@@ -14,6 +14,7 @@ import {
 	ModalHeader,
 	ModalBody,
 	ModalFooter,
+	Tooltip
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Logout from "../Home/Logout";
@@ -22,7 +23,9 @@ const TopNav = ({ state }) => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
 	const [modal, setModal] = useState(false);
+	const  [tooltipOpen, setTooltipOpen] = useState(false)
 	const toggleModal = () => setModal(!modal);
+	const toggle = () => setTooltipOpen(!tooltipOpen);
 
 	return (
 		<React.Fragment>
@@ -41,28 +44,41 @@ const TopNav = ({ state }) => {
 							alt="brandLogo"
 						/>
 						<h1 id="brandLogoTitle" style={styles.brandLogoTitle}>
-							family <br/>library
+							family <br />
+							library
 						</h1>
 					</div>
 				</NavbarBrand>
 				<Nav navbar className="nav-fill w-100" style={styles.nav}>
 					<NavItem style={styles.navItem}>
 						<Link to="/Feed" style={styles.navLinks}>
-							Stories
+							Family Stories
 						</Link>
 					</NavItem>
 					<NavItem style={styles.navItem}>
 						<Link to="/ComposeStory" style={styles.navLinks}>
-							
 							<span className="d-none d-lg-inline">
-								<Button className="rounded-pill" style={styles.writeButton}>
+								<Button
+									className="rounded-pill"
+									style={styles.writeButton}
+									id="writeStoryBtn"
+								>
 									<span style={styles.plusSign}>+</span>
 								</Button>
+								<Tooltip
+									placement="right"
+									// isOpen={tooltipOpen}
+									// isOpen={true}
+									target="writeStoryBtn"
+									toggle={toggle}
+								>
+									Add New Story
+								</Tooltip>
 							</span>
 						</Link>
 					</NavItem>
 					<NavItem style={styles.navItem}>
-						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} >
+						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
 							{/* <Link to="Logout" style={styles.navLinks}> */}
 							<DropdownToggle
 								style={{ backgroundColor: "transparent", border: "none" }}
@@ -74,7 +90,9 @@ const TopNav = ({ state }) => {
 									/>
 								) || <i class="fa fa-user fa-2x" aria-hidden="true" />}
 							</DropdownToggle>
-							<span style={{ fontSize: "1.2rem", fontFamily: "Comfortaa" }}>{state?.givenName || ""}</span>
+							<span style={{ fontSize: "1.2rem", fontFamily: "Comfortaa" }}>
+								{state?.givenName || ""}
+							</span>
 
 							{/* </Link> */}
 							<DropdownMenu>
@@ -125,7 +143,7 @@ const styles = {
 	},
 	nav: {
 		paddingLeft: "200px",
-		
+		alignItems: "center",
 	},
 	navItem: {
 		paddingTop: "35px",
@@ -134,7 +152,6 @@ const styles = {
 		fontFamily: "Comfortaa",
 		fontSize: "1.2rem",
 		// textDecoration: "none",
-		
 	},
 	writeButton: {
 		marginLeft: "8px",

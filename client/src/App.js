@@ -96,17 +96,17 @@ function App() {
 							<Route
 								exact
 								path="/FamilyView/About"
-								render={() => <FamilyViewAbout />}
+								render={() => <FamilyViewAbout state={state} />}
 							/>
 							<Route
 								exact
 								path="/FamilyView/Contact"
-								render={() => <FamilyViewContact />}
+								render={() => <FamilyViewContact state={state} />}
 							/>
 							<Route
 								exact
 								path="/FamilyView/Features"
-								render={() => <FamilyViewFeatures />}
+								render={() => <FamilyViewFeatures state={state} />}
 							/>
 							<Route exact path="/TestDB" render={() => <TestDB />} />
 							<Redirect to="/" />

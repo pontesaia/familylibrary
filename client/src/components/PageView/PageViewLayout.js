@@ -52,7 +52,7 @@ const PageViewLayout = ({ body, state, loading }) => {
 							<Col className="mh-100 pt-5">
 								<Row className="m-2">
 									<Col className="offset-lg-1 p-0">
-										<Search />
+										<Search state={state}/>
 									</Col>
 								</Row>
 								{renderData}

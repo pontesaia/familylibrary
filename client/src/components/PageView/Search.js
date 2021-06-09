@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
-const Search = () => {
+const Search = ({state}) => {
 	return (
 		<React.Fragment>
 			<Container>
@@ -15,9 +15,9 @@ const Search = () => {
 								</span>
 							</div>
 							<span style={styles.title}>
-								Family Stories Feed:{" "}
+								Stories Feed:{" "}
 							</span>
-							<span style={styles.subject}>Patrick McCarthy</span>
+							<span style={styles.subject}>{state.givenName}{" "}{state.familyName}</span>
 						</div>
 					</Col>
 				</Row>

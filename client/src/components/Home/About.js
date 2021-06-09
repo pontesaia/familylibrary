@@ -12,7 +12,7 @@ class About extends Component {
 			<div className="componentContainer">
 				<Container>
 					<Row>
-						<Col className="text-left mt-4">
+						<Col className="text-left">
 							<h1 style={styles.header}>About</h1>
 						</Col>
 					</Row>

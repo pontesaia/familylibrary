@@ -21,8 +21,10 @@ const Sidebar = ({state}) => {
 							className="mt-3 text-center"
 							style={styles.button}
 						>
-							<p className="mb-0">The </p>
-							<p className="mb-0">McCarthy's</p>
+							{/* <p className="mb-0">THE </p> */}
+							{/* <p className="mb-0"> */}
+								{state.familyName.toUpperCase()}{"'S"}
+							{/* </p> */}
 						</Button>
 					</div>
 				</Col>
@@ -48,7 +50,7 @@ const styles = {
 		borderRadius: "8px",
 		// border: "1px solid #000000",
 		fontFamily: "Roboto",
-		fontSize: "18px",
+		fontSize: "1.2rem",
 		fontWeight: "bold",
 		lineHeight: "19.11px",
 		letterSpacing: "0.09em",

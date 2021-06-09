@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 
-const FamilyCrest = () => {
+const FamilyCrest = ({state}) => {
 	return (
 		<React.Fragment>
 			<Container>
@@ -13,11 +13,7 @@ const FamilyCrest = () => {
 							style={styles.logo}
 							alt=""
 						/>
-						<h1
-							className="mt-3"
-							id="logoTitle"
-							style={styles.logoType}
-						>
+						<h1 className="mt-3" id="logoTitle" style={styles.logoType}>
 							family library
 						</h1>
 					</Col>
@@ -28,7 +24,8 @@ const FamilyCrest = () => {
 							id="registerBtn"
 							name="registerCollapsed"
 						>
-							THE MCCARTHY'S
+							{state.familyName.toUpperCase()}
+							{"'S"}
 						</Button>
 					</Col>
 				</Row>

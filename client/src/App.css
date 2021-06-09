@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   /* overflow-x: hidden; */
   overflow-y: hidden;
 }
@@ -168,13 +167,14 @@ h5 {
 }
 
 .componentContainer {
-  background-color: #9efdf5;
+  /* background-color: #9efdf5; */
+  background-color: #ebebeb;
   /* margin-top: 50px; */
   /* margin-bottom: 80px; */
   /* padding-bottom: 30px; */
   /* padding-left: 100px;
   padding-right: 100px; */
-  padding-top: 110px;
+  padding-top: 70px;
 }
 
 .backgroundCircle {
@@ -219,7 +219,8 @@ p {
   overflow-x: hidden;
   /*border-right: solid #9efdf5 1px;*/
   /* border-right: 1px solid rgba(0, 0, 0, 0.1); */
-  background-color: #fdfdfd;
+  /* background-color: #fdfdfd; */
+  background-color: #ebebeb;
 }
 
 /* Quill */
